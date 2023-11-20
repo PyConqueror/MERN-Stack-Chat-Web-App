@@ -5,7 +5,8 @@ const bcrypt = require('bcrypt');
 
 module.exports = {
     create,
-    login
+    login,
+    checkToken
   };
 
 async function create(req, res) {
@@ -38,11 +39,13 @@ async function login(req,res){
   }
 }
 
-
+function checkToken(req, res) {
+  console.log('req.user', req.user);
+  res.json(req.exp);
+}
 
 function createJWT(user) {
   return jwt.sign(
-    // data payload
     { user },
     process.env.SECRET,
     { expiresIn: '24h' }
