@@ -2,6 +2,7 @@
 
 // This is the base path of the Express route we'll define
 const BASE_URL = '/api/users';
+const LOGIN_URL = '/api/users/login';
 
 export async function signUp(userData) {
   // Fetch uses an options object as a second arg to make requests
@@ -20,4 +21,18 @@ export async function signUp(userData) {
   } else {
     throw new Error('Invalid Sign Up');
   }
+}
+
+export async function login(creds) {
+  const res = await fetch(LOGIN_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(creds)
+  })
+  if (res.ok) {
+    return res.json();
+  } else {
+    throw new Error('Please Try Again');
+  }
+
 }

@@ -33,3 +33,9 @@ export function getUser() {
     // If there's a token, return the user in the payload, otherwise return null
     return token ? JSON.parse(atob(token.split('.')[1])).user : null;
 }
+
+export async function login(creds) {
+  const token = await usersAPI.login(creds);
+  localStorage.setItem('token', token);
+  return getUser();
+}
