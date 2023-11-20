@@ -5,12 +5,12 @@ const logger = require('morgan');
 require('dotenv').config();
 require('./config/database.cjs');
 
-
 const app = express();
 
 // Middleware
 app.use(logger('dev'));
 app.use(express.json());
+app.use(require('./config/checkToken.js'));
 
 // create-react-app has a "build" directory
 // vite uses the "dist" directory instead
@@ -18,7 +18,6 @@ app.use('/api/users', require('./routes/api/users.cjs'));
 // app.use(favicon(path.join(__dirname, 'dist', 'favicon.ico')));
 app.use(express.static(path.join(__dirname, 'dist')));
 
-app.use(require('./config/checkToken'));
 
 const port = process.env.PORT || 3001;
 
