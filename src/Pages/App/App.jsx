@@ -28,3 +28,10 @@ export default function App() {
   );
 };
   
+//  Initialize router to manage navigation between different pages
+// Include routes for:
+// - Home/Landing Page before user logged in
+// - Login Page
+// - Register Page
+// - User Dashboard @ probably chats page after logged in
+// - Community Section

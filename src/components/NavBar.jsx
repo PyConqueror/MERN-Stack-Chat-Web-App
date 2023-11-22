@@ -3,9 +3,7 @@ import * as userService from '../utilities/users-service';
 
 function NavBar({user, setUser}) {
     function handleLogOut() {
-        // Delegate to the users-service
         userService.logOut();
-        // Update state will also cause a re-render
         setUser(null);
     }
     return (
@@ -19,6 +17,13 @@ function NavBar({user, setUser}) {
         </nav>
     )
 }
+
+//   Display logo and home link
+//   If user is logged in
+//     Show links to Dashboard and Community Section
+//     Show logout button
+//   Else
+//     Show links to Login and Register
 
 
 
