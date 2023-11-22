@@ -1,0 +1,66 @@
+
+// Connect to MongoDB (DONE)
+Define a function to connect to MongoDB using Mongoose
+Handle connection events (connected, error, disconnected)
+
+// Define Middlewares (DONE)
+Use middleware for body parsing to handle JSON and URL encoded form data
+
+
+// Define Authentication Middleware (DONE)
+Create middleware to check if a user is authenticated
+Use JWT tokens to verify user authentication
+
+// User API Endpoints (DONE)
+Define route for user registration
+  Validate input data
+  Encrypt password and create new user in database
+  Respond with success or error message
+
+Define route for user login (DONE)
+  Validate input data
+  Check user credentials
+  Generate JWT token and send back to user
+
+Define route for getting user profile data 
+  Use authentication middleware
+  Retrieve user data from database
+  Respond with user data
+
+// Chat API Endpoints 
+Define route for getting chat list
+  Use authentication middleware
+  Retrieve list of chats for the logged-in user
+  Respond with chats data
+
+Define route for getting messages of a chat
+  Use authentication middleware
+  Retrieve messages for the given chat ID
+  Respond with messages data
+
+Define route for creating a new chat
+  Use authentication middleware
+  Create a new chat in the database
+  Respond with the created chat details
+
+// Community Section API Endpoints
+Define route for getting community groups
+  Use authentication middleware
+  Retrieve list of groups the user is part of
+  Respond with groups data
+
+Define route for getting posts in a group
+  Use authentication middleware
+  Retrieve posts for the given group ID
+  Respond with posts data
+
+Define route for creating a new post in a group
+  Use authentication middleware
+  Create a new post in the database under the given group
+  Respond with the created post details
+
+// Real-Time Communication Setup with WebSocket
+Initialize WebSocket using Socket.io
+Handle connection, disconnection, and chat message events
+Broadcast messages to the correct recipients in real-time
+
