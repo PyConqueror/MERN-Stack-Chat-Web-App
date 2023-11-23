@@ -18,12 +18,13 @@ function NavBar({user, setUser}) {
     )
 }
 
-//   Display logo and home link
-//   If user is logged in
-//     Show links to Dashboard and Community Section
-//     Show logout button
-//   Else
-//     Show links to Login and Register
+// Display logged-in user's name
+//   Include Logout and Profile buttons or links
+//   Section for Conversations List
+//     Include a 'New Chat' button
+//     List each conversation with User Name and Latest Message
+//     Allow searching or filtering conversations
+//   Include a 'Community' button or link at the bottom to navigate to the community section
 
 
 

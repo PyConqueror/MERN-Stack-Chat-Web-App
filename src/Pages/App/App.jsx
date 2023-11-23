@@ -5,7 +5,7 @@ import { getUser } from '../../utilities/users-service';
 import NewOrderPage from '../../Components/NewOrderPage';
 import AuthPage from '../LoginPage/AuthPage';
 import OrderHistoryPage from '../../Components/OrderHistoryPage';
-import NavBar from '../../Components/NavBar';
+import Aside from '../../Components/Aside';
 
 export default function App() {
   const [user, setUser] = useState(getUser)
@@ -14,7 +14,7 @@ export default function App() {
     <main className="App">
       { user ?
       <>
-        <NavBar user={user} setUser={setUser}/>
+        <Aside user={user}/>
         <Routes>
           <Route path='/orders/new' element={<NewOrderPage/>}/>
           <Route path='/orders/history' element={<OrderHistoryPage/>}/>
@@ -35,3 +35,5 @@ export default function App() {
 // - Register Page
 // - User Dashboard @ probably chats page after logged in
 // - Community Section
+// Include <Aside> component for user information and conversations list(conversation list only available in chatPage)
+//   Use React Router to switch between <ChatPage>, <ProfileEdit> and <CommunityPage> page based on URL
