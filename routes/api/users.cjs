@@ -6,5 +6,8 @@ const ensureLoggedIn = require('../../config/ensureLoggedIn')
 router.get('/check-token', ensureLoggedIn, usersController.checkToken)
 router.post('/', usersController.create);
 router.post('/login', usersController.login)
+// router.post('/addfriend', usersController.addFriend)
+// router.post('/getFriends', usersController.getFriends)
+
 
 module.exports = router;
