@@ -2,9 +2,7 @@ import './App.css';
 import { useState } from "react"
 import { Routes, Route } from 'react-router-dom'
 import { getUser } from '../../utilities/users-service';
-import NewOrderPage from '../../Components/NewOrderPage';
 import AuthPage from '../LoginPage/AuthPage';
-import OrderHistoryPage from '../../Components/OrderHistoryPage';
 import Aside from '../../Components/Aside';
 
 export default function App() {
@@ -16,8 +14,7 @@ export default function App() {
       <>
         <Aside user={user}/>
         <Routes>
-          <Route path='/orders/new' element={<NewOrderPage/>}/>
-          <Route path='/orders/history' element={<OrderHistoryPage/>}/>
+          {/* <Route path='/orders/new' element={<NewOrderPage/>}/> */}
         </Routes>
       </>
       :
