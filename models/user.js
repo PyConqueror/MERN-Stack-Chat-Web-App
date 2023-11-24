@@ -24,8 +24,13 @@ const userSchema = new Schema({
       default:"https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png"},
     friends:[{
       type: Schema.Types.ObjectId,
-      ref: 'User'
+      ref: 'User',
+    }],
+    chats: [{ 
+      type: mongoose.Schema.Types.ObjectId, 
+      ref: 'Chat' 
     }]
+
   }, {
     timestamps: true,
     toJSON: {

@@ -7,7 +7,7 @@ const chatSchema = new Schema({
         ref: 'User'
     }],
     isGroup: {type: Boolean, default: false},
-    GroupName: String,
+    GroupName: { type: String, default: null },
     messages: [{
         type: Schema.Types.ObjectId,
         ref: 'Message'
