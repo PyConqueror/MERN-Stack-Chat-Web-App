@@ -1,12 +1,13 @@
-// routes/api/users.js
-const user = require('../../models/user')
 const express = require('express');
 const router = express.Router();
-const usersCtrl = require('../../controllers/api/users');
+const usersController = require('../../controllers/api/users');
 const ensureLoggedIn = require('../../config/ensureLoggedIn')
 
-router.get('/check-token', ensureLoggedIn, usersCtrl.checkToken)
-router.post('/', usersCtrl.create);
-router.post('/login', usersCtrl.login)
+router.get('/check-token', ensureLoggedIn, usersController.checkToken)
+router.post('/', usersController.create);
+router.post('/login', usersController.login)
+// router.post('/addfriend', usersController.addFriend)
+// router.get('/getFriends', usersController.getFriends)
+
 
 module.exports = router;
