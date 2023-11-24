@@ -24,7 +24,7 @@ async function getChat(req, res) {
     chat = await Chat.findById(chat._id).populate('messages').populate('participants', 'name avatar');
       }
       res.json({
-        _id: chat._id, //send the chat.id with populated messages and user details
+        _id: chat._id, //send the chat.id and user details
         participants: chat.participants
       });
 }
@@ -49,7 +49,20 @@ async function sendMessage(req, res) {
     })
     await newMessage.save();
     await Chat.findByIdAndUpdate(chatID, {
-        $push: { messages: newMessage._id} //push the message in messages array in chat schema
+        $push: { messages: newMessage._id } //push the message in messages array in chat schema
     })
-    await this.getMessages(req, res); // call the getMessages function to send updated messages list
+    await getMessages(req, res); // call the getMessages function to send updated messages list
+}
+
+async function createGroup(req, res) {
+    const {groupName, participants} = req.body //participants should be an array of user id sent from frontend (selected from friend list)
+    const groupChat = new Chat({
+        participants: participants,
+        isGroup: true,
+        groupName: groupName,
+        messages: [] //starting with empty array as usual when starting a new chat
+    })
+    await groupChat.save();
+    await groupChat.populate('partipants' ,'username avatar')
+    res.json(groupChat)
 }
