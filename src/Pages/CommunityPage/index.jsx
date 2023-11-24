@@ -11,3 +11,11 @@
 //components to show post inside the groups 
 
 //import css
+
+function CommunityPage() {
+    return(
+        <h1>COMMUNITY PAGE</h1>
+    )
+}
+
+export default CommunityPage

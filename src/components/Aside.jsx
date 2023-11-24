@@ -7,14 +7,14 @@ function NavBar({user, setUser}) {
         setUser(null);
     }
     return (
-        <nav>
-            <Link to={"orders/history"}>Order History</Link>
+        <aside>
+            <Link to={"/"}>Chats Page</Link>
             &nbsp; | &nbsp;
-            <Link to={"orders/new"}>New Order</Link>
+            <Link to={"/community"}>Community Page</Link>
             &nbsp; | &nbsp;
             <span>Welcome, {user.name}</span>
             &nbsp;&nbsp;<Link to="" onClick={handleLogOut}>Log Out</Link>
-        </nav>
+        </aside>
     )
 }
 

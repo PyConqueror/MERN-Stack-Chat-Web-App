@@ -6,3 +6,11 @@
 //     For each chat, display last message preview and timestamp
 
 //import css
+
+function ChatPage(){
+    return(
+        <h1>CHATS PAGE</h1>
+    )
+}
+
+export default ChatPage

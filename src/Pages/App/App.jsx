@@ -4,6 +4,9 @@ import { Routes, Route } from 'react-router-dom'
 import { getUser } from '../../utilities/users-service';
 import AuthPage from '../LoginPage/AuthPage';
 import Aside from '../../Components/Aside';
+import LandingPage from '../LandingPage'
+import ChatPage from '../ChatPage'
+import CommunityPage from '../CommunityPage'
 
 export default function App() {
   const [user, setUser] = useState(getUser)
@@ -14,12 +17,17 @@ export default function App() {
       <>
         <Aside user={user}/>
         <Routes>
-          {/* <Route path='/orders/new' element={<NewOrderPage/>}/> */}
+          <Route path='/' element={<ChatPage/>} exact/>
+          <Route path='/community' element={<CommunityPage/>}/>
         </Routes>
       </>
       :
-      <AuthPage setUser={setUser}/>
-
+      <>
+      <Routes>
+      <Route path='/' element={<LandingPage/>}/>
+      <Route path='/login' element={<AuthPage setUser={setUser}/>}/>
+      </Routes>
+      </>
       }
     </main>
   );
