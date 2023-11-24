@@ -33,6 +33,8 @@ async function getMessages(req, res) {
     const chatID = req.params.id;
     const messages = await Message.find({ chat: chatID })
     .sort({ date: -1 }) //sort by date, newest first
-    //response
-}
+    .populate('sender', 'username profilePicture') // Populate sender details
+    .populate('receiver', 'username profilePicture') // Populate receiver details
+    res.json(messages)
+}   
 
