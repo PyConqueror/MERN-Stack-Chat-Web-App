@@ -4,7 +4,7 @@ const Message = require('../../models/message')
 module.exports = {
     getChat,
     getMessages,
-    sendMessages,
+    sendMessage,
     createGroup
   };
 
@@ -38,3 +38,18 @@ async function getMessages(req, res) {
     res.json(messages)
 }   
 
+async function sendMessage(req, res) {
+    const chatID = req.params.id
+    const senderID = req.user._id
+    const content = req.body.content //extract message from body
+    const newMessage = new Message({ //create new message
+        chat: chatID,
+        sender: senderID,
+        content: content
+    })
+    await newMessage.save();
+    await Chat.findByIdAndUpdate(chatID, {
+        $push: { messages: newMessage._id} //push the message in messages array in chat schema
+    })
+    await this.getMessages(req, res); // call the getMessages function to send updated messages list
+}
