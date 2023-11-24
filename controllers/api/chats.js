@@ -34,8 +34,8 @@ async function getMessages(req, res) {
     const chatID = req.params.id;
     const messages = await Message.find({ chat: chatID })
     .sort({ date: -1 }) //sort by date, newest first
-    .populate('sender', 'username avatar') // Populate sender details
-    .populate('receiver', 'username avatar') // Populate receiver details
+    .populate('sender', 'name avatar') // Populate sender details
+    .populate('receiver', 'name avatar') // Populate receiver details
     res.json(messages)
 }   
 
@@ -64,6 +64,6 @@ async function createGroup(req, res) {
         messages: [] //starting with empty array as usual when starting a new chat
     })
     await groupChat.save();
-    await groupChat.populate('partipants' ,'username avatar')
+    await groupChat.populate('partipants' ,'name avatar')
     res.json(groupChat)
 }
