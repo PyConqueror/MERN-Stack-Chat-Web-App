@@ -9,14 +9,14 @@ module.exports = {
   };
 
 async function getChat(req, res) {
-    const chatID = req.params.id //group chat has an id of the chat id, individial chat has and id of a chat partner
+    const chatID = req.params.id //group chat has an id of the chat id, individial chat has an id of a chat partner
     const chat = await Chat.findById(chatID).populate('participants', 'name avatar');
     if (chat && chat.isGroup) { //check if chat available and a group chat
         res.json(chat); //if yes returned with chat 
-    } else {
+    } else { //if no find the chat based on the participants (one to one conversation)
     const partnerId = req.params.id;
     const userId = req.user._id;
-    let chat = await Chat.findOne({ //let variable bcause the value can be changed if chat not found 
+    let chat = await Chat.findOne({ //let variable bcause the value can be changed if individual chat not found 
         participants: { $all: [partnerId, userId] } //$all is a mongoose property to find property include both of the user id
       }).populate('participants', 'name avatar') //carry messages and users username and profilepic
     if (!chat) { //if chat not found create a new one between theses 2 users
