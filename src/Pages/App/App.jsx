@@ -3,7 +3,7 @@ import { useState } from "react"
 import { Routes, Route } from 'react-router-dom'
 import { getUser } from '../../utilities/users-service';
 import AuthPage from '../LoginPage/AuthPage';
-import Aside from '../../Components/Aside';
+import Aside from '../../components/Aside';
 import LandingPage from '../LandingPage'
 import ChatPage from '../ChatsPage'
 import CommunityPage from '../CommunityPage'
