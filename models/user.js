@@ -19,7 +19,9 @@ const userSchema = new Schema({
       minLength: 3,
       required: true
     },
-    avatar: String,
+    avatar: {
+      type: String, 
+      default:"https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png"},
     friends:[{
       type: Schema.Types.ObjectId,
       ref: 'User'
