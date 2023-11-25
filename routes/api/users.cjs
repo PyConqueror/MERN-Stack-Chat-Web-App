@@ -9,6 +9,7 @@ router.post('/login', usersController.login)
 router.get('/searchUsers', usersController.searchUsers)
 // router.post('/addfriend', usersController.addFriend)
 router.get('/getFriends', usersController.getFriends)
+router.get("/list", ensureLoggedIn, usersController.getChatList)
 
 
 module.exports = router;

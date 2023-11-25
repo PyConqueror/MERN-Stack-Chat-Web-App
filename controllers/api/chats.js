@@ -7,7 +7,7 @@ module.exports = {
     getChat,
     getMessages,
     sendMessage,
-    createGroup
+    createGroup,
   };
 
 async function getChat(req, res) {
@@ -72,3 +72,4 @@ async function createGroup(req, res) {
     await groupChat.populate('partipants' ,'name avatar')
     res.json(groupChat)
 }
+
