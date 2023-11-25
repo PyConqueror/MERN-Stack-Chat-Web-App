@@ -2,7 +2,7 @@ import './App.css';
 import { useState } from "react"
 import { Routes, Route } from 'react-router-dom'
 import { getUser } from '../../utilities/users-service';
-import AuthPage from '../LoginPage/AuthPage';
+import AuthPage from '../AuthPage';
 import NavBar from '../../Components/Navbar';
 import LandingPage from '../LandingPage'
 import ChatPage from '../ChatsPage'
