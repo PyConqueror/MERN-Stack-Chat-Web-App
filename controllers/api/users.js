@@ -9,7 +9,8 @@ module.exports = {
     checkToken,
     searchUsers,
     getFriends,
-    getChatList
+    getChatList,
+    addUsers,
   };
 
 async function create(req, res) {
@@ -97,4 +98,10 @@ async function getChatList(req, res) {
     }
   });
   res.json(transformedChats);
+}
+
+async function addFriend(req, res) {
+  const userID = req.user._id
+  const friendID = req.params.id
+  await User.findByIdAndUpdate(ID, friends)
 }
