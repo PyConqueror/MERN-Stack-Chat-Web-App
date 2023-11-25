@@ -1,4 +1,5 @@
 import { useState } from "react";
+import * as usersAPI from '../../utilities/users-api'
 
 function FindUser() {
     const [query, setQuery] = useState('')
@@ -23,6 +24,7 @@ function FindUser() {
         </form>
     )
 }
+
 export default FindUser
 
 
