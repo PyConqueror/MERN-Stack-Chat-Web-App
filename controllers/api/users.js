@@ -5,7 +5,8 @@ const bcrypt = require('bcrypt');
 module.exports = {
     create,
     login,
-    checkToken
+    checkToken,
+    searchUsers
   };
 
 async function create(req, res) {
@@ -43,4 +44,15 @@ function createJWT(user) {
     process.env.SECRET,
     { expiresIn: '24h' }
   );
+}
+
+async function searchUsers(req, res){
+  const query = req.query.query;
+  let regex = new RegExp(query, 'i')
+  try {
+    const user = await User.find({name: regex})
+    res.json(user)
+  } catch (err){
+    console.log(err)
+  }
 }

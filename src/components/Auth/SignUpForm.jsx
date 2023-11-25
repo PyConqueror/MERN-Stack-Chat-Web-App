@@ -8,7 +8,7 @@ class SignUpForm extends Component {
         password: '',
         confirm: '',
         error: ''
-      };
+    };
 
     handleChange = (evt) => {
     this.setState({

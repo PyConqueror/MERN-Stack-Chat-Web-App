@@ -16,3 +16,7 @@ export function login(credentials) {
 export function checkToken() {
   return sendRequest(`${BASE_URL}/check-token`);
 }
+
+export function searchUsers(query){
+  return sendRequest(`${BASE_URL}/searchUsers?query=${query}`, 'GET')
+}
