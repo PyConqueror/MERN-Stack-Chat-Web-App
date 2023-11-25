@@ -37,6 +37,8 @@ function ChatPage(){
         </form>
     </>
     )
-}
+} //Chatbox component
+//CHatlist component
+//profileview compoment
 
 export default ChatPage

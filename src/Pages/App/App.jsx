@@ -3,8 +3,7 @@ import { useState } from "react"
 import { Routes, Route } from 'react-router-dom'
 import { getUser } from '../../utilities/users-service';
 import AuthPage from '../LoginPage/AuthPage';
-import Aside from '../../components/Aside';
-import NavBar from '../../components/Navbar';
+import NavBar from '../../Components/Navbar';
 import LandingPage from '../LandingPage'
 import ChatPage from '../ChatsPage'
 import CommunityPage from '../CommunityPage'
@@ -16,8 +15,7 @@ export default function App() {
     <main className="App">
       { user ?
       <>
-        <Aside user={user}/>
-        <NavBar user={user} />
+        <NavBar user={user}/>
         <Routes>
           <Route path='/' element={<ChatPage/>} exact/>
           <Route path='/community' element={<CommunityPage/>}/>
