@@ -1,5 +1,5 @@
-import FriendsList from "../../Components/Friends/FriendList"
-import FindUser from "../../Components/Friends/FindUser"
+import FriendsList from "../../components/Friends/FriendList"
+import FindUser from "../../components/Friends/FindUser"
 
 function FriendsPage () {
     return (

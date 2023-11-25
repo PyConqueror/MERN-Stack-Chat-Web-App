@@ -3,7 +3,7 @@ import { useState } from "react"
 import { Routes, Route } from 'react-router-dom'
 import { getUser } from '../../utilities/users-service';
 import AuthPage from '../AuthPage';
-import NavBar from '../../Components/Navbar';
+import NavBar from '../../components/Navbar'
 import LandingPage from '../LandingPage'
 import ChatPage from '../ChatsPage'
 import CommunityPage from '../CommunityPage'
