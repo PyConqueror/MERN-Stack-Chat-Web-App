@@ -11,3 +11,4 @@ const BASE_URL = '/api/chats';
 export function getConversation(ID) {
     sendRequest(`${BASE_URL}/${ID}`);
 }
+
