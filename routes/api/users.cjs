@@ -8,7 +8,7 @@ router.post('/', usersController.create);
 router.post('/login', usersController.login)
 router.get('/searchUsers', usersController.searchUsers)
 // router.post('/addfriend', usersController.addFriend)
-// router.get('/getFriends', usersController.getFriends)
+router.get('/getFriends', usersController.getFriends)
 
 
 module.exports = router;

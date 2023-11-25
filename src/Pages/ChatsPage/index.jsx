@@ -9,6 +9,7 @@
 
 import { useState } from 'react'
 import * as usersAPI from '../../utilities/users-api'
+import ChatBox from '../../Components/Chats/ChatBox';
 
 function ChatPage(){
 
@@ -27,14 +28,7 @@ function ChatPage(){
     return(
     <>
         <h1>CHATS PAGE</h1>
-        <form>
-        <label>Find friends</label>
-        <input 
-            type="search" 
-            placeholder="Search"
-            onChange={_handleChange}></input>
-        <button onClick={(event) => searchUsers(event, query)}>Search</button>
-        </form>
+        <ChatBox/>
     </>
     )
 } //Chatbox component

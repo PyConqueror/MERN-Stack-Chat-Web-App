@@ -20,9 +20,7 @@ export default function App() {
         <Routes>
           <Route path='/' element={<ChatPage/>} exact/>
           <Route path='/community' element={<CommunityPage/>}/>
-          <Route path='/friends' element={<CommunityPage/>}/>
-
-
+          <Route path='/friends' element={<FriendsPage/>}/>
         </Routes>
       </>
       :

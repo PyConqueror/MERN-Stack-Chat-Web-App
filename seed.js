@@ -1,5 +1,5 @@
 require('dotenv').config();
-require('./config/database.cjs');
+require('./config/database');
 
 const Chat = require('../../models/chat')
 const Message = require('../../models/message')

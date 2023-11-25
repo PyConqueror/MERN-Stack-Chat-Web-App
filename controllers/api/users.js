@@ -6,7 +6,8 @@ module.exports = {
     create,
     login,
     checkToken,
-    searchUsers
+    searchUsers,
+    getFriends
   };
 
 async function create(req, res) {
@@ -55,4 +56,13 @@ async function searchUsers(req, res){
   } catch (err){
     console.log(err)
   }
+}
+
+async function getFriends(req,res){
+  const UserID = req.user._id
+  const UserFriends = await User.findById(UserID).populate('friends', 'name avatar')
+  if(!UserFriends){
+    res.json([]) //if no friends, return with empty array
+  }
+  res.json(UserFriends.friends) //respond only with the friends array
 }
