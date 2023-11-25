@@ -16,7 +16,7 @@ app.use(require('./config/checkToken.js'));
 // vite uses the "dist" directory instead
 app.use('/api/users', require('./routes/api/users.cjs'));
 app.use('/api/chats', require('./routes/api/chats.cjs'));
-// app.use('/api/community', require('./routes/api/community.cjs'));
+// app.use('/api/communities', require('./routes/api/community.cjs'));
 // app.use(favicon(path.join(__dirname, 'dist', 'favicon.ico')));
 app.use(express.static(path.join(__dirname, 'dist')));
 

@@ -10,4 +10,4 @@ router.post("/create", ensureLoggedIn, communitiesController.createGroup) //crea
 router.post("/create/:id/post", ensureLoggedIn, communitiesController.createPost) //create posts inside the group based on the group :id
 router.post("/post/:id", ensureLoggedIn, communitiesController.addComments) //create comments based on the post :id
 
-module.exports = router;
+module.exports = router;  
