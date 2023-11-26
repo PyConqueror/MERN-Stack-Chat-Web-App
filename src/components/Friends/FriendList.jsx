@@ -9,7 +9,6 @@ function FriendsList() {
     
     async function fetchFriends() {
         const data = await friendService.getFriends();
-        console.log(data)
         setFriends(data)
     }
     async function startConversation(ID) {

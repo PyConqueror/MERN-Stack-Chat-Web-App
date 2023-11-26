@@ -1,8 +1,55 @@
 import * as profileAPI from '../../utilities/my-profile-api'
+import { useState } from 'react'
 
 function EditProfilePage({ user }){
+    const [profileImage, setProfileImage] = useState("");
+    const [imagePreview, setImagePreview] = useState(null);
+    const [isLoading, setIsLoading] = useState(false);
+
     const bio = user.biography
     const location = user.location
+
+    function _handleImageChange(event){
+        setProfileImage(event.target.files[0])
+        setImagePreview(URL.createObjectURL(event.target.files[0]))
+    }
+
+    async function _uploadImage(event){
+        event.preventDefault()
+        setIsLoading(true)
+        try {
+            let imageURL = '';
+            if(
+                profileImage && (
+                    profileImage.type === "image/png" ||
+                    profileImage.type === "image/jpg" ||
+                    profileImage.type === "image/jpeg" ||
+                    profileImage.type === "image/JPG"
+                )
+            ){
+                const image = new FormData()
+                image.append("file", profileImage)
+                image.append("cloud_name", "dbgh78xk9")
+                image.append("upload_preset", process.env.CLOUDINARY)
+
+                const response = await fetch(
+                    "https://api.cloudinary.com/v1_1/dbgh78xk9/image/upload",
+                    {
+                        method: 'POST',
+                        body: image
+                    }
+                )
+
+                const imageData = await response.json()
+                imageURL = imageData.url.toString()
+                setImagePreview(null)
+            }
+            //do something with image URL
+        } catch (err) {
+            console.log(err)
+            setIsLoading(false)
+        }
+    }
 
     return(
         <>
@@ -11,7 +58,25 @@ function EditProfilePage({ user }){
             ? { backgroundColor: user.avatar } : { backgroundImage: `url(${user.avatar})`}}>
                 {user.name.charAt(0)}
             </div>
-            <button>Upload new profile picture</button>
+            <form onSubmit ={_uploadImage}>
+                <input 
+                    type="file" 
+                    accept="image/png, image/jpg" 
+                    name="image" 
+                    onChange={_handleImageChange}></input><br/>
+            <p>
+                {
+                    isLoading ? ("Uploading ...") : 
+                    <button type="sbumit">Upload new profile picture</button>
+                }
+            </p>
+            </form>
+            <div>
+                { imagePreview && (
+                    <img src={imagePreview && imagePreview} />
+                )}
+            </div>
+
             <p>Current biography:</p>
             <p>{ bio.length === 0 ? "No Biography" : bio}</p>
             <textarea></textarea>

@@ -20,6 +20,7 @@ function ChatBox({ selectedChatID, user }) {
 
     const handleSendMessage = async () => {
         await chatService.sendMessage(selectedChatID, newMessage);
+        console.log(selectedChatID)
     };
 
     return (
