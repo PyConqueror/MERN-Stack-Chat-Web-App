@@ -41,21 +41,19 @@ async function getMessages(req, res) {
     const messages = await Message.find({ chat: chatID })
     .sort({ date: -1 }) //sort by date, newest first
     .populate('sender', 'name avatar') // Populate sender details
-    .populate('receiver', 'name avatar') // Populate receiver details
+    console.log(messages)
     res.json(messages)
 }   
 
 async function sendMessage(req, res) {
-    const chatID = req.params.id
-    const senderID = req.user._id
-    const content = req.body.content //extract message from body
-    const newMessage = new Message({ //create new message
-        sender: senderID,
-        content: content,
-        chat: chatID
-    })
+    const newMessage = await Message.create({
+        sender: req.user._id,
+        content: req.body.content,
+        chat: req.params.id
+    });
     await newMessage.save();
-    await Chat.findByIdAndUpdate(chatID, {
+    console.log(newMessage)
+    await Chat.findByIdAndUpdate(req.params.id, {
         $push: { messages: newMessage._id } //push the message in messages array in chat schema
     })
     // await getMessages(req, res); // call the getMessages function to send updated messages list

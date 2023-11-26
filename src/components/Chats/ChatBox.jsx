@@ -8,15 +8,16 @@ function ChatBox({ selectedChatID, user }) {
     const [newMessage, setNewMessage] = useState('');
     
     useEffect(() => {
-        const fetchMessages = async () => {
+        async function fetchMessages() {
           const fetchedMessages = await chatService.getMessages(selectedChatID);
-          setMessages(fetchedMessages);
-          console.log(messages)
+          setMessages(fetchedMessages)
+          console.log(fetchedMessages)
         };
         if (selectedChatID) {
+          console.log(selectedChatID)
           fetchMessages();
         }
-      }, [selectedChatID]);
+      }, [selectedChatID, setMessages]);
 
     const handleSendMessage = async () => {
         await chatService.sendMessage(selectedChatID, newMessage);
