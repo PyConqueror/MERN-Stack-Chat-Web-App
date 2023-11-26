@@ -5,7 +5,7 @@ export function getMessages(ID) {
     sendRequest(`${BASE_URL}/${ID}/messages`);
 }
 
-export function sendMessage(selectedChatID, newMessage) {
+export async function sendMessage(selectedChatID, newMessage) {
     const ID = selectedChatID
     const message = newMessage
     sendRequest(`${BASE_URL}/send/${ID}`, 'POST', message);
