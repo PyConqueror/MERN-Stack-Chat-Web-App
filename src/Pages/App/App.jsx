@@ -10,6 +10,8 @@ import ChatPage from '../ChatsPage'
 import CommunityListPage from '../CommunityListPage'
 import CommunityDetailPage from '../CommunityDetailPage';
 import FriendsPage from '../FriendsPage'
+import MyProfilePage from '../MyProfilePage'
+import EditProfilePage from '../MyProfilePage/EditProfilePage'
 
 export default function App() {
   const [user, setUser] = useState(getUser)
@@ -20,10 +22,12 @@ export default function App() {
       <>
         <NavBar user={user}/>
         <Routes>
-          <Route path='/' element={<ChatPage/>} exact/>
+          <Route path='/' element={<ChatPage user={user}/>} exact/>
           <Route path='/community' element={<CommunityListPage communities={communities} />}/>
           <Route path='/community/:communityName' element={<CommunityDetailPage />}/>
           <Route path='/friends' element={<FriendsPage/>}/>
+          <Route path='/profile' element={<MyProfilePage user={user}/>}/>
+          <Route path='/profile/edit' element={<EditProfilePage user={user}/>}/>
         </Routes>
       </>
       :

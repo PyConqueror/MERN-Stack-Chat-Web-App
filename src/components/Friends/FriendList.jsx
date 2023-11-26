@@ -6,12 +6,13 @@ import { Navigate, useNavigate } from 'react-router-dom';
 function FriendsList() {
     const [friends, setFriends] = useState([]);
     const navigate = useNavigate()
+    
     async function fetchFriends() {
         const data = await friendService.getFriends();
         setFriends(data)
     }
     async function startConversation(ID) {
-       await chatService.getConversation(ID)
+       await chatService.createConversation(ID)
        navigate('/')
     }
     useEffect(() => {

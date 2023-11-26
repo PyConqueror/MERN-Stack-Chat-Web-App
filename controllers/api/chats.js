@@ -1,5 +1,5 @@
 const Chat = require('../../models/chat')
-const Message = require('../../models/message')
+const Message = require('../../models/message');
 const User = require("../../models/user");
 
 
@@ -30,7 +30,8 @@ async function getChat(req, res) {
     })
     await chat.save();
     chat = await Chat.findById(chat._id).populate('participants', 'name avatar');
-    await User.findByIdAndUpdate(req.user._id, { $push: { chats: chat._id } });
+    await User.findByIdAndUpdate(userId, { $push: { chats: chat._id } });
+    await User.findByIdAndUpdate(partnerId, { $push: { chats: chat._id } })
     res.json(chat);
 }
 }} 
@@ -49,15 +50,15 @@ async function sendMessage(req, res) {
     const senderID = req.user._id
     const content = req.body.content //extract message from body
     const newMessage = new Message({ //create new message
-        chat: chatID,
         sender: senderID,
-        content: content
+        content: content,
+        chat: chatID
     })
     await newMessage.save();
     await Chat.findByIdAndUpdate(chatID, {
         $push: { messages: newMessage._id } //push the message in messages array in chat schema
     })
-    await getMessages(req, res); // call the getMessages function to send updated messages list
+    // await getMessages(req, res); // call the getMessages function to send updated messages list
 }
 
 async function createGroup(req, res) {
@@ -70,6 +71,10 @@ async function createGroup(req, res) {
     })
     await groupChat.save();
     await groupChat.populate('partipants' ,'name avatar')
+    await User.updateMany(
+        { _id: { $in: participants } },
+        { $push: { chats: groupChat._id } }
+      );  
     res.json(groupChat)
 }
 

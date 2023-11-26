@@ -4,13 +4,13 @@
     padding: 20px;
     box-sizing: border-box;
     border: 2px solid black;
+    max-width: 300px;
   }
   
   .chat-list {
     list-style: none;
     margin: 0;
     padding: 0;
- 
   }
   
   .chat-item {
@@ -21,6 +21,7 @@
 
   .chat-item:hover {
     background-color: goldenrod;
+    cursor: pointer;
   }
   
   .chat-avatar {
@@ -42,3 +43,7 @@
     color: #333; 
   }
   
+  .chatbox {
+    border: 2px solid black;
+    max-width: 500px;
+  }
