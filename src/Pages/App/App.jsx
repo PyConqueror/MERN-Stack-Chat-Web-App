@@ -8,6 +8,8 @@ import LandingPage from '../LandingPage'
 import ChatPage from '../ChatsPage'
 import CommunityPage from '../CommunityPage'
 import FriendsPage from '../FriendsPage'
+import MyProfilePage from '../MyProfilePage'
+import EditProfilePage from '../MyProfilePage/EditProfilePage'
 
 export default function App() {
   const [user, setUser] = useState(getUser)
@@ -21,6 +23,8 @@ export default function App() {
           <Route path='/' element={<ChatPage user={user}/>} exact/>
           <Route path='/community' element={<CommunityPage/>}/>
           <Route path='/friends' element={<FriendsPage/>}/>
+          <Route path='/profile' element={<MyProfilePage user={user}/>}/>
+          <Route path='/profile/edit' element={<EditProfilePage user={user}/>}/>
         </Routes>
       </>
       :

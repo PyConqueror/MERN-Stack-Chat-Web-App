@@ -1,7 +1,8 @@
 const CommunityCard = () => {
     return (
         <>
-            CommunityCard coming soon
+            
+            Community Card coming soon
         </>
     );
 }
