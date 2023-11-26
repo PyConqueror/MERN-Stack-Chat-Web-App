@@ -14,6 +14,7 @@ function Navbar({user, setUser}) {
             &nbsp; | &nbsp;
             <Link to={"/friends"}>Friends Page</Link>
             &nbsp; | &nbsp;
+            <Link to={"/profile"}>Profile Page</Link>
             <span>Welcome, {user.name}</span>
             &nbsp;&nbsp;<Link to="" onClick={handleLogOut}>Log Out</Link>
         </aside>

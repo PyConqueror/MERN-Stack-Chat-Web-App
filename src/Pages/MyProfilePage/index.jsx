@@ -2,3 +2,13 @@
 //   Display form with the logged-in user's current details prefilled
 //   Include editable fields for Email, Bio, Interests, etc.
 //   Include a save button to update the user's profile information
+
+function MyProfilePage(){
+    return(
+        <>
+            profile page coming
+        </>
+    )
+}
+
+export default MyProfilePage

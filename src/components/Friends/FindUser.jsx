@@ -17,7 +17,7 @@ function FindUser() {
         const foundUsersId = event.target.value
         try {
             const addFriend = await usersAPI.addFriend(foundUsersId)
-            console.log("addFrined ", addFriend)
+            // console.log("addFrined ", addFriend)
         } catch (err){
             console.log(err)
         }

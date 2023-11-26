@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import ScrollableFeed from 'react-scrollable-feed';
+// import ScrollableFeed from 'react-scrollable-feed';
 import * as chatService from '../../utilities/chats-api'
 
 function ChatBox({ selectedChatID }) {
