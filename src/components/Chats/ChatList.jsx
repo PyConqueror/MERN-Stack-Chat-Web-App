@@ -20,17 +20,21 @@ function ChatList({ setSelectedChatID }) {
     
     return (
       <div className="chat-list-container">
-        <h2>Chats</h2>
-        <ul className="chat-list">
-          {chats.map(chat => (
-            <li key={chat._id} className="chat-item" onClick={() => handleChatClick(chat._id)}>
-              <img src={chat.avatar || 'default-avatar.png'} className="chat-avatar" alt="Chat Avatar" />
-              <div className="chat-details">
-                <p className="chat-name">{chat.name}</p>
-              </div>
-            </li>
-          ))}
-        </ul>
+        <h2>Chat List</h2>
+        {chats && chats.length > 0 ? (
+          <ul className="chat-list">
+            {chats.map(chat => (
+              <li key={chat._id} className="chat-item" onClick={() => handleChatClick(chat._id)}>
+                <img src={chat.avatar || 'default-avatar.png'} className="chat-avatar" alt="Chat Avatar" />
+                <div className="chat-details">
+                  <p className="chat-name">{chat.name}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p>No chats yet.</p>
+        )}
       </div>
     );
 }

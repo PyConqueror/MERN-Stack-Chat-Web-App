@@ -42,11 +42,7 @@ async function getMessages(req, res) {
     .sort({ date: -1 }) //sort by date, newest first
     .populate('sender', 'name avatar') // Populate sender details
     .populate('receiver', 'name avatar') // Populate receiver details
-    if(messages.length === 0) {
-        res.json([])
-    } else {
-        res.json(messages)
-    }
+    res.json(messages)
 }   
 
 async function sendMessage(req, res) {

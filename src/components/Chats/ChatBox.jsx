@@ -11,10 +11,10 @@ function ChatBox({ selectedChatID, user }) {
         const fetchMessages = async () => {
           const fetchedMessages = await chatService.getMessages(selectedChatID);
           setMessages(fetchedMessages);
+          console.log(messages)
         };
         if (selectedChatID) {
           fetchMessages();
-        setMessages([])
         }
       }, [selectedChatID]);
 
@@ -25,8 +25,8 @@ function ChatBox({ selectedChatID, user }) {
 
     return (
       <div className="chatbox">
-        {/* <ScrollableFeed>
-          {messages.length > 0 ? (
+        <ScrollableFeed>
+          {messages === null ? (
             <ul className="message-list">
               {messages.map((message) => (
                 <Message key={message._id} message={message} user={user} />
@@ -35,7 +35,7 @@ function ChatBox({ selectedChatID, user }) {
           ) : (
             <p className="no-conversation">No conversation yet</p>
           )}
-        </ScrollableFeed> */}
+        </ScrollableFeed>
         <div className="message-input">
           <p>CURRENT CONVERSATION ID : {selectedChatID}</p>
           <input
