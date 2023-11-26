@@ -1,13 +1,15 @@
 import * as profileAPI from '../../utilities/my-profile-api'
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 
 function EditProfilePage({ user }){
     const [profileImage, setProfileImage] = useState("");
     const [imagePreview, setImagePreview] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
+    const fileRef = useRef()
 
     const bio = user.biography
     const location = user.location
+    const cloudinaryPreset = import.meta.env.VITE_CLOUDINARY
 
     function _handleImageChange(event){
         setProfileImage(event.target.files[0])
@@ -30,7 +32,7 @@ function EditProfilePage({ user }){
                 const image = new FormData()
                 image.append("file", profileImage)
                 image.append("cloud_name", "dbgh78xk9")
-                image.append("upload_preset", process.env.CLOUDINARY)
+                image.append("upload_preset", cloudinaryPreset)
 
                 const response = await fetch(
                     "https://api.cloudinary.com/v1_1/dbgh78xk9/image/upload",
@@ -41,8 +43,11 @@ function EditProfilePage({ user }){
                 )
 
                 const imageData = await response.json()
+                console.log(imageData)
                 imageURL = imageData.url.toString()
                 setImagePreview(null)
+                setIsLoading(false)
+                fileRef.current.value = null
             }
             //do something with image URL
         } catch (err) {
@@ -63,7 +68,8 @@ function EditProfilePage({ user }){
                     type="file" 
                     accept="image/png, image/jpg" 
                     name="image" 
-                    onChange={_handleImageChange}></input><br/>
+                    onChange={_handleImageChange}
+                    ref={ fileRef }></input><br/>
             <p>
                 {
                     isLoading ? ("Uploading ...") : 
