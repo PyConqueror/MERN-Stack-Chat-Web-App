@@ -1,5 +1,5 @@
 const Chat = require('../../models/chat')
-const Message = require('../../models/message')
+const Message = require('../../models/message');
 const User = require("../../models/user");
 
 
@@ -30,7 +30,8 @@ async function getChat(req, res) {
     })
     await chat.save();
     chat = await Chat.findById(chat._id).populate('participants', 'name avatar');
-    await User.findByIdAndUpdate(req.user._id, { $push: { chats: chat._id } });
+    await User.findByIdAndUpdate(userId, { $push: { chats: chat._id } });
+    await User.findByIdAndUpdate(partnerId, { $push: { chats: chat._id } })
     res.json(chat);
 }
 }} 
@@ -41,7 +42,11 @@ async function getMessages(req, res) {
     .sort({ date: -1 }) //sort by date, newest first
     .populate('sender', 'name avatar') // Populate sender details
     .populate('receiver', 'name avatar') // Populate receiver details
-    res.json(messages)
+    if(messages.length === 0) {
+        res.json([])
+    } else {
+        res.json(messages)
+    }
 }   
 
 async function sendMessage(req, res) {
@@ -70,6 +75,10 @@ async function createGroup(req, res) {
     })
     await groupChat.save();
     await groupChat.populate('partipants' ,'name avatar')
+    await User.updateMany(
+        { _id: { $in: participants } },
+        { $push: { chats: groupChat._id } }
+      );  
     res.json(groupChat)
 }
 
