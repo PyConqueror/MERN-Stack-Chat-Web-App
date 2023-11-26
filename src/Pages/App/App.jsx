@@ -2,11 +2,13 @@ import './App.css';
 import { useState } from "react"
 import { Routes, Route } from 'react-router-dom'
 import { getUser } from '../../utilities/users-service';
+import { communities } from '../../data'
 import AuthPage from '../AuthPage';
 import NavBar from '../../components/Navbar'
 import LandingPage from '../LandingPage'
 import ChatPage from '../ChatsPage'
-import CommunityPage from '../CommunityPage'
+import CommunityListPage from '../CommunityListPage'
+import CommunityDetailPage from '../CommunityDetailPage';
 import FriendsPage from '../FriendsPage'
 
 export default function App() {
@@ -19,7 +21,8 @@ export default function App() {
         <NavBar user={user}/>
         <Routes>
           <Route path='/' element={<ChatPage/>} exact/>
-          <Route path='/community' element={<CommunityPage/>}/>
+          <Route path='/community' element={<CommunityListPage communities={communities} />}/>
+          <Route path='/community/:communityName' element={<CommunityDetailPage />}/>
           <Route path='/friends' element={<FriendsPage/>}/>
         </Routes>
       </>

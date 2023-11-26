@@ -162,3 +162,21 @@ button[type="submit"] {
   font-size: x-large;
 }
 
+/* CommunityCard -------------------*/
+.card-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  gap: 1em;
+  padding: 4em 0;
+}
+
+.card {
+  background-color: white;
+  width: 600px;
+  margin: 0 auto;
+  padding: 1em 2em;
+  border: 1px solid black;
+  cursor: pointer;
+}
