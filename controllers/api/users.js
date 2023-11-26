@@ -10,7 +10,7 @@ module.exports = {
     searchUsers,
     getFriends,
     getChatList,
-    addUsers,
+    addFriend,
   };
 
 async function create(req, res) {
@@ -101,7 +101,16 @@ async function getChatList(req, res) {
 }
 
 async function addFriend(req, res) {
-  const userID = req.user._id
-  const friendID = req.params.id
-  await User.findByIdAndUpdate(ID, friends)
+  const userID = req.user._id;
+  const friendID = req.params.id;
+  const user = await User.findById(userID); //if friend id already in the user list
+  const friend = await User.findById(friendID)
+  if (user.friends.includes(friendID)) { // do nothing
+    return res.status(400)
+  } else { //if friend id not in the array, add the friend id in the friends array
+    // await User.findByIdAndUpdate(userID, { $push: { friends: friendID } });
+    user.friends.push(friendID)
+    await user.save()
+    return res.status(200)
+  }
 }

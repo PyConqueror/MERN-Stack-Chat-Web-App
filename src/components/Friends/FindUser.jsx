@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import * as usersAPI from '../../utilities/users-api'
 
 function FindUser() {
     const [query, setQuery] = useState('')
-    const [foundUser, setFoundUser] = useState([])
+    const [foundUsers, setFoundUsers] = useState([])
 
     async function searchUsers(event, query){
 
@@ -12,14 +12,21 @@ function FindUser() {
     async function _handleChange(event){
         setQuery(event.target.value)
         event.preventDefault();
-        const searchedUser = await usersAPI.searchUsers(query)
-        setFoundUser(searchedUser)
+        const searchedUsers = await usersAPI.searchUsers(query)
+        setFoundUsers(searchedUsers)
     }
 
-    async function addFriend(event) {
-        const addFriend = await usersAPI.addFriend(event.target.value)
-        console.log(event.target.value)
+    async function addFriendToUser(event) {
+        event.preventDefault();
+        const foundUsersId = event.target.value
+        try {
+            const addFriend = await usersAPI.addFriend(foundUsersId)
+            console.log("addFrined ", addFriend)
+        } catch (err){
+            console.log(err)
+        }
     }
+
     return(
         <>
         <form>
@@ -30,10 +37,13 @@ function FindUser() {
             onChange={_handleChange}></input>
         <button onClick={(event) => searchUsers(event, query)}>Search</button>
         </form>
-        {foundUser.map((user, index) => 
+
+        {foundUsers.map((user, index) => 
         <>
-        <p key={index}>{user.name}</p>
-        <button on onClick={addFriend} value={user._id}>Add User</button>
+            <p key={index}>{user.name}</p>
+            <button 
+                onClick={(event) => addFriendToUser(event)} 
+                value={user._id}>Add User</button>
         </>
         )}
         </>
