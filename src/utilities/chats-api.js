@@ -8,10 +8,12 @@ export function getMessages(ID) {
 export function sendMessage(selectedChatID, newMessage) {
     const ID = selectedChatID
     const message = newMessage
-    sendRequest(`${BASE_URL}/send/${ID}`,'POST', message);
+    sendRequest(`${BASE_URL}/send/${ID}`, 'POST', message);
 }
 
-
+export function createConversation(ID) {
+    sendRequest(`${BASE_URL}/${ID}`);
+}
 
 
 // Define API service utility functions

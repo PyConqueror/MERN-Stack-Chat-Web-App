@@ -9,10 +9,11 @@ function FriendsList() {
     
     async function fetchFriends() {
         const data = await friendService.getFriends();
+        console.log(data)
         setFriends(data)
     }
     async function startConversation(ID) {
-       await chatService.getConversation(ID)
+       await chatService.createConversation(ID)
        navigate('/')
     }
     useEffect(() => {

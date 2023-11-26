@@ -18,7 +18,7 @@ export default function App() {
       <>
         <NavBar user={user}/>
         <Routes>
-          <Route path='/' element={<ChatPage/>} exact/>
+          <Route path='/' element={<ChatPage user={user}/>} exact/>
           <Route path='/community' element={<CommunityPage/>}/>
           <Route path='/friends' element={<FriendsPage/>}/>
         </Routes>

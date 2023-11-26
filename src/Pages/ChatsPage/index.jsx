@@ -4,13 +4,13 @@ import ChatBox from '../../Components/Chats/ChatBox';
 import ChatList from '../../Components/Chats/ChatList';
 import './index.css'
 
-function ChatPage(){
+function ChatPage({ user }){
     const [selectedChatID, setSelectedChatID] = useState('')
     return(
     <>
         <h1>CHATS PAGE</h1>
         <ChatList setSelectedChatID={setSelectedChatID}/>
-        <ChatBox selectedChatID={selectedChatID}/>
+        <ChatBox selectedChatID={selectedChatID} user={user}/>
     </>
     )
 }
