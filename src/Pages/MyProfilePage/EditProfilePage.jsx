@@ -2,7 +2,7 @@ import * as profileAPI from '../../utilities/my-profile-api'
 import { useState, useRef } from 'react'
 
 function EditProfilePage({ user }){
-    const [profileImage, setProfileImage] = useState("");
+    const [profileImage, setProfileImage] = useState(null);
     const [imagePreview, setImagePreview] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
     const fileRef = useRef()
@@ -10,6 +10,14 @@ function EditProfilePage({ user }){
     const bio = user.biography
     const location = user.location
     const cloudinaryPreset = import.meta.env.VITE_CLOUDINARY
+    let newProfileImageURL = ""
+
+    console.log(user.avatar);
+    
+    function updateProfileImage(newProfileImageURL){
+        profileAPI.updateProfileImage(newProfileImageURL)
+        console.log("inside jsx")
+    }
 
     function _handleImageChange(event){
         setProfileImage(event.target.files[0])
@@ -20,8 +28,8 @@ function EditProfilePage({ user }){
         event.preventDefault()
         setIsLoading(true)
         try {
-            let imageURL = '';
             if(
+                
                 profileImage && (
                     profileImage.type === "image/png" ||
                     profileImage.type === "image/jpg" ||
@@ -43,13 +51,13 @@ function EditProfilePage({ user }){
                 )
 
                 const imageData = await response.json()
-                console.log(imageData)
-                imageURL = imageData.url.toString()
+                newProfileImageURL = imageData.url.toString()
                 setImagePreview(null)
                 setIsLoading(false)
                 fileRef.current.value = null
+                setProfileImage(null)
             }
-            //do something with image URL
+            updateProfileImage(newProfileImageURL)
         } catch (err) {
             console.log(err)
             setIsLoading(false)
@@ -69,13 +77,18 @@ function EditProfilePage({ user }){
                     accept="image/png, image/jpg" 
                     name="image" 
                     onChange={_handleImageChange}
-                    ref={ fileRef }></input><br/>
-            <p>
-                {
-                    isLoading ? ("Uploading ...") : 
-                    <button type="sbumit">Upload new profile picture</button>
-                }
-            </p>
+                    ref={ fileRef }>
+                </input><br/>
+                <p>
+                    { profileImage ? (
+                        isLoading ? (
+                            "Uploading ..."
+                        ) : (
+                        <button type="sbumit">Upload new profile picture</button>
+                        )
+                    ) : ("")
+                    }
+                </p>
             </form>
             <div>
                 { imagePreview && (
@@ -86,11 +99,11 @@ function EditProfilePage({ user }){
             <p>Current biography:</p>
             <p>{ bio.length === 0 ? "No Biography" : bio}</p>
             <textarea></textarea>
-            <button >Edit Biography</button>
+            <button >Update Biography</button>
             <p>Current location:</p>
             <p>{ location.length === 0 ? "No Location" : bio}</p>
             <input type="text"></input>
-            <button>Edit Location</button>
+            <button>Update Location</button>
         </>
     )
 }
