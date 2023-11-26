@@ -1,21 +1,19 @@
 import { useState } from 'react'
 import * as usersAPI from '../../utilities/users-api'
-import ChatBox from '../../components/Chats/ChatBox';
-import ChatList from '../../components/Chats/ChatList';
+import ChatBox from '../../Components/Chats/ChatBox';
+import ChatList from '../../Components/Chats/ChatList';
 import './index.css'
 
 function ChatPage(){
-    
+    const [selectedChatID, setSelectedChatID] = useState('')
     return(
     <>
         <h1>CHATS PAGE</h1>
-        <ChatList/>
-        <ChatBox/>
+        <ChatList setSelectedChatID={setSelectedChatID}/>
+        <ChatBox selectedChatID={selectedChatID}/>
     </>
     )
-} //Chatbox component
-//CHatlist component
-//profileview compoment
+}
 
 export default ChatPage
 

@@ -21,6 +21,6 @@ export function searchUsers(query){
   return sendRequest(`${BASE_URL}/searchUsers?query=${query}`, 'GET')
 }
 
-// export function addFriend(ID){
-//   return sendRequest(`${BASE_URL}/addfriend/${ID}`, 'POST')
-// }
+export function addFriend(ID){
+  return sendRequest(`${BASE_URL}/addfriend/${ID}`, 'POST')
+}

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import * as friendService from '../../utilities/friends-api';
 
-function ChatList() {
+function ChatList({ setSelectedChatID }) {
     const [chats, setChats] = useState([]);
 
     useEffect(() => {
@@ -13,23 +13,23 @@ function ChatList() {
   
     fetchChats();
     }, []);
+    
+    function handleChatClick(chatID) {
+      setSelectedChatID(chatID)
+    }
+    
     return (
       <div className="chat-list-container">
         <h2>Chats</h2>
         <ul className="chat-list">
-          {chats.map(chat => {
-            const chatId = chat?._id;
-            const chatAvatar = chat.avatar
-            const chatName = chat.name
-            return (
-              <li key={chatId} className="chat-item">
-                <img src={chatAvatar}className="chat-avatar" />
-                <div className="chat-details">
-                  <p className="chat-name">{chatName}</p>
-                </div>
-              </li>
-            );
-          })}
+          {chats.map(chat => (
+            <li key={chat._id} className="chat-item" onClick={() => handleChatClick(chat._id)}>
+              <img src={chat.avatar || 'default-avatar.png'} className="chat-avatar" alt="Chat Avatar" />
+              <div className="chat-details">
+                <p className="chat-name">{chat.name}</p>
+              </div>
+            </li>
+          ))}
         </ul>
       </div>
     );

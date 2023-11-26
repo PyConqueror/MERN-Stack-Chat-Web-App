@@ -3,10 +3,6 @@ import * as usersAPI from "../../utilities/users-api"
 function FindUser() {
     const [query, setQuery] = useState('')
     const [foundUser, setFoundUser] = useState([])
-
-    async function searchUsers(event, query){
-
-    }
     
     async function _handleChange(event){
         setQuery(event.target.value)
@@ -27,12 +23,11 @@ function FindUser() {
             type="search" 
             placeholder="Search"
             onChange={_handleChange}></input>
-        <button onClick={(event) => searchUsers(event, query)}>Search</button>
         </form>
         {foundUser.map((user, index) => 
         <>
         <p key={index}>{user.name}</p>
-        <button on onClick={addFriend} value={user._id}>Add User</button>
+        <button key={user._id} onClick={addFriend} value={user._id}>Add User</button>
         </>
         )}
         </>

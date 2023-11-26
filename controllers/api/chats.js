@@ -49,15 +49,15 @@ async function sendMessage(req, res) {
     const senderID = req.user._id
     const content = req.body.content //extract message from body
     const newMessage = new Message({ //create new message
-        chat: chatID,
         sender: senderID,
-        content: content
+        content: content,
+        chat: chatID
     })
     await newMessage.save();
     await Chat.findByIdAndUpdate(chatID, {
         $push: { messages: newMessage._id } //push the message in messages array in chat schema
     })
-    await getMessages(req, res); // call the getMessages function to send updated messages list
+    // await getMessages(req, res); // call the getMessages function to send updated messages list
 }
 
 async function createGroup(req, res) {
