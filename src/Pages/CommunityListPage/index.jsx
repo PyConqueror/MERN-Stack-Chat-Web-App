@@ -1,19 +1,17 @@
 import CommunityCard from "../../components/Community/CommunityCard"
-import { Link } from "react-router-dom"
 
-function CommunityPage() {
+const CommunityListPage = ({communities}) => {
     return(
         <div>
-            <h1>COMMUNITY PAGE</h1>
-            <CommunityCard />
-            {/* Add link to CommunityShow */}
+            <h1>COMMUNITY LIST PAGE</h1>
+            <div className="card-container">
+                {communities.map((c, index) => <CommunityCard community={c} key={index} />)}
+            </div>
         </div>
-        
-        
     )
 }
 
-export default CommunityPage
+export default CommunityListPage;
 
 
 //   Create state to hold list of groups and posts

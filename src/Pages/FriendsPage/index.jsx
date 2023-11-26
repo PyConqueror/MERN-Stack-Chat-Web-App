@@ -1,12 +1,25 @@
-import FriendsList from "../../components/Friends/FriendList"
-import FindUser from "../../components/Friends/FindUser"
+import FriendsList from "../../Components/Friends/FriendList"
+import FindUser from "../../Components/Friends/FindUser"
+import {useState, useEffect} from 'react'
+import * as friendService from '../../utilities/friends-api';
+
 
 function FriendsPage () {
+    const [friends, setFriends] = useState([]);
+    async function fetchFriends() {
+        const data = await friendService.getFriends();
+        setFriends(data)
+        console.log('reached')
+    }
+    useEffect(() => {
+        fetchFriends();
+      }, []);   
+
     return (
     <>
     <h1>FriendsPage</h1>
-    <FriendsList/>  
-    <FindUser/>
+    <FriendsList friends={friends} setFriends={setFriends} fetchFriends={fetchFriends}/>  
+    <FindUser fetchFriends={fetchFriends}/>
     </>
     );
 }

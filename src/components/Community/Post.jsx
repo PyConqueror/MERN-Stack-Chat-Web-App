@@ -1,10 +1,9 @@
 import Comment from "./Comment";
-import CommentCreate from "./CommentCreate";
 
 const Post = () => {
     return (
         <>
-            <CommentCreate/>
+            <input type="text" />
             <Comment/>
         </>
     );

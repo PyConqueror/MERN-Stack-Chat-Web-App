@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import * as usersAPI from '../../utilities/users-api'
 
-function FindUser() {
+function FindUser({fetchFriends}) {
     const [query, setQuery] = useState('')
     const [foundUsers, setFoundUsers] = useState([])
     
@@ -15,7 +15,8 @@ function FindUser() {
     async function addFriendToUser(event) {
         event.preventDefault();
         const foundUsersId = event.target.value
-        const addFriend = await usersAPI.addFriend(foundUsersId)
+        await usersAPI.addFriend(foundUsersId)
+        fetchFriends()
     }
 
     return(
@@ -30,7 +31,7 @@ function FindUser() {
 
         {foundUsers.map((user, index) => 
         <>
-            <p key={index}>{user.name}</p>
+            <p key={user.name}>{user.name}</p>
             <button 
                 key={user._id}
                 onClick={(event) => addFriendToUser(event)} 

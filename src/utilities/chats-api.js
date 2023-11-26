@@ -12,7 +12,7 @@ export async function sendMessage(selectedChatID, newMessage) {
 }
 
 export function createConversation(ID) {
-    sendRequest(`${BASE_URL}/${ID}`);
+   return sendRequest(`${BASE_URL}/${ID}`);
 }
 
 

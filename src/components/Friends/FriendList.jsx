@@ -3,21 +3,14 @@ import * as friendService from '../../utilities/friends-api';
 import * as chatService from '../../utilities/chats-api';
 import { Navigate, useNavigate } from 'react-router-dom';
 
-function FriendsList() {
-    const [friends, setFriends] = useState([]);
+function FriendsList({friends, setFriends, fetchFriends }) {
     const navigate = useNavigate()
     
-    async function fetchFriends() {
-        const data = await friendService.getFriends();
-        setFriends(data)
-    }
     async function startConversation(ID) {
        await chatService.createConversation(ID)
        navigate('/')
     }
-    useEffect(() => {
-        fetchFriends();
-      }, []);    
+ 
 
     return (
       <div className="friends-list">
