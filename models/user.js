@@ -29,7 +29,9 @@ const userSchema = new Schema({
     chats: [{ 
       type: mongoose.Schema.Types.ObjectId, 
       ref: 'Chat' 
-    }]
+    }],
+    biography: {type: String, default: ""},
+    location: {type: String, default: ""},
 
   }, {
     timestamps: true,
