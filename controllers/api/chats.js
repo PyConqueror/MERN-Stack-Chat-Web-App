@@ -41,7 +41,6 @@ async function getMessages(req, res) {
     const messages = await Message.find({ chat: chatID })
     .sort({ date: +1 }) //sort by date, newest first
     .populate('sender', 'name avatar') // Populate sender details
-    console.log(messages)
     res.json(messages)
 }   
 
@@ -52,7 +51,6 @@ async function sendMessage(req, res) {
         chat: req.params.id
     });
     await newMessage.save();
-    console.log(newMessage)
     await Chat.findByIdAndUpdate(req.params.id, {
         $push: { messages: newMessage._id } //push the message in messages array in chat schema
     })
