@@ -1,29 +1,23 @@
 import * as profileAPI from '../../utilities/my-profile-api'
 import { useState, useRef, useEffect } from 'react'
+import { getUser } from '../../utilities/users-service'
 
-function EditProfilePage(){
+function EditProfilePage({ user, setUser}){
     const [profileImage, setProfileImage] = useState(null);
     const [imagePreview, setImagePreview] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
-    const [user, setUser] = useState([])
+
     const fileRef = useRef()
-
-    useEffect(function(){
-        async function getUserData(){
-            const userData = await profileAPI.getUserInformation()
-            setUser(userData)
-        }
-        getUserData()
-    }, [])
-
     const bio = user.biography
     const location = user.location
     const cloudinaryPreset = import.meta.env.VITE_CLOUDINARY
     let newProfileImageURL = ""
 
     async function updateProfileImage(newProfileImageURL){
-        const returnedData = await profileAPI.updateProfileImage(newProfileImageURL)
-        setUserData(returnedData)
+        const token = await profileAPI.updateProfileImage(newProfileImageURL)
+        localStorage.setItem('token', token);
+        const updatedUser = getUser()
+        setUser(updatedUser)
     }
 
     function _handleImageChange(event){
@@ -70,6 +64,11 @@ function EditProfilePage(){
             console.log(err)
             setIsLoading(false)
         }
+    }
+    if(!user.avatar){  
+        return(
+            <p>loading</p>
+        )
     }
 
     return(

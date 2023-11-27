@@ -1,4 +1,6 @@
 const User = require("../../models/user")
+const jwt = require('jsonwebtoken');
+
 
 module.exports = {
     index,
@@ -18,7 +20,9 @@ async function updateProfileImage(req, res){
     const profileImageURL = req.body.content
     user.avatar = profileImageURL
     await user.save()
-    res.json(user)
+    const token = createJWT(user);
+    res.json(token);
+    // res.json(user)
     console.log("user data is: ", user)
 }
 
@@ -35,3 +39,10 @@ async function updateLocation(req, res){
 
 }
 
+function createJWT(user) {
+    return jwt.sign(
+      { user },
+      process.env.SECRET,
+      { expiresIn: '24h' }
+    );
+}
