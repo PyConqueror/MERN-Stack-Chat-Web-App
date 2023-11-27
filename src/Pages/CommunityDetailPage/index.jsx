@@ -1,27 +1,25 @@
-import { useParams, useLocation } from 'react-router-dom';
-import CreatePost from "../../components/Post/CreatePost";
+import { useLocation } from 'react-router-dom';
+import { testPosts } from '../../data'
 import { useState } from "react";
+import CreatePost from "../../components/Post/CreatePost";
+import PostList from '../../components/Post/PostList';
 
-const testPosts = [
-    {text: 'Keep Calm and be a farmer'},
-    {text: 'Have Fun'},
-    {text: 'I was stung by a bee'},
-    {text: 'Learn the MERN-Stack'}
-  ];
+
 
 const CommunityDetailPage = () => {
     const { state } = useLocation();
     const community = state.community;
-    const [posts, setPosts] = useState(testPost);
+    const [posts, setPosts] = useState(testPosts);
 
     const addPost = (post) => {
         setPosts([...posts, post]);
     }
-    
+
     return (
         <div>
             <h1>{community.title}</h1>
-            <CreatePost addPost={addPost} />
+            <CreatePost addPost={addPost}/>
+            <PostList posts={posts}/>
         </div>
     );
 }

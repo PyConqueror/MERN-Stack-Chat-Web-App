@@ -1,8 +1,10 @@
-const CommentList = () => {
+import CommentItem from "./CommentItem"
+
+const CommentList = ({comments}) => {
     return (
-        <>
-            CommentList coming soon
-        </>
+        <ul>
+            {comments.map((c, index) => <CommentItem comment={c} key={index} />)}
+        </ul>
     );
 }
 

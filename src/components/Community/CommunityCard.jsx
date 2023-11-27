@@ -7,7 +7,7 @@ const CommunityCard = ({community}) => {
         navigate(`/community/${encodeURIComponent(community.title)}`, { state: { community } });
     };
     return (
-        <>
+        <div>
             <div 
             className="card"
             onClick={_HandleCommunityClick}
@@ -15,7 +15,7 @@ const CommunityCard = ({community}) => {
                 <h2>{community.title}</h2>
                 <p>{community.description}</p>
             </div>
-        </>
+        </div>
     );
 }
 

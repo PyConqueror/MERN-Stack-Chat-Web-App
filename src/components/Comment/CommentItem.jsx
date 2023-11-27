@@ -1,7 +1,10 @@
-const CommentItem = () => {
+import { useParams, useLocation } from 'react-router-dom';
+import { useState } from "react";
+
+const CommentItem = ({comment}) => {
     return (
         <>
-            This is a comment
+            <li>{comment.text}</li>
         </>
     );
 }
