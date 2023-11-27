@@ -2,11 +2,12 @@ import { useState, useEffect } from 'react';
 import * as friendService from '../../utilities/friends-api';
 import GroupChatForm from './GroupChatForm';
 
-function ChatList({ setSelectedChatID }) {
+function ChatList({ setSelectedChatID, setChatName, setChatAvatar, setChatParticipants }) {
     const [chats, setChats] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false); // State to track modal visibility
     const openModal = () => setIsModalOpen(true);
     const closeModal = () => setIsModalOpen(false);
+    console.log(chats)
 
     useEffect(() => {
       async function fetchChats() {
@@ -18,8 +19,11 @@ function ChatList({ setSelectedChatID }) {
     fetchChats();
     }, []);
     
-    function handleChatClick(chatID) {
+    function handleChatClick(chatID, chatName, chatAvatar, chatParticipants) {
       setSelectedChatID(chatID)
+      setChatName(chatName)
+      setChatAvatar(chatAvatar)
+      setChatParticipants(chatParticipants)
     }
     
     return (
@@ -30,8 +34,12 @@ function ChatList({ setSelectedChatID }) {
         {chats && chats.length > 0 ? (
           <ul className="chat-list">
             {chats.map(chat => (
-              <li key={chat._id} className="chat-item" onClick={() => handleChatClick(chat._id)}>
-                <img src={chat.avatar || 'default-avatar.png'} className="chat-avatar" alt="Chat Avatar" />
+              <li key={chat._id} className="chat-item" onClick={() => handleChatClick(chat._id, chat.name, chat.avatar, chat.participants)}>
+                <div className="profile-image" 
+                  style={chat.avatar.startsWith('hsl') 
+                          ? { backgroundColor: chat.avatar } : { backgroundImage: `url(${chat.avatar})`}}>
+                  <p>{ chat.avatar.startsWith('hsl') ? chat.name.charAt(0) : ""}</p>
+                </div>
                 <div className="chat-details">
                   <p className="chat-name">{chat.name}</p>
                 </div>

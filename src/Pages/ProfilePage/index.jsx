@@ -13,20 +13,21 @@ function MyProfilePage({user}){
     const navigate = useNavigate()
 
     function _handleClick(){
-        navigate('/profile/edit')
+        navigate('/profile/edit') 
     }
 
     return(
         <>
             <p>{user.name}</p>
-            <div className="profile-image" style={user.avatar.startsWith('hsl') 
+            <div className="profile-image" 
+            style={user.avatar.startsWith('hsl') 
             ? { backgroundColor: user.avatar } : { backgroundImage: `url(${user.avatar})`}}>
-                {user.name.charAt(0)}
+                <p>{ user.avatar.startsWith('hsl') ? user.name.charAt(0) : ""}</p>
             </div>
             <p>Biography:</p>
-            <p>{ bio.length === 0 ? "No Biography" : bio}</p>
+            <p>{ bio.length === 0 ? "No Biography" : bio }</p>
             <p>Location:</p>
-            <p>{ location.length === 0 ? "No Location" : bio}</p>
+            <p>{ location.length === 0 ? "No Location" : location }</p>
             <button onClick={_handleClick}>Edit Profile</button>
         </>
     )

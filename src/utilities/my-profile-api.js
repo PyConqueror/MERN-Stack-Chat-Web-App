@@ -12,11 +12,17 @@ export function updateProfileImage(newProfileImageURL){
     return sendRequest(`${BASE_URL}/updateProfileImage`, 'POST', imageURLData);
 }
 
-export function updateBio(){
-    sendRequest(`${BASE_URL}/updateBio`, 'POST');
+export function updateBio(newBioText){
+    const bioTextData = {
+        content: newBioText
+    }
+    return sendRequest(`${BASE_URL}/updateBio`, 'POST', bioTextData);
 }
 
-export function updateLocation(){
-    sendRequest(`${BASE_URL}/updateLocation`, 'POST');
+export function updateLocation(newLocationtext){
+    const locationTextData = {
+        content: newLocationtext
+    }
+    return sendRequest(`${BASE_URL}/updateLocation`, 'POST', locationTextData);
 }
 

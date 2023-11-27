@@ -10,15 +10,15 @@ class SignUpForm extends Component {
         error: ''
     };
 
-    handleChange = (evt) => {
+    handleChange = (event) => {
     this.setState({
-        [evt.target.name]: evt.target.value,
+        [event.target.name]: event.target.value,
         error: ''
     });
     };
 
-    handleSubmit = async (evt) => {
-        evt.preventDefault();
+    handleSubmit = async (event) => {
+        event.preventDefault();
         try {
             const formData = {...this.state};
             delete formData.error;

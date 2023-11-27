@@ -10,7 +10,10 @@ function FriendsList({friends, setFriends, fetchFriends }) {
        await chatService.createConversation(ID)
        navigate('/')
     }
- 
+
+    function viewFriendsProfile(friendId){
+      navigate(`/profile/${encodeURIComponent(friendId)}`, {state: { friendId }})
+    }
 
     return (
       <div className="friends-list">
@@ -18,11 +21,16 @@ function FriendsList({friends, setFriends, fetchFriends }) {
         <ul>
           {friends.map(friend => (
             <li key={friend._id}>
-              <img src={friend.avatar} alt={friend.name} width="50" height="50" />
+              <div className="profile-image" 
+                style={friend.avatar.startsWith('hsl') 
+                ? { backgroundColor: friend.avatar } : { backgroundImage: `url(${friend.avatar})`}}>
+                    <p>{ friend.avatar.startsWith('hsl') ? friend.name.charAt(0) : ""}</p>
+              </div>
               <span>{friend.name}</span>
               <button onClick={() => startConversation(friend._id)}>
                 Start Conversation
               </button>
+              <button onClick={() => viewFriendsProfile(friend._id)}>View profile</button>
             </li>
           ))}
         </ul>

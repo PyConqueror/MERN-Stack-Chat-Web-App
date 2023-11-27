@@ -6,6 +6,8 @@ function EditProfilePage({ user, setUser}){
     const [profileImage, setProfileImage] = useState(null);
     const [imagePreview, setImagePreview] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
+    const [bioText, setBioText] = useState("")
+    const [locationText, setLocationText] = useState("")
 
     const fileRef = useRef()
     const bio = user.biography
@@ -23,6 +25,30 @@ function EditProfilePage({ user, setUser}){
     function _handleImageChange(event){
         setProfileImage(event.target.files[0])
         setImagePreview(URL.createObjectURL(event.target.files[0]))
+    }
+
+    function _handleBioTextChange(event){
+        setBioText(event.target.value)
+    }
+
+    async function _updateBiography(event){
+        event.preventDefault()
+        const token = await profileAPI.updateBio(bioText)
+        localStorage.setItem('token', token)
+        const updatedUser = getUser()
+        setUser(updatedUser)
+    }
+
+    function _handleLocationTextChange(event){
+        setLocationText(event.target.value)
+    }
+
+    async function _updateLocation(event){
+        event.preventDefault()
+        const token = await profileAPI.updateLocation(locationText)
+        localStorage.setItem('token', token)
+        const updatedUser = getUser()
+        setUser(updatedUser)
     }
 
     async function _uploadImage(event){
@@ -65,6 +91,7 @@ function EditProfilePage({ user, setUser}){
             setIsLoading(false)
         }
     }
+
     if(!user.avatar){  
         return(
             <p>loading</p>
@@ -76,7 +103,7 @@ function EditProfilePage({ user, setUser}){
             <p>{user.name}</p>
             <div className="profile-image" style={user.avatar.startsWith('hsl') 
             ? { backgroundColor: user.avatar } : { backgroundImage: `url(${user.avatar})`}}>
-                {user.name.charAt(0)}
+                <p>{ user.avatar.startsWith('hsl') ? user.name.charAt(0) : ""}</p>
             </div>
             <form onSubmit ={_uploadImage}>
                 <input 
@@ -91,7 +118,7 @@ function EditProfilePage({ user, setUser}){
                         isLoading ? (
                             "Uploading ..."
                         ) : (
-                        <button type="sbumit">Upload new profile picture</button>
+                        <button>Upload new profile picture</button>
                         )
                     ) : ("")
                     }
@@ -102,15 +129,18 @@ function EditProfilePage({ user, setUser}){
                     <img src={imagePreview && imagePreview} />
                 )}
             </div>
-
-            <p>Current biography:</p>
-            <p>{ bio.length === 0 ? "No Biography" : bio}</p>
-            <textarea></textarea>
-            <button >Update Biography</button>
-            <p>Current location:</p>
-            <p>{ location.length === 0 ? "No Location" : bio}</p>
-            <input type="text"></input>
-            <button>Update Location</button>
+            <form  onSubmit={_updateBiography}>
+                <label>Current biography:</label>
+                <p>{ bio.length === 0 ? "No Biography" : bio }</p>
+                <textarea onChange={_handleBioTextChange}></textarea><br />
+                <button>Update Biography</button>
+            </form>
+            <form onSubmit={_updateLocation}>
+                <p>Current location:</p>
+                <p>{ location.length === 0 ? "No Location" : location }</p>
+                <input type="text" onChange={_handleLocationTextChange}></input><br />
+                <button>Update Location</button>
+            </form>
         </>
     )
 }

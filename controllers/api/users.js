@@ -16,11 +16,34 @@ module.exports = {
 async function create(req, res) {
   try {
     const user = await User.create(req.body);
+    user.avatar = createUserIcon();
+    await user.save()
     const token = createJWT(user);
     res.json(token);
   } catch (err) {
     res.status(400).json(err);
   }
+}
+
+function createUserIcon(){
+  function generateHSLNumber(min, max){
+    let difference = max - min;
+    let rand = Math.random();
+    rand = Math.floor(rand * difference)
+    rand = rand + min
+    return rand
+  }
+
+  let hValue = generateHSLNumber(0, 360)
+  let sValue = generateHSLNumber(50, 75)
+  let lValue = generateHSLNumber(25, 60)
+
+  function HSLtoString(h, s, l){
+      return `hsl(${h}, ${s}%, ${l}%)`
+  }
+
+  return HSLtoString(hValue, sValue, lValue)
+
 }
 
 async function login(req,res){
@@ -79,13 +102,15 @@ async function getChatList(req, res) {
       match: { '_id': { $ne: currentUserId } },
       select: 'name avatar' 
     });
+  // const participants = await Chat.findById(chats._id).populate('participants')
   const transformedChats = chats.map(chat => { // transform the chats to include either the group name or the other participant's details
     if (chat.isGroup) {
       return {         // For group chats, return the group name
         _id: chat._id,
         name: chat.GroupName,
-        avatar: null, // Add a group avatar if available
-        isGroup: true
+        avatar: createUserIcon(), // Add a group avatar if available
+        isGroup: true,
+        participants: chat.participants
       };
     } else {
       const chatPartner = chat.participants.find(participant => participant._id.toString() !== currentUserId);
