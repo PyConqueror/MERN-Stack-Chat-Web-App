@@ -1,18 +1,25 @@
 const User = require("../../models/user")
 
 module.exports = {
+    index,
     updateProfileImage,
     updateBio,
     updateLocation
+}
+
+async function index(req, res){
+    const user = await User.findById(req.user._id)
+    console.log(user)
+    res.json(user)
 }
 
 async function updateProfileImage(req, res){
     const user = await User.findById(req.user._id)
     const profileImageURL = req.body.content
     user.avatar = profileImageURL
-    user.save()
-    res.json(user.avatar)
-    console.log("data is: ", req.body.content)
+    await user.save()
+    res.json(user)
+    console.log("user data is: ", user)
 }
 
 async function updateBio(req, res){

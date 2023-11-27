@@ -1,22 +1,29 @@
 import * as profileAPI from '../../utilities/my-profile-api'
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 
-function EditProfilePage({ user }){
+function EditProfilePage(){
     const [profileImage, setProfileImage] = useState(null);
     const [imagePreview, setImagePreview] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
+    const [user, setUser] = useState([])
     const fileRef = useRef()
+
+    useEffect(function(){
+        async function getUserData(){
+            const userData = await profileAPI.getUserInformation()
+            setUser(userData)
+        }
+        getUserData()
+    }, [])
 
     const bio = user.biography
     const location = user.location
     const cloudinaryPreset = import.meta.env.VITE_CLOUDINARY
     let newProfileImageURL = ""
 
-    console.log(user.avatar);
-    
-    function updateProfileImage(newProfileImageURL){
-        profileAPI.updateProfileImage(newProfileImageURL)
-        console.log("inside jsx")
+    async function updateProfileImage(newProfileImageURL){
+        const returnedData = await profileAPI.updateProfileImage(newProfileImageURL)
+        setUserData(returnedData)
     }
 
     function _handleImageChange(event){
@@ -29,7 +36,6 @@ function EditProfilePage({ user }){
         setIsLoading(true)
         try {
             if(
-                
                 profileImage && (
                     profileImage.type === "image/png" ||
                     profileImage.type === "image/jpg" ||
@@ -52,12 +58,14 @@ function EditProfilePage({ user }){
 
                 const imageData = await response.json()
                 newProfileImageURL = imageData.url.toString()
+                console.log(imageData)
                 setImagePreview(null)
                 setIsLoading(false)
                 fileRef.current.value = null
                 setProfileImage(null)
             }
             updateProfileImage(newProfileImageURL)
+            
         } catch (err) {
             console.log(err)
             setIsLoading(false)

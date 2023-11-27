@@ -1,5 +1,5 @@
-import FriendsList from "../../Components/Friends/FriendList"
-import FindUser from "../../Components/Friends/FindUser"
+import FriendsList from "../../components/Friends/FriendList"
+import FindUser from "../../components/Friends/FindUser"
 import {useState, useEffect} from 'react'
 import * as friendService from '../../utilities/friends-api';
 

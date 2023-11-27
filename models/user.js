@@ -76,5 +76,4 @@ userSchema.methods.createUserIcon = function(userId){
 }
 
 
-
 module.exports = mongoose.model('User', userSchema);

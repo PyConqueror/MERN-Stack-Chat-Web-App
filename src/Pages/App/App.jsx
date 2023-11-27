@@ -27,7 +27,7 @@ export default function App() {
           <Route path='/community/:communityName' element={<CommunityDetailPage />}/>
           <Route path='/friends' element={<FriendsPage/>}/>
           <Route path='/profile' element={<MyProfilePage user={user}/>}/>
-          <Route path='/profile/edit' element={<EditProfilePage user={user}/>}/>
+          <Route path='/profile/edit' element={<EditProfilePage user={user} setUser={setUser}/>}/>
         </Routes>
       </>
       :
