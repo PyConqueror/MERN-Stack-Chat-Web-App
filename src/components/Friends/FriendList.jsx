@@ -18,10 +18,7 @@ function FriendsList({friends, setFriends, fetchFriends }) {
         <ul>
           {friends.map(friend => (
             <li key={friend._id}>
-              <div className="profile-image" style={friend.avatar.startsWith('hsl') 
-            ? { backgroundColor: friend.avatar } : { backgroundImage: `url(${friend.avatar})`}}>
-                <p>{ friend.avatar.startsWith('hsl') ? friend.name.charAt(0) : ""}</p>
-            </div>
+              {/* <img src={friend.avatar} alt={friend.name} width="50" height="50" /> */}
               <span>{friend.name}</span>
               <button onClick={() => startConversation(friend._id)}>
                 Start Conversation

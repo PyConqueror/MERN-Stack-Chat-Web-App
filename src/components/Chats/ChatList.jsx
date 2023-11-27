@@ -31,7 +31,7 @@ function ChatList({ setSelectedChatID }) {
           <ul className="chat-list">
             {chats.map(chat => (
               <li key={chat._id} className="chat-item" onClick={() => handleChatClick(chat._id)}>
-                <img src={chat.avatar || 'default-avatar.png'} className="chat-avatar" alt="Chat Avatar" />
+                {/* <img src={chat.avatar || 'default-avatar.png'} className="chat-avatar" alt="Chat Avatar" /> */}
                 <div className="chat-details">
                   <p className="chat-name">{chat.name}</p>
                 </div>
