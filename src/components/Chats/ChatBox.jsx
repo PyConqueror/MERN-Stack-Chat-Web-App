@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import ScrollableFeed from 'react-scrollable-feed';
 import * as chatService from '../../utilities/chats-api'
-import Message from './Message'
+import Message from './Message';
 
 function ChatBox({ selectedChatID, user }) {
     const [messages, setMessages] = useState([]);
@@ -11,23 +11,21 @@ function ChatBox({ selectedChatID, user }) {
         async function fetchMessages() {
           const fetchedMessages = await chatService.getMessages(selectedChatID);
           setMessages(fetchedMessages)
-          console.log(fetchedMessages)
         };
         if (selectedChatID) {
-          console.log(selectedChatID)
           fetchMessages();
         }
       }, [selectedChatID, setMessages]);
 
     const handleSendMessage = async () => {
         await chatService.sendMessage(selectedChatID, newMessage);
-        console.log(selectedChatID)
+        fetchMessages();
     };
 
     return (
       <div className="chatbox">
         <ScrollableFeed>
-          {messages === null ? (
+        {messages.length > 0 ? (
             <ul className="message-list">
               {messages.map((message) => (
                 <Message key={message._id} message={message} user={user} />

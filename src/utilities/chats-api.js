@@ -2,9 +2,7 @@ import sendRequest from './send-request';
 const BASE_URL = '/api/chats';
 
 export async function getMessages(ID) {
-    const received = sendRequest(`${BASE_URL}/${ID}/messages`)
-    console.log(received)
-    return received;
+    return sendRequest(`${BASE_URL}/${ID}/messages`)
 }
 
 export function sendMessage(selectedChatID, newMessage) {
