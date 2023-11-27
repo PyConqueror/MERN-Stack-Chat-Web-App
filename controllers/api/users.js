@@ -16,11 +16,34 @@ module.exports = {
 async function create(req, res) {
   try {
     const user = await User.create(req.body);
+    user.avatar = createUserIcon();
+    await user.save()
     const token = createJWT(user);
     res.json(token);
   } catch (err) {
     res.status(400).json(err);
   }
+}
+
+function createUserIcon(){
+  function generateHSLNumber(min, max){
+    let difference = max - min;
+    let rand = Math.random();
+    rand = Math.floor(rand * difference)
+    rand = rand + min
+    return rand
+  }
+
+  let hValue = generateHSLNumber(0, 360)
+  let sValue = generateHSLNumber(50, 75)
+  let lValue = generateHSLNumber(25, 60)
+
+  function HSLtoString(h, s, l){
+      return `hsl(${h}, ${s}%, ${l}%)`
+  }
+
+  return HSLtoString(hValue, sValue, lValue)
+
 }
 
 async function login(req,res){

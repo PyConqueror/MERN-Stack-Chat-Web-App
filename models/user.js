@@ -19,9 +19,7 @@ const userSchema = new Schema({
       minLength: 3,
       required: true
     },
-    avatar: {
-      type: String, 
-      default:"https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png"},
+    avatar: {type: String},
     friends:[{
       type: Schema.Types.ObjectId,
       ref: 'User',
@@ -49,31 +47,8 @@ userSchema.pre('save', async function(next) {
     return next();
   });
 
-userSchema.methods.createUserIcon = function(userId){
-    function generateHSLNumber(min, max){
-      let difference = max - min;
-      let rand = Math.random();
-      rand = Math.floor(rand * difference)
-      rand = rand + min
-      return rand
-    }
 
-    let hValue = generateHSLNumber(0, 360)
-    let sValue = generateHSLNumber(50, 75)
-    let lValue = generateHSLNumber(25, 60)
 
-    function HSLtoString(h, s, l){
-        return `hsl(${h}, ${s}%, ${l}%)`
-    }
-
-    let backgroundColour = HSLtoString(hValue, sValue, lValue)
-
-    return this.findOneAndUpdate(
-      {_id: userId},
-      { $set: {avatar: backgroundColour }},
-      { new:true }
-    )
-}
 
 
 module.exports = mongoose.model('User', userSchema);
