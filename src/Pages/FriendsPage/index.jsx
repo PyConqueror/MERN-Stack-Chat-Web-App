@@ -9,7 +9,6 @@ function FriendsPage () {
     async function fetchFriends() {
         const data = await friendService.getFriends();
         setFriends(data)
-        console.log('reached')
     }
     useEffect(() => {
         fetchFriends();
