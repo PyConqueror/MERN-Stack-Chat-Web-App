@@ -6,7 +6,7 @@ import io from 'socket.io-client';
 
 const socket = io('http://localhost:3001')
 
-function ChatBox({ selectedChatID, user }) {
+function ChatBox({ selectedChatID, user, chatName, chatAvatar }) {
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState('');
 
@@ -46,6 +46,7 @@ function ChatBox({ selectedChatID, user }) {
 
   return (
     <div className="chatbox">
+      <h3>{chatName}</h3>
       <ScrollableFeed>
         {messages.length > 0 ? (
           <ul className="message-list">

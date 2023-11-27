@@ -2,11 +2,12 @@ import { useState, useEffect } from 'react';
 import * as friendService from '../../utilities/friends-api';
 import GroupChatForm from './GroupChatForm';
 
-function ChatList({ setSelectedChatID }) {
+function ChatList({ setSelectedChatID, setChatName, setChatAvatar }) {
     const [chats, setChats] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false); // State to track modal visibility
     const openModal = () => setIsModalOpen(true);
     const closeModal = () => setIsModalOpen(false);
+    console.log(chats)
 
     useEffect(() => {
       async function fetchChats() {
@@ -18,8 +19,10 @@ function ChatList({ setSelectedChatID }) {
     fetchChats();
     }, []);
     
-    function handleChatClick(chatID) {
+    function handleChatClick(chatID, chatName, chatAvatar) {
       setSelectedChatID(chatID)
+      setChatName(chatName)
+      setChatAvatar(chatAvatar)
     }
     
     return (
@@ -30,7 +33,7 @@ function ChatList({ setSelectedChatID }) {
         {chats && chats.length > 0 ? (
           <ul className="chat-list">
             {chats.map(chat => (
-              <li key={chat._id} className="chat-item" onClick={() => handleChatClick(chat._id)}>
+              <li key={chat._id} className="chat-item" onClick={() => handleChatClick(chat._id, chat.name, chat.avatar)}>
                 {/* <img src={chat.avatar || 'default-avatar.png'} className="chat-avatar" alt="Chat Avatar" /> */}
                 <div className="chat-details">
                   <p className="chat-name">{chat.name}</p>
