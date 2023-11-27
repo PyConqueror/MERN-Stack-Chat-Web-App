@@ -6,6 +6,8 @@ function EditProfilePage({ user, setUser}){
     const [profileImage, setProfileImage] = useState(null);
     const [imagePreview, setImagePreview] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
+    const [bioText, setBioText] = useState("")
+    const [locationText, setLocationText] = useState("")
 
     const fileRef = useRef()
     const bio = user.biography
@@ -65,6 +67,7 @@ function EditProfilePage({ user, setUser}){
             setIsLoading(false)
         }
     }
+
     if(!user.avatar){  
         return(
             <p>loading</p>
