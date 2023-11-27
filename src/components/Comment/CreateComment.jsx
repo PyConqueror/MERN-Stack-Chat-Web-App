@@ -12,7 +12,7 @@ const CreateComment = ({addComment}) => {
     return (
         <>
             <form onSubmit={_handleAddComment}>
-                <input 
+                <textarea 
                     placeholder="Enter a comment"
                     value={newComment}
                     onChange={(event) => setNewComment(event.target.value)}
