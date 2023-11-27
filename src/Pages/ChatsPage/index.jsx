@@ -7,12 +7,14 @@ function ChatPage({ user }){
     const [selectedChatID, setSelectedChatID] = useState('')
     const [chatName, setChatName] = useState('')
     const [chatAvatar, setChatAvatar] = useState('')
+    const [chatParticipants, setChatParticipants] = useState('')
+    console.log(chatParticipants)
 
     return(
     <>
         <h1>CHATS PAGE</h1>
-        <ChatList setSelectedChatID={setSelectedChatID} setChatName={setChatName} setChatAvatar={setChatAvatar}/>
-        <ChatBox selectedChatID={selectedChatID} user={user} chatName={chatName} chatAvatar={chatAvatar}/>
+        <ChatList setSelectedChatID={setSelectedChatID} setChatName={setChatName} setChatAvatar={setChatAvatar} setChatParticipants={setChatParticipants}/>
+        <ChatBox selectedChatID={selectedChatID} user={user} chatName={chatName} chatAvatar={chatAvatar} chatParticipants={chatParticipants}/>
     </>
     )
 }

@@ -102,13 +102,15 @@ async function getChatList(req, res) {
       match: { '_id': { $ne: currentUserId } },
       select: 'name avatar' 
     });
+  // const participants = await Chat.findById(chats._id).populate('participants')
   const transformedChats = chats.map(chat => { // transform the chats to include either the group name or the other participant's details
     if (chat.isGroup) {
       return {         // For group chats, return the group name
         _id: chat._id,
         name: chat.GroupName,
-        avatar: null, // Add a group avatar if available
-        isGroup: true
+        avatar: createUserIcon(), // Add a group avatar if available
+        isGroup: true,
+        participants: chat.participants
       };
     } else {
       const chatPartner = chat.participants.find(participant => participant._id.toString() !== currentUserId);

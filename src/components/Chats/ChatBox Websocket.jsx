@@ -6,9 +6,10 @@ import io from 'socket.io-client';
 
 const socket = io('http://localhost:3001')
 
-function ChatBox({ selectedChatID, user, chatName, chatAvatar }) {
+function ChatBox({ selectedChatID, user, chatName, chatAvatar, chatParticipants }) {
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState('');
+  console.log(chatParticipants)
 
   const fetchMessages = async () => {
     const fetchedMessages = await chatService.getMessages(selectedChatID)
@@ -47,6 +48,20 @@ function ChatBox({ selectedChatID, user, chatName, chatAvatar }) {
   return (
     <div className="chatbox">
       <h3>{chatName}</h3>
+      <div className="profile-image" 
+      style={chatAvatar.startsWith('hsl') 
+              ? { backgroundColor: chatAvatar } : { backgroundImage: `url(${chatAvatar})`}}>
+      <p>{ chatAvatar.startsWith('hsl') ? chatAvatar.charAt(0) : ""}</p>
+      </div>
+      {chatParticipants && chatParticipants.length > 0 && (
+        <div className='chatparticipants'>
+          <p>Chat Participants:</p>
+          {chatParticipants.map((person, index) => (
+            <p key={index}>{person.name}</p>
+          ))}
+        </div>
+      )}
+
       <ScrollableFeed>
         {messages.length > 0 ? (
           <ul className="message-list">
