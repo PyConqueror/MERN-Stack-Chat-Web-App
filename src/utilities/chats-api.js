@@ -16,6 +16,10 @@ export function createConversation(ID) {
    return sendRequest(`${BASE_URL}/${ID}`);
 }
 
+export function createGroup(formData) {
+    sendRequest(`${BASE_URL}/create`, 'POST', formData)
+}
+
 
 // Define API service utility functions
 //   Include functions for making API requests to the backend:

@@ -39,7 +39,7 @@ async function getChat(req, res) {
 async function getMessages(req, res) {
     const chatID = req.params.id;
     const messages = await Message.find({ chat: chatID })
-    .sort({ date: -1 }) //sort by date, newest first
+    .sort({ date: +1 }) //sort by date, newest first
     .populate('sender', 'name avatar') // Populate sender details
     console.log(messages)
     res.json(messages)
@@ -61,18 +61,18 @@ async function sendMessage(req, res) {
 
 async function createGroup(req, res) {
     const {groupName, participants} = req.body //participants should be an array of user id sent from frontend (selected from friend list)
+    const allParticipants = [...participants, req.user._id];
     const groupChat = new Chat({
-        participants: participants,
+        participants: allParticipants,
         isGroup: true,
-        groupName: groupName,
+        GroupName: groupName,
         messages: [] //starting with empty array as usual when starting a new chat
     })
     await groupChat.save();
-    await groupChat.populate('partipants' ,'name avatar')
     await User.updateMany(
-        { _id: { $in: participants } },
+        { _id: { $in: allParticipants } },
         { $push: { chats: groupChat._id } }
-      );  
-    res.json(groupChat)
+      );
+      return res.status(200)
 }
 

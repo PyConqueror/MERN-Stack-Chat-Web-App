@@ -19,7 +19,6 @@ function ChatBox({ selectedChatID, user }) {
 
     const handleSendMessage = async () => {
         await chatService.sendMessage(selectedChatID, newMessage);
-        fetchMessages();
     };
 
     return (
@@ -36,7 +35,6 @@ function ChatBox({ selectedChatID, user }) {
           )}
         </ScrollableFeed>
         <div className="message-input">
-          <p>CURRENT CONVERSATION ID : {selectedChatID}</p>
           <input
             type="text" 
             value={newMessage}
@@ -48,5 +46,4 @@ function ChatBox({ selectedChatID, user }) {
       </div>
     );
 }
-
-export default ChatBox
+export default ChatBox;
