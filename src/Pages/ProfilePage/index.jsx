@@ -3,11 +3,11 @@
 //   Include editable fields for Email, Bio, Interests, etc.
 //   Include a save button to update the user's profile information
 
-import * as profileAPI from '../../utilities/my-profile-api'
+import * as profileAPI from '../../utilities/profile-api'
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-function MyProfilePage({user}){
+function ProfilePage({user}){
     const bio = user.biography
     const location = user.location
     const navigate = useNavigate()
@@ -33,4 +33,4 @@ function MyProfilePage({user}){
     )
 }
 
-export default MyProfilePage
+export default ProfilePage

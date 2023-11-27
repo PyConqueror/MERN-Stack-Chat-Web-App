@@ -1,4 +1,4 @@
-import * as profileAPI from '../../utilities/my-profile-api'
+import * as profileAPI from '../../utilities/profile-api'
 import { useState, useRef, useEffect } from 'react'
 import { getUser } from '../../utilities/users-service'
 
@@ -94,7 +94,7 @@ function EditProfilePage({ user, setUser}){
 
     if(!user.avatar){  
         return(
-            <p>loading</p>
+            <p>loading...</p>
         )
     }
 

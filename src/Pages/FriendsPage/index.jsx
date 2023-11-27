@@ -6,13 +6,15 @@ import * as friendService from '../../utilities/friends-api';
 
 function FriendsPage () {
     const [friends, setFriends] = useState([]);
+
     async function fetchFriends() {
         const data = await friendService.getFriends();
         setFriends(data)
     }
-    useEffect(() => {
+
+    useEffect(function(){
         fetchFriends();
-      }, []);   
+    }, [friends]);   
 
     return (
     <>
