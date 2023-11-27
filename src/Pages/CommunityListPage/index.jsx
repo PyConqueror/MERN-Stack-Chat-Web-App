@@ -1,9 +1,18 @@
 import CommunityCard from "../../components/Community/CommunityCard"
+import { useNavigate } from "react-router-dom"
 
 const CommunityListPage = ({communities}) => {
+    const navigate = useNavigate()
+    
+    function _handleClick(){
+        navigate('/community/new')
+    }
+
     return(
         <div>
             <h1>COMMUNITY LIST PAGE</h1>
+            <button onClick={_handleClick}>Create new community</button>
+
             <div className="card-container">
                 {communities.map((c, index) => <CommunityCard community={c} key={index} />)}
             </div>

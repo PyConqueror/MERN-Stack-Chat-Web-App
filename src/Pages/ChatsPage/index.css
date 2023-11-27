@@ -47,3 +47,19 @@
     border: 2px solid black;
     max-width: 500px;
   }
+
+  .sent {
+    background-color: lightgreen;
+    border-radius: 10px;
+    max-width: 200px;
+    text-align: left;
+    border: 2px solid gray;
+  }
+
+  .received {
+    background-color: lightblue;
+    border-radius: 10px;
+    max-width: 200px;
+    text-align: right;
+    border: 2px solid gray;
+  }
