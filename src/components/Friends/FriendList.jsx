@@ -10,7 +10,10 @@ function FriendsList({friends, setFriends, fetchFriends }) {
        await chatService.createConversation(ID)
        navigate('/')
     }
- 
+
+    function viewFriendsProfile(friendId){
+      navigate(`/profile/${encodeURIComponent(friendId)}`, {state: { friendId }})
+    }
 
     return (
       <div className="friends-list">
@@ -27,7 +30,7 @@ function FriendsList({friends, setFriends, fetchFriends }) {
               <button onClick={() => startConversation(friend._id)}>
                 Start Conversation
               </button>
-              <button>View profile</button>
+              <button onClick={() => viewFriendsProfile(friend._id)}>View profile</button>
             </li>
           ))}
         </ul>

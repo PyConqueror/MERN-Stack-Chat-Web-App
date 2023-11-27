@@ -49,7 +49,12 @@ function GroupChatForm({onClose}) {
         <ul>
           {friends.map(friend => (
             <li key={friend._id}>
-              <img src={friend.avatar} alt={friend.name} width="50" height="50" />
+              {/* <img src={friend.avatar} alt={friend.name} width="50" height="50" /> */}
+              <div className="profile-image" 
+                  style={friend.avatar.startsWith('hsl') 
+                          ? { backgroundColor: friend.avatar } : { backgroundImage: `url(${friend.avatar})`}}>
+                  <p>{ friend.avatar.startsWith('hsl') ? friend.name.charAt(0) : ""}</p>
+                </div>
               <span>{friend.name}</span>
               <label>
                 <input

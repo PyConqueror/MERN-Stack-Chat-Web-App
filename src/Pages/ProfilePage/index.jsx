@@ -13,7 +13,7 @@ function MyProfilePage({user}){
     const navigate = useNavigate()
 
     function _handleClick(){
-        navigate('/profile/edit')
+        navigate('/profile/edit') 
     }
 
     return(

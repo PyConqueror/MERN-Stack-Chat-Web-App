@@ -32,6 +32,11 @@ function ChatList({ setSelectedChatID }) {
             {chats.map(chat => (
               <li key={chat._id} className="chat-item" onClick={() => handleChatClick(chat._id)}>
                 {/* <img src={chat.avatar || 'default-avatar.png'} className="chat-avatar" alt="Chat Avatar" /> */}
+                <div className="profile-image" 
+                  style={chat.avatar.startsWith('hsl') 
+                          ? { backgroundColor: chat.avatar } : { backgroundImage: `url(${chat.avatar})`}}>
+                  <p>{ chat.avatar.startsWith('hsl') ? chat.name.charAt(0) : ""}</p>
+                </div>
                 <div className="chat-details">
                   <p className="chat-name">{chat.name}</p>
                 </div>

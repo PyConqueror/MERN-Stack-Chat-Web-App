@@ -107,7 +107,7 @@ async function getChatList(req, res) {
       return {         // For group chats, return the group name
         _id: chat._id,
         name: chat.GroupName,
-        avatar: null, // Add a group avatar if available
+        avatar: createUserIcon(), // Add a group avatar if available
         isGroup: true
       };
     } else {
