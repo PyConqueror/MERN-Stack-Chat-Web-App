@@ -108,7 +108,6 @@ async function addFriend(req, res) {
   if (user.friends.includes(friendID)) { // do nothing
     return res.status(400)
   } else { //if friend id not in the array, add the friend id in the friends array
-    // await User.findByIdAndUpdate(userID, { $push: { friends: friendID } });
     user.friends.push(friendID)
     await user.save()
     return res.status(200)
