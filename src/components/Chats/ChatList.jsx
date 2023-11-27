@@ -1,8 +1,12 @@
 import { useState, useEffect } from 'react';
 import * as friendService from '../../utilities/friends-api';
+import GroupChatForm from './GroupChatForm';
 
 function ChatList({ setSelectedChatID }) {
     const [chats, setChats] = useState([]);
+    const [isModalOpen, setIsModalOpen] = useState(false); // State to track modal visibility
+    const openModal = () => setIsModalOpen(true);
+    const closeModal = () => setIsModalOpen(false);
 
     useEffect(() => {
       async function fetchChats() {
@@ -21,6 +25,8 @@ function ChatList({ setSelectedChatID }) {
     return (
       <div className="chat-list-container">
         <h2>Chat List</h2>
+        <button onClick={openModal}>Create Group Chat</button>
+
         {chats && chats.length > 0 ? (
           <ul className="chat-list">
             {chats.map(chat => (
@@ -32,9 +38,12 @@ function ChatList({ setSelectedChatID }) {
               </li>
             ))}
           </ul>
+
+
         ) : (
           <p>No chats yet.</p>
         )}
+      {isModalOpen && <GroupChatForm onClose={closeModal} />}
       </div>
     );
 }

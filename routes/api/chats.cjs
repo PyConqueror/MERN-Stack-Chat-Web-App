@@ -6,6 +6,6 @@ const chatsController = require('../../controllers/api/chats');
 router.get("/:id", ensureLoggedIn, chatsController.getChat) //send user id, return with chat id
 router.get("/:id/messages", ensureLoggedIn, chatsController.getMessages)
 router.post("/send/:id", ensureLoggedIn, chatsController.sendMessage)
-router.post("/create/:id", ensureLoggedIn, chatsController.createGroup)
+router.post("/create", ensureLoggedIn, chatsController.createGroup)
 
 module.exports = router;  

@@ -1,18 +1,23 @@
 import sendRequest from './send-request';
 const BASE_URL = '/api/chats';
 
-export function getMessages(ID) {
-    sendRequest(`${BASE_URL}/${ID}/messages`);
+export async function getMessages(ID) {
+    return sendRequest(`${BASE_URL}/${ID}/messages`)
 }
 
-export async function sendMessage(selectedChatID, newMessage) {
-    const ID = selectedChatID
-    const message = newMessage
-    sendRequest(`${BASE_URL}/send/${ID}`, 'POST', message);
+export function sendMessage(selectedChatID, newMessage) {
+    const messageData = {
+        content: newMessage
+    }
+    sendRequest(`${BASE_URL}/send/${selectedChatID}`, 'POST', messageData);
 }
 
 export function createConversation(ID) {
    return sendRequest(`${BASE_URL}/${ID}`);
+}
+
+export function createGroup(formData) {
+    sendRequest(`${BASE_URL}/create`, 'POST', formData)
 }
 
 
