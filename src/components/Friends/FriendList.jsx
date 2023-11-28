@@ -5,7 +5,7 @@ import { Navigate, useNavigate } from 'react-router-dom';
 
 function FriendsList({friends, setFriends, fetchFriends }) {
     const navigate = useNavigate()
-    
+
     async function startConversation(ID) {
        await chatService.createConversation(ID)
        navigate('/')

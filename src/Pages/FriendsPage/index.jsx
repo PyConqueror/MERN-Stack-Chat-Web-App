@@ -4,9 +4,10 @@ import {useState, useEffect} from 'react'
 import * as friendService from '../../utilities/friends-api';
 
 
-function FriendsPage () {
+function FriendsPage ({ user }) {
     const [friends, setFriends] = useState([]);
 
+    
     async function fetchFriends() {
         const data = await friendService.getFriends();
         setFriends(data)
