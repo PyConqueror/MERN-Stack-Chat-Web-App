@@ -21,8 +21,9 @@ app.use(require('./config/checkToken.js'));
 app.use('/api/users', require('./routes/api/users.cjs'));
 app.use('/api/chats', require('./routes/api/chats.cjs'));
 app.use('/api/profiles', require('./routes/api/profiles.cjs'))
-// app.use('/api/communities', require('./routes/api/communities.cjs'));
-// app.use(favicon(path.join(__dirname, 'dist', 'favicon.ico')));
+app.use('/api/communities', require('./routes/api/communities.cjs'))
+
+/// app.use(favicon(path.join(__dirname, 'dist', 'favicon.ico')));
 app.use(express.static(path.join(__dirname, 'dist')));
 
 
