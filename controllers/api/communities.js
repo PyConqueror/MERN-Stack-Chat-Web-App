@@ -13,7 +13,9 @@ module.exports = {
 };
 
 async function showOneGroup(req, res) {
-  const group = await Group.findById()
+  console.log(req.body.content)
+  const group = await Group.findById(req.body.content)
+  console.log("group is: ", group)
   res.json(group)
 }
 

@@ -1,8 +1,11 @@
 import sendRequest from './send-request';
 const BASE_URL = '/api/communities';
 
-export function getOneGroup() {
-    return sendRequest(`${BASE_URL}`)
+export function getOneGroup(communityId) {
+    const communityIdData = {
+        content: communityId
+    }
+    return sendRequest(`${BASE_URL}`, 'POST', communityIdData)
 }
 
 export function getAllGroups() {

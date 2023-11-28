@@ -10,13 +10,15 @@ const CommunityDetailPage = () => {
     const [community, setCommunity] = useState([])
     const { state } = useLocation();
     const navigate = useNavigate()
-    const communityId = state?.community;
+    const communityId = state?.communityId;
     const [posts, setPosts] = useState([]);
 
     useEffect(function(){
         async function fetchGroup(){
-            const community = communityService.getOneGroup
+            console.log(communityId)
+            const community = await communityService.getOneGroup(communityId)
             setCommunity(community)
+            console.log(community)
         }
         fetchGroup()
         
@@ -26,9 +28,17 @@ const CommunityDetailPage = () => {
         navigate('/community/new')
     }
 
+    if(!community.name){
+        return(
+            <p>Loading...</p>
+        )
+    }
+
     return (
         <div>
-            <h1>{community.name}</h1>
+            <h1>{ community.name }</h1>
+            <img src={community.coverPhoto} style={{width: '50vmin'}}/>
+            <h2>{ community.description }</h2>
             <button onClick={_handleClick}>Edit Community</button>
             <CreatePost />
             <PostList posts={posts}/>
