@@ -14,7 +14,7 @@ function FriendsPage () {
 
     useEffect(function(){
         fetchFriends();
-    }, [friends]);   
+    }, []);   
 
     return (
     <>
