@@ -1,7 +1,10 @@
 import { useState } from "react";
+import * as communityServices from '../../utilities/community-api'
 
-const CreatePost = ({addPost}) => {
-    const [newPost, setNewPost] = useState("")
+const CreatePost = () => {
+    const [newPost, setNewPost] = useState({
+        
+    })
 
     const _handleAddPost = (event) => {
         event.preventDefault();

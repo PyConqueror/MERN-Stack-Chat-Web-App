@@ -1,5 +1,7 @@
 import PostItem from "./PostItem"
 
+
+
 const PostList = ({posts}) => {
     return (
         <div>
