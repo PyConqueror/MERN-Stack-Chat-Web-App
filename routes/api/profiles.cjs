@@ -6,7 +6,7 @@ const ensureLoggedIn = require('../../config/ensureLoggedIn')
 router.post('/updateProfileImage', ensureLoggedIn, profileController.updateProfileImage);
 router.post('/updateBio', ensureLoggedIn, profileController.updateBio);
 router.post('/updateLocation', ensureLoggedIn, profileController.updateLocation);
-router.get('/getFriend', ensureLoggedIn, profileController.getFriend)
+router.post('/getFriend', ensureLoggedIn, profileController.getFriend)
 
 
 module.exports = router;

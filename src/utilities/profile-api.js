@@ -5,7 +5,7 @@ export async function getFriendData(friendId){
     const friendIdData = {
         content: friendId
     }
-    return sendRequest(`${BASE_URL}/getFriend`, 'GET', friendIdData)
+    return sendRequest(`${BASE_URL}/getFriend`, 'POST', friendIdData)
 }
 
 export function updateProfileImage(newProfileImageURL){

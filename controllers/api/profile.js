@@ -10,7 +10,9 @@ module.exports = {
 }
 
 async function getFriend(req, res){
+    console.log(req.body.content)
     const friend = await User.findById(req.body.content)
+    
     console.log(friend)
     res.json(friend)
 }

@@ -160,6 +160,15 @@ button[type="submit"] {
   align-items: center;
   text-align: center;
   font-size: x-large;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.profile-image-large {
+  height: 25vmin;
+  background-size: contain;
+  display: flex;
+  background-repeat: no-repeat
 }
 
 /* CommunityCard -------------------*/

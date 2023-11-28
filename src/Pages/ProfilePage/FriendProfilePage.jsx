@@ -1,31 +1,40 @@
 import { useLocation } from 'react-router-dom'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import * as profileAPI from '../../utilities/profile-api'
 
 function FriendProfilePage(){
     const { state } = useLocation();
-    const friendId = state.friendId
+    const friendId = state?.friendId
+    const [friend, setFriendData] = useState([])
 
     useEffect(function(){
         async function getFriendData(){
-            const friend = await profileAPI.getFriendData(friendId)
+            const friendData = await profileAPI.getFriendData(friendId)
+            setFriendData(friendData)
         }
         getFriendData()
 
     }, [])
-    
-
-    // const bio = user.biography
-    // const location = user.location
-  
-    // if(!friend){
-    //     return(
-    //         <p>loading...</p>
-    //     )
-    // }
+      
+    if(!friend.avatar){
+        return(
+            <p>loading...</p>
+        )
+    }
 
     return(
-        <p>anything</p>
+        <>
+            <p>{ friend.name }</p>
+            <p>Location:</p>
+            <p>{ friend.location ? friend.location : "No location"}</p>
+            <div className={friend.avatar.startsWith('hsl') ? "profile-image" : "profile-image-large"}
+                style={friend.avatar.startsWith('hsl') 
+                    ? { backgroundColor: friend.avatar } : { backgroundImage: `url(${friend.avatar})`}}>
+                <p>{ friend.avatar.startsWith('hsl') ? friend.name.charAt(0) : ""}</p>
+            </div>
+            <p>Biography:</p>
+            <p>{ friend.biography ? friend.biography : "No biography"}</p>
+        </>
     )
 }
 
