@@ -8,7 +8,22 @@ const communitySchema = new Schema({
         required: true
     },
     description: String,
-    category: String,
+    coverPhoto: {type: String},
+    category: [{
+        type: String,
+        enum: [
+            "Technology",
+            "Books",
+            "Fitness",
+            "Travel",
+            "Art",
+            "Language Exchange",
+            "Environment",
+            "Career Development",
+            "Food",
+            "Gaming",
+          ]
+    }],
     members: [{
         type: Schema.Types.ObjectId,
         ref: 'User'

@@ -3,14 +3,14 @@ import { useNavigate } from "react-router-dom"
 
 const CommunityListPage = ({communities}) => {
     const navigate = useNavigate()
-    
+
     function _handleClick(){
         navigate('/community/new')
     }
 
     return(
         <div>
-            <h1>COMMUNITY LIST PAGE</h1>
+            <h1>Community List</h1>
             <button onClick={_handleClick}>Create new community</button>
 
             <div className="card-container">
