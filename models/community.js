@@ -11,18 +11,7 @@ const communitySchema = new Schema({
     coverPhoto: {type: String},
     category: [{
         type: String,
-        enum: [
-            "Technology",
-            "Books",
-            "Fitness",
-            "Travel",
-            "Art",
-            "Language Exchange",
-            "Environment",
-            "Career Development",
-            "Food",
-            "Gaming",
-          ]
+        default: "All"
     }],
     members: [{
         type: Schema.Types.ObjectId,

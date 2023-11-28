@@ -1,8 +1,12 @@
 import sendRequest from './send-request';
 const BASE_URL = '/api/communities';
 
-export function getGroups() {
-    return sendRequest(`${BASE_URL}`);
+export function getOneGroup() {
+    return sendRequest(`${BASE_URL}`)
+}
+
+export function getAllGroups() {
+    return sendRequest(`${BASE_URL}/allGroups`);
 }
 
 export function getPosts(groupID) {
@@ -14,8 +18,7 @@ export function getComments(postID) {
 }
 
 export function createGroup(formData) {
-    console.log(formData)
-    sendRequest(`${BASE_URL}/create`, 'POST', formData)
+    return sendRequest(`${BASE_URL}/create`, 'POST', formData)
 }
 
 export function createPost(groupID, formData) {

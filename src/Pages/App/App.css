@@ -189,3 +189,7 @@ button[type="submit"] {
   border: 1px solid black;
   cursor: pointer;
 }
+
+.card img {
+  width: 535px;
+}

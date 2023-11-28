@@ -3,7 +3,8 @@ const router = express.Router();
 const ensureLoggedIn = require('../../config/ensureLoggedIn')
 const communitiesController = require('../../controllers/api/communities');
 
-router.get("/", ensureLoggedIn, communitiesController.showGroups) //show all groups in community page
+router.get("/", ensureLoggedIn, communitiesController.showOneGroup)
+router.get("/allGroups", ensureLoggedIn, communitiesController.showAllGroups) //show all groups in community page
 router.get("/posts/:id", ensureLoggedIn, communitiesController.showPosts) //show all posts based on the group :id is group id
 router.get("/:id/comments", ensureLoggedIn, communitiesController.showComments) //show comments based on the posts id
 router.post("/create", ensureLoggedIn, communitiesController.createGroup) //create group , controller will return with group id

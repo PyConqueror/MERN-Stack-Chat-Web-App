@@ -1,20 +1,20 @@
 import { useNavigate } from 'react-router-dom'
 
-const CommunityCard = ({community}) => {
+const CommunityCard = ({ community }) => {
     const navigate = useNavigate();
 
-    const _HandleCommunityClick = () => {
-        navigate(`/community/${encodeURIComponent(community.title)}`, { state: { community } });
+    function _handleCommunityClick(communityId){
+        navigate(`/community/${encodeURIComponent(communityId)}`, { state: { communityId } });
     };
+
     return (
         <div>
-            <div 
-            className="card"
-            onClick={_HandleCommunityClick}
-            >   
-                <h2>{community.title}</h2>
-                <p>{community.description}</p>
+            <div className="card" onClick={() => _handleCommunityClick(community._id)}>
+                <img src={ community.coverPhoto } />   
+                <h2>{ community.name }</h2>
+                <p>{ community.description }</p>
             </div>
+
         </div>
     );
 }

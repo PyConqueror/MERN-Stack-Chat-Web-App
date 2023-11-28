@@ -3,7 +3,8 @@ const Post = require('../../models/post')
 const Comment = require('../../models/comment')
 
 module.exports = {
-    showGroups,
+    showOneGroup,
+    showAllGroups,
     showPosts,
     showComments,
     createPost,
@@ -11,8 +12,13 @@ module.exports = {
     createGroup
 };
 
-async function showGroups(req,res) {
-    const groups = await Group.find({})
+async function showOneGroup(req, res) {
+  const group = await Group.findById()
+  res.json(group)
+}
+
+async function showAllGroups(req,res) {
+    const groups = await Group.find()
     res.json(groups)
 }
 
@@ -59,5 +65,5 @@ async function addComments(req, res) {
   async function createGroup(req, res) {
     const newGroup = new Group(req.body)
     await newGroup.save()
-    res.status(200)
+    res.json(newGroup)
   }

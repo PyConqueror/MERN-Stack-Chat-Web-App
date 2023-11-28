@@ -1,29 +1,36 @@
 import { useLocation } from 'react-router-dom';
-import { testPosts } from '../../data'
-import { useState } from "react";
+// import { testPosts } from '../../data'
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom"
 import CreatePost from "../../components/Post/CreatePost";
 import PostList from '../../components/Post/PostList';
+import * as communityService from '../../utilities/community-api'
 
 const CommunityDetailPage = () => {
+    const [community, setCommunity] = useState([])
     const { state } = useLocation();
     const navigate = useNavigate()
-    const community = state.community;
-    const [posts, setPosts] = useState(testPosts);
+    const communityId = state?.community;
+    const [posts, setPosts] = useState([]);
+
+    useEffect(function(){
+        async function fetchGroup(){
+            const community = communityService.getOneGroup
+            setCommunity(community)
+        }
+        fetchGroup()
+        
+    }, [])
 
     function _handleClick(){
         navigate('/community/new')
     }
 
-    const addPost = (post) => {
-        setPosts([...posts, post]);
-    }
-
     return (
         <div>
-            <h1>{community.title}</h1>
+            <h1>{community.name}</h1>
             <button onClick={_handleClick}>Edit Community</button>
-            <CreatePost addPost={addPost}/>
+            <CreatePost />
             <PostList posts={posts}/>
         </div>
     );

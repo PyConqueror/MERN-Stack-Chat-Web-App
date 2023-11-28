@@ -8,7 +8,7 @@ function CommunityListPage() {
     const navigate = useNavigate()
 
     async function fetchGroups() {
-        const data = await communityService.getGroups()
+        const data = await communityService.getAllGroups()
         setCommunities(data)
     }
 
@@ -20,13 +20,18 @@ function CommunityListPage() {
         navigate('/community/new')
     }
 
+    if(!communities){
+        return(
+            <p>Loading...</p>
+        )
+    }
+
     return(
         <div>
             <h1>Community List</h1>
-            <button onClick={_handleClick}>Create new community</button>
-
             <div className="card-container">
-                {/* {communities.map((c, index) => <CommunityCard community={c} key={index} />)} */}
+                {communities.map((community, index) => <CommunityCard community={community} key={index}/>)}
+                <button onClick={_handleClick}>Create new community</button>
             </div>
         </div>
     )
