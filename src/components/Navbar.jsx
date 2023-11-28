@@ -9,10 +9,10 @@ function Navbar({user, setUser}) {
     return (
         <nav>
             <div className="nav-section">
-                <h3>Welcome, <br/>{user.name}!</h3>
+                <p>Welcome, <br/>{user.name}!</p>
             </div>
             <div className="nav-section page-links">
-                <NavLink to={"/profile"}>Profile Page</NavLink>
+                <NavLink to={"/profile"}>Profile</NavLink>
                 <NavLink to={"/"} >Chats</NavLink>
                 <NavLink to={"/community"}>Community</NavLink>
                 <NavLink to={"/friends"}>Friends</NavLink>

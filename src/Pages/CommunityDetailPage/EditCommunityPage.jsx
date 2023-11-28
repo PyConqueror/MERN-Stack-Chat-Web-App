@@ -6,7 +6,7 @@ const EditCommunityPage = () => {
     }
 
     return (
-        <>
+        <div className='content-container'>
             <h1>Edit community</h1>
             <form onSubmit={_handleSubmit}>
                 <label>Community name:
@@ -34,7 +34,7 @@ const EditCommunityPage = () => {
                 
                 <button type="submit">Save</button>
             </form>
-        </>
+        </div>
     );
 }
 

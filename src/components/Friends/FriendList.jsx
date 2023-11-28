@@ -2,6 +2,7 @@ import { useState, useEffect } from "react"
 import * as friendService from '../../utilities/friends-api';
 import * as chatService from '../../utilities/chats-api';
 import { Navigate, useNavigate } from 'react-router-dom';
+import '../../pages/FriendsPage/index'
 
 function FriendsList({friends, setFriends, fetchFriends }) {
     const navigate = useNavigate()

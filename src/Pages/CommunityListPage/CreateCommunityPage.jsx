@@ -98,7 +98,7 @@ function CreateCommunityPage() {
     }
 
     return (
-        <>
+        <div className='content-container'>
             <h1>Create new community form</h1>
             <form>
                 <label>Community name:
@@ -144,7 +144,7 @@ function CreateCommunityPage() {
 
             <button onClick={_handleSubmit}>Save</button>
  
-        </>
+        </div>
     );
 }
 

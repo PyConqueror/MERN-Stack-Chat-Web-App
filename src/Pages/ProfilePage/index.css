@@ -1,4 +1,17 @@
 .content-container {
+    justify-content: flex-start;
+}
+
+.profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: left;
+    padding: 50px;
+    width: 600px;
+    height: 100%;
+    border: 1px solid red;
 
 }
 

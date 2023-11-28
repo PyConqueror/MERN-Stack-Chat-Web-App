@@ -23,7 +23,7 @@ function FriendProfilePage(){
     }
 
     return(
-        <>
+        <div className='content-container'>
             <p>{ friend.name }</p>
             <p>Location:</p>
             <p>{ friend.location ? friend.location : "No location"}</p>
@@ -34,7 +34,7 @@ function FriendProfilePage(){
             </div>
             <p>Biography:</p>
             <p>{ friend.biography ? friend.biography : "No biography"}</p>
-        </>
+        </div>
     )
 }
 

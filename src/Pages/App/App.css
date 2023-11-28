@@ -3,6 +3,8 @@
   --green-1: #88D498;
   --green-2: #1A936F;
   --green-3: #114B5F;
+  --dark-grey: #202020;
+  --light-grey: #a9a9a9;
   --beige: #FFE3B3;
   --text-light: #949494;
   --text-dark: #212121;
@@ -16,7 +18,7 @@ body {
   margin: 0;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   -moz-osx-font-smoothing: grayscale;
-  background-color: var(--tan-4);
+  background-color: var(--white);
   /* padding: 2vmin;
   height: 100vh; */
   /* border: 5px solid red; */
@@ -40,13 +42,13 @@ a {
 
 .form-container {
   padding: 3vmin;
-  background-color: var(--tan-1);
-  border: .1vmin solid var(--tan-3);
+  background-color: var(--green-1);
+  border: .1vmin solid var(--green-1);
   border-radius: 1vmin;
 }
 
 p.error-message {
-  color: var(--orange);
+  color: red;
   text-align: center;
 }
 
@@ -66,7 +68,7 @@ label {
 input {
   padding: 1vmin;
   font-size: 2vmin;
-  border: .1vmin solid var(--tan-3);
+  border: .1vmin solid var(--light-grey);
   border-radius: .5vmin;
   color: var(--text-dark);
   background-image: none !important; /* prevent lastpass */
@@ -81,12 +83,12 @@ button, a.button {
   margin: 1vmin;
   padding: 1vmin;
   color: var(--white);
-  background-color: var(--orange);
+  background-color: var(--green-3);
   font-size: 2vmin;
   font-weight: bold;
   text-decoration: none;
   text-align: center;
-  border: .1vmin solid var(--tan-2);
+  border: none;
   border-radius: .5vmin;
   outline: none;
   cursor: pointer;
@@ -104,7 +106,7 @@ button.btn-xs {
 
 button:disabled, form:invalid button[type="submit"] {
   cursor: not-allowed;
-  background-color: var(--tan-4);
+  background-color: var(--light-grey);
 }
 
 button[type="submit"] {
@@ -162,7 +164,7 @@ nav {
   justify-content: space-between;
   align-items: center;
   position: fixed;
-  width: 200px;
+  width: 20%;
   height: 100%;
   background-color: #114B5F;
   padding: 50px 10px;
@@ -180,12 +182,14 @@ nav {
   height: 200px;
 }
 
-.nav-section h3 {
+.nav-section p {
+  font-size: 16px;
   padding: 0 10px;
-  color: white
+  color: white;
 }
 
 nav a {
+  font-size: 20px;
   padding: 8px 16px;
   color: white;
   /* border: 3px solid green; */
@@ -196,10 +200,19 @@ nav a {
   border-radius: 8px;
 }
 
+nav a:hover:not(.active){
+  background-color: #0a323f;
+  border-radius: 8px;
+}
+
+
+
 .content-container {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-left: 20%;
+  height: 100vh;
   }
 
 

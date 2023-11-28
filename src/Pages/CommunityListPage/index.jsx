@@ -30,8 +30,8 @@ function CommunityListPage() {
         <div className="content-container">
             <h1>Community List</h1>
             <div className="card-container">
-                {communities.map((community, index) => <CommunityCard community={community} key={index}/>)}
                 <button onClick={_handleClick}>Create new community</button>
+                {communities.map((community, index) => <CommunityCard community={community} key={index}/>)}
             </div>
         </div>
     )
