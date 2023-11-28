@@ -9,7 +9,7 @@ function ChatList({ setSelectedChatID, setChatName, setChatAvatar, setChatPartic
     const closeModal = () => setIsModalOpen(false);
     console.log(chats)
 
-    const fetchChats = async () => {
+    async function fetchChats() {
       const data = await friendService.getChats(); 
       setChats(data);
   };

@@ -6,9 +6,9 @@ module.exports = {
     showGroups,
     showPosts,
     showComments,
-    createGroup,
     createPost,
-    addComments
+    addComments,
+    createGroup
 };
 
 async function showGroups(req,res) {
@@ -54,4 +54,10 @@ async function addComments(req, res) {
       await newComment.save();
       await Post.findByIdAndUpdate(postID, { $push: { comments: newComment._id } });
       res.status(201).json(newComment);
+  }
+
+  async function createGroup(req, res) {
+    const newGroup = new Group(req.body)
+    await newGroup.save()
+    res.status(200)
   }

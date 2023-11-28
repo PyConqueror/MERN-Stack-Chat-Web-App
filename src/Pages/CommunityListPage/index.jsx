@@ -1,8 +1,20 @@
 import CommunityCard from "../../components/Community/CommunityCard"
 import { useNavigate } from "react-router-dom"
+import { useState, useEffect } from "react"
+import * as communityService from '../../utilities/community-api'
 
-const CommunityListPage = ({communities}) => {
+function CommunityListPage() {
+    const [communities, setCommunities] = useState('')
     const navigate = useNavigate()
+
+    async function fetchGroups() {
+        const data = await communityService.getGroups()
+        setCommunities(data)
+    }
+
+    useEffect(() => {
+        fetchGroups();
+    }, []);
 
     function _handleClick(){
         navigate('/community/new')
@@ -14,25 +26,10 @@ const CommunityListPage = ({communities}) => {
             <button onClick={_handleClick}>Create new community</button>
 
             <div className="card-container">
-                {communities.map((c, index) => <CommunityCard community={c} key={index} />)}
+                {/* {communities.map((c, index) => <CommunityCard community={c} key={index} />)} */}
             </div>
         </div>
     )
 }
 
 export default CommunityListPage;
-
-
-//   Create state to hold list of groups and posts
-//   Define function to fetch groups and posts from backend
-//   Define function to submit a new post
-//   Render community groups and posts
-//     For each group, display group details and posts
-//     Include function to add new posts
-//     Include function to add comments to posts
-
-
-//components to show list of available groups based on interest
-//components to show post inside the groups 
-
-//import css

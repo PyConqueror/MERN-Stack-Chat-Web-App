@@ -1,8 +1,18 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import * as communityService from '../../utilities/community-api'
 
-const CreateCommunityPage = ({communities, setCommunities}) => {
+function CreateCommunityPage() {
     const navigate = useNavigate();
+    const categories = [
+        "Technology", "Books", "Fitness", "Travel",
+        "Art", "Language Exchange", "Environment",
+        "Career Development", "Food", "Gaming",
+        "Music", "Film & Television", "Fashion",
+        "Health & Wellness", "Sports", "Education",
+        "Business", "Photography", "Science",
+        "DIY & Crafts"
+      ];
     const [newCommunity, setNewCommunity] = useState({
         name: '',
         description: '',
@@ -10,22 +20,23 @@ const CreateCommunityPage = ({communities, setCommunities}) => {
         category: 'Technology',
     });
 
-    const _handleChange = (event) => {
+    function _handleChange(event) {
         const { name, value } = event.target;
         setNewCommunity({ ...newCommunity, [name]: value });
     };
 
-    const _handleSubmit = (event) => {
-        event.preventDefault();
-        setCommunities([...communities, newCommunity]);
-        navigate('/community');
-
+    async function _handleSubmit(event) {
+        await communityService.createGroup(newCommunity)
+        // console.log(newCommunity)
+        setTimeout(() => {
+            navigate('/community');
+        }, 500);
     }
 
     return (
         <>
             <h1>Create new community form</h1>
-            <form onSubmit={_handleSubmit}>
+            <form>
                 <label>Community name:
                     <input name="name" type="text" onChange={_handleChange}/>
                 </label>
@@ -39,21 +50,14 @@ const CreateCommunityPage = ({communities, setCommunities}) => {
     </label>*/}
 
                 <label>Choose a category:
-                    <select name="category" onChange={_handleChange}>
-                        <option value="Technology">Technology</option>
-                        <option value="Books">Books</option>
-                        <option value="Fitness">Fitness</option>
-                        <option value="Travel">Travel</option>
-                        <option value="Art">Art</option>
-                        <option value="Language Exchange">Language Exchange</option>
-                        <option value="Environment">Environment</option>
-                        <option value="Career Development">Career Development</option>
-                        <option value="Food">Food</option>
-                        <option value="Gaming">Gaming</option>
-                    </select>
+                <select name="category" onChange={_handleChange}>
+                {categories.map((category, index) => (
+                    <option key={index} value={category}>{category}</option>
+                ))}
+                </select>   
                 </label>
                 
-                <button type="submit">Save</button>
+                <button onClick={_handleSubmit}>Save</button>
             </form>
         </>
     );
