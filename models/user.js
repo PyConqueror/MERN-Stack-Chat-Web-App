@@ -28,6 +28,10 @@ const userSchema = new Schema({
       type: mongoose.Schema.Types.ObjectId, 
       ref: 'Chat' 
     }],
+    pending :[{
+      type: Schema.Types.ObjectId,
+      ref: 'User',
+    }],
     biography: {type: String, default: ""},
     location: {type: String, default: ""},
 

@@ -11,6 +11,9 @@ module.exports = {
     getFriends,
     getChatList,
     addFriend,
+    addFriendRequest,
+    pendingFriends,
+    denyFriendRequest
   };
 
 async function create(req, res) {
@@ -135,6 +138,7 @@ async function getChatList(req, res) {
 async function addFriend(req, res) {
   const userID = req.user._id;
   const friendID = req.params.id;
+  await User.findByIdAndUpdate(userID, { $pull: { pending: friendID } });
   const user = await User.findById(userID); //if friend id already in the user list
   const friend = await User.findById(friendID)
   if (user.friends.includes(friendID)) { // do nothing
@@ -146,4 +150,27 @@ async function addFriend(req, res) {
     await friend.save()
     return res.status(200)
   }
+}
+
+async function pendingFriends(req, res) {
+  const userID = req.user._id
+  const currentUser = await User.findById(userID).populate('pending', 'name avatar')
+  return res.json(currentUser.pending)
+}
+
+async function addFriendRequest(req, res) {
+  const userID = req.user._id
+  const friendID = req.params.id
+  console.log(friendID)
+  await User.findByIdAndUpdate(friendID, {
+    $push: { pending: userID }
+  })
+  res.status(200)
+}
+
+async function denyFriendRequest(req, res) {
+  const userID = req.user._id
+  const friendID = req.params.id
+  await User.findByIdAndUpdate(userID, { $pull: { pending: friendID } });
+  res.status(200)
 }
