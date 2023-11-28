@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import * as usersAPI from '../../utilities/users-api'
 
-function FindUser({fetchFriends}) {
+function FindUser({fetchFriends, friends, setFriends}) {
     const [query, setQuery] = useState('')
     const [foundUsers, setFoundUsers] = useState([])
     

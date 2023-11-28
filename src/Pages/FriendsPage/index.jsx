@@ -5,7 +5,7 @@ import * as friendService from '../../utilities/friends-api';
 import PendingRequest from "../../components/Friends/PendingRequest";
 import * as usersAPI from '../../utilities/users-api'
 
-function FriendsPage () {
+function FriendsPage ({ user }) {
     const [friends, setFriends] = useState([]);
     const [pendingFriends, setPendingFriends] = useState([])
     
@@ -14,6 +14,7 @@ function FriendsPage () {
         setPendingFriends(data)
     }
 
+    
     async function fetchFriends() {
         const data = await friendService.getFriends();
         setFriends(data)
