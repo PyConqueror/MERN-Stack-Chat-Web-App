@@ -19,6 +19,10 @@ function FindUser({fetchFriends, friends, setFriends}) {
         fetchFriends()
     }
 
+    async function addFriendRequest(friendID){
+        await usersAPI.addFriendRequest(friendID)
+    }
+
     return(
         <>
         <form>
@@ -34,8 +38,8 @@ function FindUser({fetchFriends, friends, setFriends}) {
             <p key={user.name}>{user.name}</p>
             <button 
                 key={user._id}
-                onClick={(event) => addFriendToUser(event)} 
-                value={user._id}>Add User</button>
+                onClick={(event) => addFriendRequest(user._id)} 
+                value={user._id}>Add Friend Request</button>
         </>
         )}
         </>
