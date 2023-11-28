@@ -75,9 +75,16 @@ function createJWT(user) {
 
 async function searchUsers(req, res){
   const query = req.query.query;
+  const userID = req.user._id
+  const currentUser = await User.findById(userID)
+  const friendsID = currentUser.friends.map(friend => friend._id);
+  friendsID.push(userID);
   let regex = new RegExp(query, 'i')
   try {
-    const user = await User.find({name: regex})
+    const user = await User.find({
+      name: regex,
+      _id: { $nin: friendsID }
+    })
     res.json(user)
   } catch (err){
     console.log(err)
@@ -134,7 +141,9 @@ async function addFriend(req, res) {
     return res.status(400)
   } else { //if friend id not in the array, add the friend id in the friends array
     user.friends.push(friendID)
+    friend.friends.push(userID)
     await user.save()
+    await friend.save()
     return res.status(200)
   }
 }
