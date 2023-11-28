@@ -3,7 +3,7 @@ import * as friendService from '../../utilities/friends-api';
 import * as chatService from '../../utilities/chats-api';
 import { useNavigate } from 'react-router-dom';
 
-function GroupChatForm({onClose}) {
+function GroupChatForm({onClose, fetchChats}) {
     const [selectedFriends, setSelectedFriends] = useState([]);
     const [groupName, setGroupName] = useState('');
     const [friends, setFriends] = useState([]);
@@ -33,8 +33,10 @@ function GroupChatForm({onClose}) {
         participants: selectedFriends
       };
     await chatService.createGroup(groupChat)
-    navigate('/')
-      
+    onClose()
+    setTimeout(() => {
+      fetchChats();
+  }, 1000); // 1 seconds to save data to database before rerender
 }
     return(
         <div className="friends-list">
