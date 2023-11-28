@@ -1,4 +1,4 @@
-import * as profileAPI from '../../utilities/my-profile-api'
+import * as profileAPI from '../../utilities/profile-api'
 import { useState, useRef, useEffect } from 'react'
 import { getUser } from '../../utilities/users-service'
 
@@ -94,15 +94,16 @@ function EditProfilePage({ user, setUser}){
 
     if(!user.avatar){  
         return(
-            <p>loading</p>
+            <p>loading...</p>
         )
     }
 
     return(
         <>
             <p>{user.name}</p>
-            <div className="profile-image" style={user.avatar.startsWith('hsl') 
-            ? { backgroundColor: user.avatar } : { backgroundImage: `url(${user.avatar})`}}>
+            <div className={user.avatar.startsWith('hsl') ? "profile-image" : "profile-image-large"}
+                style={user.avatar.startsWith('hsl') 
+                    ? { backgroundColor: user.avatar } : { backgroundImage: `url(${user.avatar})`}}>
                 <p>{ user.avatar.startsWith('hsl') ? user.name.charAt(0) : ""}</p>
             </div>
             <form onSubmit ={_uploadImage}>

@@ -3,16 +3,18 @@ const jwt = require('jsonwebtoken');
 
 
 module.exports = {
-    index,
     updateProfileImage,
     updateBio,
-    updateLocation
+    updateLocation,
+    getFriend
 }
 
-async function index(req, res){
-    const user = await User.findById(req.user._id)
-    console.log(user)
-    res.json(user)
+async function getFriend(req, res){
+    console.log(req.body.content)
+    const friend = await User.findById(req.body.content)
+    
+    console.log(friend)
+    res.json(friend)
 }
 
 async function updateProfileImage(req, res){

@@ -1,8 +1,11 @@
 import sendRequest from './send-request';
 const BASE_URL = '/api/profiles';
 
-export async function getUserInformation(){
-    return sendRequest(BASE_URL)
+export async function getFriendData(friendId){
+    const friendIdData = {
+        content: friendId
+    }
+    return sendRequest(`${BASE_URL}/getFriend`, 'POST', friendIdData)
 }
 
 export function updateProfileImage(newProfileImageURL){

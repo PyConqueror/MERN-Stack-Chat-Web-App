@@ -1,29 +1,42 @@
 import { useLocation } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import * as profileAPI from '../../utilities/profile-api'
 
 function FriendProfilePage(){
     const { state } = useLocation();
-    const friendId = state.friendId
+    const friendId = state?.friendId
+    const [friend, setFriendData] = useState([])
 
-    
-    // const bio = user.biography
-    // const location = user.location
-  
+    useEffect(function(){
+        async function getFriendData(){
+            const friendData = await profileAPI.getFriendData(friendId)
+            setFriendData(friendData)
+        }
+        getFriendData()
+
+    }, [])
+      
+    if(!friend.avatar){
+        return(
+            <p>loading...</p>
+        )
+    }
+
     return(
-        <p>anything</p>
+        <>
+            <p>{ friend.name }</p>
+            <p>Location:</p>
+            <p>{ friend.location ? friend.location : "No location"}</p>
+            <div className={friend.avatar.startsWith('hsl') ? "profile-image" : "profile-image-large"}
+                style={friend.avatar.startsWith('hsl') 
+                    ? { backgroundColor: friend.avatar } : { backgroundImage: `url(${friend.avatar})`}}>
+                <p>{ friend.avatar.startsWith('hsl') ? friend.name.charAt(0) : ""}</p>
+            </div>
+            <p>Biography:</p>
+            <p>{ friend.biography ? friend.biography : "No biography"}</p>
+        </>
     )
 }
 
 export default FriendProfilePage
 
-
-// <p>{user.name}</p>
-// <div className="profile-image" 
-// style={user.avatar.startsWith('hsl') 
-// ? { backgroundColor: user.avatar } : { backgroundImage: `url(${user.avatar})`}}>
-//     <p>{ user.avatar.startsWith('hsl') ? user.name.charAt(0) : ""}</p>
-// </div>
-// <p>Biography:</p>
-// <p>{ bio.length === 0 ? "No Biography" : bio }</p>
-// <p>Location:</p>
-// <p>{ location.length === 0 ? "No Location" : location }</p>
-// <button onClick={_handleClick}>Edit Profile</button>

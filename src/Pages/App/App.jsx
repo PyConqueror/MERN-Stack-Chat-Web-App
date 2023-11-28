@@ -11,7 +11,7 @@ import CommunityListPage from '../CommunityListPage'
 import CommunityDetailPage from '../CommunityDetailPage';
 import CreateCommunityPage from '../CommunityListPage/CreateCommunityPage';
 import FriendsPage from '../FriendsPage'
-import MyProfilePage from '../ProfilePage'
+import ProfilePage from '../ProfilePage'
 import FriendProfilePage from '../ProfilePage/FriendProfilePage.jsx';
 import EditProfilePage from '../ProfilePage/EditProfilePage'
 
@@ -29,7 +29,7 @@ export default function App() {
           <Route path='/community/:communityName' element={<CommunityDetailPage />}/>
           <Route path='/community/new' element={<CreateCommunityPage />}/>
           <Route path='/friends' element={<FriendsPage/>}/>
-          <Route path='/profile' element={<MyProfilePage user={user}/>}/>
+          <Route path='/profile' element={<ProfilePage user={user}/>}/>
           <Route path='/profile/:friendName' element={<FriendProfilePage/>}/>
           <Route path='/profile/edit' element={<EditProfilePage user={user} setUser={setUser}/>}/>
         </Routes>

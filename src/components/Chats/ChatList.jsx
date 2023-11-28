@@ -9,15 +9,15 @@ function ChatList({ setSelectedChatID, setChatName, setChatAvatar, setChatPartic
     const closeModal = () => setIsModalOpen(false);
     console.log(chats)
 
-    useEffect(() => {
-      async function fetchChats() {
-        const data = await friendService.getChats(); 
-        setChats(data);
-        console.log(chats)
-      }
-  
-    fetchChats();
-    }, []);
+    const fetchChats = async () => {
+      const data = await friendService.getChats(); 
+      setChats(data);
+  };
+
+  // Call fetchChats inside useEffect
+  useEffect(() => {
+      fetchChats();
+  }, []);
     
     function handleChatClick(chatID, chatName, chatAvatar, chatParticipants) {
       setSelectedChatID(chatID)
@@ -51,7 +51,7 @@ function ChatList({ setSelectedChatID, setChatName, setChatAvatar, setChatPartic
         ) : (
           <p>No chats yet.</p>
         )}
-      {isModalOpen && <GroupChatForm onClose={closeModal} />}
+      {isModalOpen && <GroupChatForm onClose={closeModal} fetchChats={fetchChats} />}
       </div>
     );
 }
