@@ -12,13 +12,13 @@ function Navbar({user, setUser}) {
                 <p>Welcome, <br/>{user.name}!</p>
             </div>
             <div className="nav-section page-links">
-                <NavLink to={"/profile"}>Profile</NavLink>
-                <NavLink to={"/"} >Chats</NavLink>
-                <NavLink to={"/community"}>Community</NavLink>
-                <NavLink to={"/friends"}>Friends</NavLink>
+                <NavLink to={"/profile"}><img src="src/assets/profile.svg"/><p>Profile</p></NavLink>
+                <NavLink to={"/"}><img src="src/assets/chats.svg"/><p>Chats</p></NavLink>
+                <NavLink to={"/community"}><img src="src/assets/communities.svg"/><p>Communities</p></NavLink>
+                <NavLink to={"/friends"}><img src="src/assets/friends.svg"/><p>Friends</p></NavLink>
             </div>  
             <div className="nav-section">
-                <Link  onClick={handleLogOut}>&larr; Log Out</Link>
+                <Link  onClick={handleLogOut}><img src="src/assets/logout.svg"/><p>Log out</p></Link>
             </div>
         </nav>
     )
