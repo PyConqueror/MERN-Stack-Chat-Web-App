@@ -25,12 +25,12 @@ function FriendsPage ({ user }) {
     }, []);   
 
     return (
-    <>
-    <h1>FriendsPage</h1>
-    <FriendsList friends={friends} setFriends={setFriends} fetchFriends={fetchFriends}/>
-    <PendingRequest pendingFriends={pendingFriends} fetchFriends={fetchFriends}/>  
-    <FindUser fetchFriends={fetchFriends}/>
-    </>
+    <div className="content-container">
+        <h1>FriendsPage</h1>
+        <FriendsList friends={friends} setFriends={setFriends} fetchFriends={fetchFriends}/>
+        <PendingRequest pendingFriends={pendingFriends} fetchFriends={fetchFriends}/>  
+        <FindUser fetchFriends={fetchFriends}/>
+    </div>
     );
 }
 

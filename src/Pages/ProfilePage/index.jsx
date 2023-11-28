@@ -6,6 +6,7 @@
 import * as profileAPI from '../../utilities/profile-api'
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import './index.css'
 
 function ProfilePage({user}){
     const bio = user.biography
@@ -17,7 +18,7 @@ function ProfilePage({user}){
     }
 
     return(
-        <>
+        <div className='content-container'>
             <p>{user.name}</p>
             <div className={user.avatar.startsWith('hsl') ? "profile-image" : "profile-image-large"}
             style={user.avatar.startsWith('hsl') 
@@ -29,7 +30,7 @@ function ProfilePage({user}){
             <p>Location:</p>
             <p>{ location.length === 0 ? "No Location" : location }</p>
             <button onClick={_handleClick}>Edit Profile</button>
-        </>
+        </div>
     )
 }
 

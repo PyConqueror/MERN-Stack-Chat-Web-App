@@ -11,11 +11,11 @@ function ChatPage({ user }){
     console.log(chatParticipants)
 
     return(
-    <>
+    <div className='content-container'>
         <h1>CHATS PAGE</h1>
         <ChatList setSelectedChatID={setSelectedChatID} setChatName={setChatName} setChatAvatar={setChatAvatar} setChatParticipants={setChatParticipants}/>
         <ChatBox selectedChatID={selectedChatID} user={user} chatName={chatName} chatAvatar={chatAvatar} chatParticipants={chatParticipants}/>
-    </>
+    </div>
     )
 }
 

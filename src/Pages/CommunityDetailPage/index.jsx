@@ -35,7 +35,7 @@ const CommunityDetailPage = () => {
     }
 
     return (
-        <div>
+        <div className='content-container'>
             <h1>{ community.name }</h1>
             <img src={community.coverPhoto} style={{width: '50vmin'}}/>
             <h2>{ community.description }</h2>

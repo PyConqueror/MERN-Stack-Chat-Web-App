@@ -1,4 +1,4 @@
-import {Link} from "react-router-dom"
+import { NavLink, Link } from "react-router-dom"
 import * as userService from '../utilities/users-service';
 
 function Navbar({user, setUser}) {
@@ -7,18 +7,20 @@ function Navbar({user, setUser}) {
         setUser(null);
     }
     return (
-        <aside>
-            <Link to={"/"}>Chats Page</Link>
-            &nbsp; | &nbsp;
-            <Link to={"/community"}>Community Page</Link>
-            &nbsp; | &nbsp;
-            <Link to={"/friends"}>Friends Page</Link>
-            &nbsp; | &nbsp;
-            <Link to={"/profile"}>Profile Page</Link>
-            &nbsp; | &nbsp;
-            <span>Welcome, {user.name}</span>
-            &nbsp;&nbsp;<Link to="" onClick={handleLogOut}>Log Out</Link>
-        </aside>
+        <nav>
+            <div className="nav-section">
+                <h3>Welcome, <br/>{user.name}!</h3>
+            </div>
+            <div className="nav-section page-links">
+                <NavLink to={"/profile"}>Profile Page</NavLink>
+                <NavLink to={"/"} >Chats</NavLink>
+                <NavLink to={"/community"}>Community</NavLink>
+                <NavLink to={"/friends"}>Friends</NavLink>
+            </div>  
+            <div className="nav-section">
+                <Link  onClick={handleLogOut}>&larr; Log Out</Link>
+            </div>
+        </nav>
     )
 }
 

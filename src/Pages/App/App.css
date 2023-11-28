@@ -1,12 +1,11 @@
 :root {
   --white: #FFFFFF;
-  --tan-1: #FBF9F6;
-  --tan-2: #E7E2DD;
-  --tan-3: #E2D9D1;
-  --tan-4: #D3C1AE;
-  --orange: #F67F00;
-  --text-light: #968c84;
-  --text-dark: #615954;
+  --green-1: #88D498;
+  --green-2: #1A936F;
+  --green-3: #114B5F;
+  --beige: #FFE3B3;
+  --text-light: #949494;
+  --text-dark: #212121;
 }
 
 *, *:before, *:after {
@@ -15,56 +14,18 @@
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-  sans-serif;
-  -webkit-font-smoothing: antialiased;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--tan-4);
-  padding: 2vmin;
-  height: 100vh;
+  /* padding: 2vmin;
+  height: 100vh; */
+  /* border: 5px solid red; */
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+a {
+  text-decoration: none;
 }
-
-#root {
-  height: 100%;
-}
-
-.align-ctr {
-  text-align: center;
-}
-
-.align-rt {
-  text-align: right;
-}
-
-.smaller {
-  font-size: smaller;
-}
-
-.flex-ctr-ctr {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.flex-col {
-  flex-direction: column;
-}
-
-.flex-j-end {
-  justify-content: flex-end;
-}
-
-.scroll-y {
-  overflow-y: scroll;
-}
-
-.section-heading {
+/* .section-heading {
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -75,7 +36,7 @@ code {
   padding: .6vmin;
   text-align: center;
   font-size: 2vmin;
-}
+} */
 
 .form-container {
   padding: 3vmin;
@@ -193,3 +154,54 @@ button[type="submit"] {
 .card img {
   width: 535px;
 }
+
+/* navbar -------------------*/
+nav {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  width: 200px;
+  height: 100%;
+  background-color: #114B5F;
+  padding: 50px 10px;
+}
+
+.nav-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 100%;
+  /* border: 1px solid red; */
+}
+
+.page-links {
+  height: 200px;
+}
+
+.nav-section h3 {
+  padding: 0 10px;
+  color: white
+}
+
+nav a {
+  padding: 8px 16px;
+  color: white;
+  /* border: 3px solid green; */
+}
+
+.active {
+  background-color: #1A936F;
+  border-radius: 8px;
+}
+
+.content-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  }
+
+
+
+

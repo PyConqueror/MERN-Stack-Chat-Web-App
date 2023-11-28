@@ -27,7 +27,7 @@ function CommunityListPage() {
     }
 
     return(
-        <div>
+        <div className="content-container">
             <h1>Community List</h1>
             <div className="card-container">
                 {communities.map((community, index) => <CommunityCard community={community} key={index}/>)}
