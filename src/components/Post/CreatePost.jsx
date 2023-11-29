@@ -22,12 +22,12 @@ const CreatePost = ({ user, community }) => {
 
     async function _handleAddPost(event){
         try{
-            communityServices.createPost(newPost)
-            navigate(`/community/${newPost.group}`);
+            await communityServices.createPost(newPost)
+            navigate(`/community/${community._id}`);
         } catch (err){
             console.log(err)
         }        
-        setNewPost("");
+        setNewPost({...newPost, content: ""});
     }
 
     function _handleInputChange(event){
