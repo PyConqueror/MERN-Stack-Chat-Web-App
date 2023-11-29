@@ -25,9 +25,9 @@ export default function App() {
         <NavBar user={user}/>
         <Routes>
           <Route path='/' element={<ChatPage user={user}/>} exact/>
-          <Route path='/community' element={<CommunityListPage communities={communities} />}/>
-          <Route path='/community/:communityName' element={<CommunityDetailPage />}/>
-          <Route path='/community/new' element={<CreateCommunityPage />}/>
+          <Route path='/community' element={<CommunityListPage communities={communities} user={ user }/>}/>
+          <Route path='/community/:communityName' element={<CommunityDetailPage user={ user }/>}/>
+          <Route path='/community/new' element={<CreateCommunityPage user={ user }/>}/>
           <Route path='/friends' element={<FriendsPage user={ user }/>}/>
           <Route path='/profile' element={<ProfilePage user={ user }/>}/>
           <Route path='/profile/:friendName' element={<FriendProfilePage/>}/>

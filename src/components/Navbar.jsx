@@ -1,4 +1,4 @@
-import {Link} from "react-router-dom"
+import { NavLink, Link } from "react-router-dom"
 import * as userService from '../utilities/users-service';
 
 function Navbar({user, setUser}) {
@@ -7,18 +7,25 @@ function Navbar({user, setUser}) {
         setUser(null);
     }
     return (
-        <aside>
-            <Link to={"/"}>Chats Page</Link>
-            &nbsp; | &nbsp;
-            <Link to={"/community"}>Community Page</Link>
-            &nbsp; | &nbsp;
-            <Link to={"/friends"}>Friends Page</Link>
-            &nbsp; | &nbsp;
-            <Link to={"/profile"}>Profile Page</Link>
-            &nbsp; | &nbsp;
-            <span>Welcome, {user.name}</span>
-            &nbsp;&nbsp;<Link to="" onClick={handleLogOut}>Log Out</Link>
-        </aside>
+        <nav>
+            <div className="nav-section">
+                <p>Welcome, <br/>{user.name}!</p>
+                <div className={user.avatar.startsWith('hsl') ? "profile-image" : "profile-image-large"}
+                    style={user.avatar.startsWith('hsl') 
+                    ? { backgroundColor: user.avatar } : { backgroundImage: `url(${user.avatar})`}}>
+                    <p>{ user.avatar.startsWith('hsl') ? user.name.charAt(0) : ""}</p>
+                </div>
+            </div>
+            <div className="nav-section page-links">
+                <NavLink to={"/profile"}><img src="src/assets/profile.svg"/><p>Profile</p></NavLink>
+                <NavLink to={"/"}><img src="src/assets/chats.svg"/><p>Chats</p></NavLink>
+                <NavLink to={"/community"}><img src="src/assets/communities.svg"/><p>Communities</p></NavLink>
+                <NavLink to={"/friends"}><img src="src/assets/friends.svg"/><p>Friends</p></NavLink>
+            </div>  
+            <div className="nav-section">
+                <Link  onClick={handleLogOut}><img src="src/assets/logout.svg"/><p>Log out</p></Link>
+            </div>
+        </nav>
     )
 }
 

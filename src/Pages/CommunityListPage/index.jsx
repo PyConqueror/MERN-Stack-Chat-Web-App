@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom"
 import { useState, useEffect } from "react"
 import * as communityService from '../../utilities/community-api'
 
-function CommunityListPage() {
+function CommunityListPage({ user }) {
     const [communities, setCommunities] = useState('')
     const navigate = useNavigate()
 
@@ -27,11 +27,11 @@ function CommunityListPage() {
     }
 
     return(
-        <div>
+        <div className="content-container">
             <h1>Community List</h1>
             <div className="card-container">
-                {communities.map((community, index) => <CommunityCard community={community} key={index}/>)}
                 <button onClick={_handleClick}>Create new community</button>
+                {communities.map((community, index) => <CommunityCard community={community} key={index} user={ user }/>)}
             </div>
         </div>
     )

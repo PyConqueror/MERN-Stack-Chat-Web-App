@@ -1,12 +1,15 @@
 :root {
   --white: #FFFFFF;
-  --tan-1: #FBF9F6;
-  --tan-2: #E7E2DD;
-  --tan-3: #E2D9D1;
-  --tan-4: #D3C1AE;
-  --orange: #F67F00;
-  --text-light: #968c84;
-  --text-dark: #615954;
+  --color-1: #FF5959;
+  --color-2: #FACF5A;
+  --color-3: #49BEB7;
+  --color-4: #085F63;
+  --color-5: #074a4e;
+  --dark-grey: #202020;
+  --light-grey: #a9a9a9;
+  --beige: #FFE3B3;
+  --text-light: #818181;
+  --text-dark: #212121;
 }
 
 *, *:before, *:after {
@@ -15,56 +18,18 @@
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-  sans-serif;
-  -webkit-font-smoothing: antialiased;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   -moz-osx-font-smoothing: grayscale;
-  background-color: var(--tan-4);
-  padding: 2vmin;
-  height: 100vh;
+  background-color: var(--white);
+  /* padding: 2vmin;
+  height: 100vh; */
+  /* border: 5px solid red; */
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+a {
+  text-decoration: none;
 }
-
-#root {
-  height: 100%;
-}
-
-.align-ctr {
-  text-align: center;
-}
-
-.align-rt {
-  text-align: right;
-}
-
-.smaller {
-  font-size: smaller;
-}
-
-.flex-ctr-ctr {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.flex-col {
-  flex-direction: column;
-}
-
-.flex-j-end {
-  justify-content: flex-end;
-}
-
-.scroll-y {
-  overflow-y: scroll;
-}
-
-.section-heading {
+/* .section-heading {
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -75,17 +40,17 @@ code {
   padding: .6vmin;
   text-align: center;
   font-size: 2vmin;
-}
+} */
 
 .form-container {
   padding: 3vmin;
-  background-color: var(--tan-1);
-  border: .1vmin solid var(--tan-3);
+  background-color: var(--color-1);
+  border: .1vmin solid var(--color-1);
   border-radius: 1vmin;
 }
 
 p.error-message {
-  color: var(--orange);
+  color: red;
   text-align: center;
 }
 
@@ -105,7 +70,7 @@ label {
 input {
   padding: 1vmin;
   font-size: 2vmin;
-  border: .1vmin solid var(--tan-3);
+  border: .1vmin solid var(--light-grey);
   border-radius: .5vmin;
   color: var(--text-dark);
   background-image: none !important; /* prevent lastpass */
@@ -113,19 +78,19 @@ input {
 }
 
 input:focus {
-  border-color: var(--orange);
+  border-color: var(--color-2);
 }
 
 button, a.button {
   margin: 1vmin;
   padding: 1vmin;
   color: var(--white);
-  background-color: var(--orange);
+  background-color: var(--color-1);
   font-size: 2vmin;
   font-weight: bold;
   text-decoration: none;
   text-align: center;
-  border: .1vmin solid var(--tan-2);
+  border: none;
   border-radius: .5vmin;
   outline: none;
   cursor: pointer;
@@ -143,7 +108,7 @@ button.btn-xs {
 
 button:disabled, form:invalid button[type="submit"] {
   cursor: not-allowed;
-  background-color: var(--tan-4);
+  background-color: var(--light-grey);
 }
 
 button[type="submit"] {
@@ -182,14 +147,94 @@ button[type="submit"] {
 }
 
 .card {
-  background-color: white;
+  background-color: var(--white);
   width: 600px;
   margin: 0 auto;
   padding: 1em 2em;
-  border: 1px solid black;
+  border: 1px solid var(--light-grey);
+  border-radius: 16px;
   cursor: pointer;
 }
 
 .card img {
   width: 535px;
 }
+
+/* navbar -------------------*/
+nav {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  width: 25%;
+  height: 100%;
+  background-color: var(--color-4);
+  padding: 50px 10px;
+}
+
+.nav-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.page-links {
+  height: 200px;
+}
+
+.nav-section p {
+  font-size: 16px;
+  padding: 0 10px;
+  color: var(--white);
+}
+
+nav a {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  padding: 8px 16px;
+  color: var(--white);
+  gap: 10px;
+}
+
+nav img {
+  width: 24px;
+  object-fit: cover;
+}
+
+.active {
+  background-color: var(--color-3);
+  border-radius: 8px;
+}
+
+nav a:hover:not(.active){
+  background-color: var(--color-5);
+  border-radius: 8px;
+}
+
+
+
+.content-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 25%;
+  height: 100vh;
+  }
+
+
+
+
+  @media only screen and (max-width: 600px) {
+    nav p {
+      visibility: hidden;
+    }
+
+    nav img {
+      width: 32px;
+    }
+  }
+
+

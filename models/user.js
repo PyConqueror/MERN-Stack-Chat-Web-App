@@ -34,6 +34,22 @@ const userSchema = new Schema({
     }],
     biography: {type: String, default: ""},
     location: {type: String, default: ""},
+    communitiesCreated: [{
+      type: Schema.Types.ObjectId,
+      ref: 'Community'
+    }],
+    communitiesJoined: [{
+      type: Schema.Types.ObjectId,
+      ref: 'Community'
+    }],
+    posts: [{
+      type: Schema.Types.ObjectId,
+      ref: 'Post'
+    }],
+    comments: [{
+      type: Schema.Types.ObjectId,
+      ref: 'Comment'
+    }]
 
   }, {
     timestamps: true,

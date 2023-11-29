@@ -99,7 +99,7 @@ function EditProfilePage({ user, setUser}){
     }
 
     return(
-        <>
+        <div className='content-container'>
             <p>{user.name}</p>
             <div className={user.avatar.startsWith('hsl') ? "profile-image" : "profile-image-large"}
                 style={user.avatar.startsWith('hsl') 
@@ -142,7 +142,7 @@ function EditProfilePage({ user, setUser}){
                 <input type="text" onChange={_handleLocationTextChange}></input><br />
                 <button>Update Location</button>
             </form>
-        </>
+        </div>
     )
 }
 

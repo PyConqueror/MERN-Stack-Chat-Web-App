@@ -13,7 +13,7 @@ export function getAllGroups() {
 }
 
 export function getPosts(groupID) {
-    return sendRequest(`${BASE_URL}/${groupID}`);
+    return sendRequest(`${BASE_URL}/posts/${groupID}`);
 }
 
 export function getComments(postID) {
@@ -24,10 +24,10 @@ export function createGroup(formData) {
     return sendRequest(`${BASE_URL}/create`, 'POST', formData)
 }
 
-export function createPost(groupID, formData) {
-    sendRequest(`${BASE_URL}/${groupID}/create`, 'POST', formData)
+export function createPost( formData) {
+    return sendRequest(`${BASE_URL}/createPost`, 'POST', formData)
 }
 
-export function createComment(postID, formData) {
-    sendRequest(`${BASE_URL}/${postID}/comments/create`, 'POST', formData)
+export function createComment(formData) {
+    return sendRequest(`${BASE_URL}/createComment`, 'POST', formData)
 }

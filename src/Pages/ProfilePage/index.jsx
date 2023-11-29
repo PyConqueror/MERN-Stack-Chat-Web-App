@@ -6,6 +6,7 @@
 import * as profileAPI from '../../utilities/profile-api'
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import './index.css'
 
 function ProfilePage({user}){
     const bio = user.biography
@@ -17,19 +18,21 @@ function ProfilePage({user}){
     }
 
     return(
-        <>
-            <p>{user.name}</p>
-            <div className={user.avatar.startsWith('hsl') ? "profile-image" : "profile-image-large"}
-            style={user.avatar.startsWith('hsl') 
-            ? { backgroundColor: user.avatar } : { backgroundImage: `url(${user.avatar})`}}>
-                <p>{ user.avatar.startsWith('hsl') ? user.name.charAt(0) : ""}</p>
+        <div className='content-container'>
+            <div className='profile-container'>
+                <p>{user.name}</p>
+                <div className={user.avatar.startsWith('hsl') ? "profile-image" : "profile-image-large"}
+                style={user.avatar.startsWith('hsl') 
+                ? { backgroundColor: user.avatar } : { backgroundImage: `url(${user.avatar})`}}>
+                    <p>{ user.avatar.startsWith('hsl') ? user.name.charAt(0) : ""}</p>
+                </div>
+                <p>Biography:</p>
+                <p>{ bio.length === 0 ? "No Biography" : bio }</p>
+                <p>Location:</p>
+                <p>{ location.length === 0 ? "No Location" : location }</p>
+                <button onClick={_handleClick}>Edit Profile</button>
             </div>
-            <p>Biography:</p>
-            <p>{ bio.length === 0 ? "No Biography" : bio }</p>
-            <p>Location:</p>
-            <p>{ location.length === 0 ? "No Location" : location }</p>
-            <button onClick={_handleClick}>Edit Profile</button>
-        </>
+        </div>
     )
 }
 

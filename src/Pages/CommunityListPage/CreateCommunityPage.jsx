@@ -1,8 +1,9 @@
 import { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as communityService from '../../utilities/community-api'
+import * as userAPI from '../../utilities/users-api'
 
-function CreateCommunityPage() {
+function CreateCommunityPage({ user }) {
     const [groupImage, setGroupImage] = useState(null);
     const [imagePreview, setImagePreview] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
@@ -27,6 +28,7 @@ function CreateCommunityPage() {
         description: '',
         coverPhoto: '',
         category: 'All',
+        admins: user._id 
     });
 
     function _handleChange(event) {
@@ -45,7 +47,7 @@ function CreateCommunityPage() {
         event.preventDefault()
         try{
             const newGroup = await communityService.createGroup(newCommunity)
-            navigate(`/community/${encodeURIComponent(newGroup._id)}`);
+            navigate(`/community`);
         } catch (err){
             console.log(err)
         }
@@ -83,7 +85,6 @@ function CreateCommunityPage() {
 
                 const imageData = await response.json()
                 newGroupImageURL = imageData.url.toString()
-                console.log(imageData)
                 setImagePreview(null)
                 setIsLoading(false)
                 fileRef.current.value = null
@@ -98,7 +99,7 @@ function CreateCommunityPage() {
     }
 
     return (
-        <>
+        <div className='content-container'>
             <h1>Create new community form</h1>
             <form>
                 <label>Community name:
@@ -144,7 +145,7 @@ function CreateCommunityPage() {
 
             <button onClick={_handleSubmit}>Save</button>
  
-        </>
+        </div>
     );
 }
 
