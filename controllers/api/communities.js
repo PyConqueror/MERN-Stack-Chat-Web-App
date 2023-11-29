@@ -10,7 +10,8 @@ module.exports = {
     showComments,
     createPost,
     createComment,
-    createGroup
+    createGroup,
+    updateGroup
 };
 
 async function showOneGroup(req, res) {
@@ -55,10 +56,20 @@ async function createComment(req, res) {
     res.json(newComment);
 }
 
-  async function createGroup(req, res) {
+async function createGroup(req, res) {
     const newGroup = new Group(req.body)
     await newGroup.save()
     const userId = req.user._id
     await User.findByIdAndUpdate(userId, {$push: { communitiesCreated: newGroup._id }})
     res.json(newGroup)
+}
+
+async function updateGroup(req, res){
+    const group = await Group.findById(req.body.communityId)
+    group.name = req.body.name;
+    group.description = req.body.description;
+    group.coverPhoto = req.body.coverPhoto;
+    group.category = req.body.catergory;
+    group.save()
+    res.status(200).json({ message: "sucess"})
 }

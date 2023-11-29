@@ -30,6 +30,12 @@ const CommunityDetailPage = ({ user }) => {
         )
     }
 
+    if(!community.admins){
+        return(
+            <p>Loading...</p>
+        )
+    }
+
     return (
         <div className='content-container'>
             <h1>{ community.name }</h1>

@@ -1,7 +1,6 @@
 import { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as communityService from '../../utilities/community-api'
-import * as userAPI from '../../utilities/users-api'
 
 function CreateCommunityPage({ user }) {
     const [groupImage, setGroupImage] = useState(null);
