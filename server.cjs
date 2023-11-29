@@ -76,11 +76,12 @@ const io = require("socket.io")(server, {
       console.log(`User joined chat: ${chatID}`);
     });
   
-    socket.on('sendMessage', async ({ chatID, senderID, content }) => {  // Handle sending messages
+    socket.on('sendMessage', async ({ chatID, senderID, content, senderName }) => {  // Handle sending messages
       const newMessage = new Message({ // Save message to database
         chat: chatID,
         sender: senderID,
         content: content,
+        senderName: senderName
       });
       await newMessage.save();
       await Chat.findByIdAndUpdate(chatID, {

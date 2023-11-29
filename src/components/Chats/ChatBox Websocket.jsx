@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import ScrollableFeed from 'react-scrollable-feed';
 import * as chatService from '../../utilities/chats-api'
 import Message from './Message';
+import GroupMessage from './GroupMessage';
 import io from 'socket.io-client';
 
 const socket = io('http://localhost:3001')
@@ -13,6 +14,7 @@ function ChatBox({ selectedChatID, user, chatName, chatAvatar, chatParticipants 
     const fetchedMessages = await chatService.getMessages(selectedChatID)
     setMessages(fetchedMessages);
   };
+  const isGroupChat = chatParticipants && chatParticipants.length > 1;
 
   useEffect(() => {
     if (selectedChatID) {
@@ -37,11 +39,12 @@ function ChatBox({ selectedChatID, user, chatName, chatAvatar, chatParticipants 
         content: newMessage,
         chatID: selectedChatID,
         senderID: user._id,
+        senderName: user.name
       });
       setNewMessage('');
     }
   };
-
+  console.log(messages)
   return (
     <div className="chatbox">
       <h3>{chatName}</h3>
@@ -60,20 +63,23 @@ function ChatBox({ selectedChatID, user, chatName, chatAvatar, chatParticipants 
       )}
 
 <ScrollableFeed>
-        {selectedChatID ? (
-          messages.length > 0 ? (
-            <ul className="message-list">
-              {messages.map((message) => (
-                <Message key={message._id} message={message} user={user} />
-              ))}
-            </ul>
-          ) : (
-            <p>No messages in this conversation yet.</p>
-          )
-        ) : (
-          <p>Select a conversation to send a message</p>
-        )}
-      </ScrollableFeed>
+  {selectedChatID ? (
+    messages.length > 0 ? (
+      <ul className="message-list">
+        {messages.map((message) => (
+          isGroupChat ? 
+          <GroupMessage key={message._id} message={message} user={user} /> :
+          <Message key={message._id} message={message} user={user} />
+        ))}
+      </ul>
+    ) : (
+      <p>No messages in this conversation yet.</p>
+    )
+  ) : (
+    <p>Select a conversation to send a message</p>
+  )}
+</ScrollableFeed>
+
       <div className="message-input">
         <input
           type="text"
