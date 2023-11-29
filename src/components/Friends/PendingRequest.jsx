@@ -1,16 +1,17 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import * as usersAPI from '../../utilities/users-api'
 
 
-function PendingRequest({ pendingFriends, fetchFriends }){
+function PendingRequest({ pendingFriends, acceptFriendRequest, rejectFriendRequest }){
 
 async function acceptRequest(friendID) {
-    await usersAPI.addFriend(friendID)
-    fetchFriends()
+  acceptFriendRequest(friendID)
 }
+
 async function denyFriendRequest(friendID) {
-  await usersAPI.denyRequest(friendID)
+  rejectFriendRequest(friendID)
 }
+
 return (
   <div className="pendingrequest">
     <h3>PENDING FRIEND REQUESTS</h3>
@@ -23,8 +24,8 @@ return (
             <p>{friend.avatar.startsWith('hsl') ? friend.name.charAt(0) : ""}</p>
           </div>
           <span>{friend.name}</span>
-          <button onClick={acceptRequest(friend._id)}>Accept</button>
-          {/* <button onClick={denyFriendRequest(friend._id)}>Deny</button> */}
+          <button onClick={() => acceptRequest(friend._id)}>Accept</button>
+          <button onClick={() => denyFriendRequest(friend._id)}>Deny</button>
 
         </li>
       ))

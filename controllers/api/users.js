@@ -13,7 +13,10 @@ module.exports = {
     addFriend,
     addFriendRequest,
     pendingFriends,
-    denyFriendRequest
+    denyFriendRequest,
+    addFriendFromSocket,
+    addFriendRequestFromSocket,
+    rejectFriendRequestFromSocket
   };
 
 async function create(req, res) {
@@ -161,7 +164,6 @@ async function pendingFriends(req, res) {
 async function addFriendRequest(req, res) {
   const userID = req.user._id
   const friendID = req.params.id
-  console.log(friendID)
   await User.findByIdAndUpdate(friendID, {
     $push: { pending: userID }
   })
@@ -173,4 +175,28 @@ async function denyFriendRequest(req, res) {
   const friendID = req.params.id
   await User.findByIdAndUpdate(userID, { $pull: { pending: friendID } });
   res.status(200)
+}
+
+async function addFriendRequestFromSocket(senderID, friendID){
+  await User.findByIdAndUpdate(friendID, {
+    $addToSet: { pending: senderID }
+  })
+}
+
+async function addFriendFromSocket(userID, friendID){
+  await User.findByIdAndUpdate(userID, { $pull: { pending: friendID } });
+  const user = await User.findById(userID); //if friend id already in the user list
+  const friend = await User.findById(friendID)
+  if (user.friends.includes(friendID)) { // do nothing
+    return
+  } else { //if friend id not in the array, add the friend id in the friends array
+    user.friends.push(friendID)
+    friend.friends.push(userID)
+    await user.save()
+    await friend.save()
+  }
+}
+
+async function rejectFriendRequestFromSocket(userID, friendID) {
+  await User.findByIdAndUpdate(userID, { $pull: { pending: friendID } });
 }

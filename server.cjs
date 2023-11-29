@@ -4,6 +4,9 @@ const favicon = require('serve-favicon');
 const logger = require('morgan');
 const Message = require('./models/message.js');
 const Chat = require('./models/chat.js');
+const User = require('./models/user.js');
+const usersController = require('./controllers/api/users.js');
+
 
 
 require('dotenv').config();
@@ -43,14 +46,37 @@ const io = require("socket.io")(server, {
 
   io.on('connection', (socket) => {
     console.log('A new client connected');
-  
+    
+    const generalRoom = 'onlineUsersRoom';
+
+    socket.join(generalRoom);
+    socket.to(generalRoom).emit('newUserOnline', { userID: socket.id });
+
+    socket.on('sendFriendRequest', async ({ senderID, friendID }) => {
+      usersController.addFriendRequestFromSocket(senderID, friendID)
+      const senderData = await User.findById(senderID)
+      io.to(generalRoom).emit('friendRequestReceived', {receiverID:friendID, senderData});
+    });
+
+    socket.on('acceptFriendRequest', async ({ userID, friendID }) => {
+      await usersController.addFriendFromSocket(userID, friendID)
+      const senderData = await User.findById(friendID)
+      const receiverData = await User.findById(userID)
+      io.to(generalRoom).emit('friendRequestAccepted', {receiverID:userID, senderData, secondReceiverID:friendID, receiverData});
+    });
+
+    socket.on('rejectFriendRequest', async ({ userID, friendID }) => {
+      usersController.rejectFriendRequestFromSocket(userID, friendID)
+      console.log("userID :", userID, "friendID : ", friendID)
+      io.to(generalRoom).emit('friendRequestRejected', {receiverID:userID});
+    });
+
     socket.on('joinChat', ({ chatID }) => {     // Join a chat room
       socket.join(chatID);
       console.log(`User joined chat: ${chatID}`);
     });
   
     socket.on('sendMessage', async ({ chatID, senderID, content }) => {  // Handle sending messages
-
       const newMessage = new Message({ // Save message to database
         chat: chatID,
         sender: senderID,
@@ -63,9 +89,9 @@ const io = require("socket.io")(server, {
       io.to(chatID).emit('newMessage', newMessage);
     });
   
-    socket.on('leaveChat', ({ chatId }) => {
-      socket.leave(chatId);
-      console.log(`User left chat: ${chatId}`);
+    socket.on('leaveChat', ({ chatID }) => {
+      socket.leave(chatID);
+      console.log(`User left chat: ${chatID}`);
     });
   
     socket.on('disconnect', () => {

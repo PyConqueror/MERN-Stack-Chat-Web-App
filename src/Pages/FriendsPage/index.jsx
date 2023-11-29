@@ -21,14 +21,14 @@ function FriendsPage ({ user }) {
     }
 
     useEffect(function(){
-        fetchFriends(), fetchPendingFriends();
+        fetchPendingFriends(), fetchFriends();
     }, []);   
 
     return (
     <>
     <h1>FriendsPage</h1>
     <FriendsList friends={friends} setFriends={setFriends} fetchFriends={fetchFriends}/>
-    <PendingRequest pendingFriends={pendingFriends} fetchFriends={fetchFriends}/>  
+    <PendingRequest pendingFriends={pendingFriends}/>  
     <FindUser fetchFriends={fetchFriends}/>
     </>
     );
