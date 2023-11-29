@@ -60,15 +60,19 @@ function ChatBox({ selectedChatID, user, chatName, chatAvatar, chatParticipants 
         </div>
       )}
 
-      <ScrollableFeed>
-        {messages.length > 0 ? (
-          <ul className="message-list">
-            {messages.map((message) => (
-              <Message key={message._id} message={message} user={user} />
-            ))}
-          </ul>
+<ScrollableFeed>
+        {selectedChatID ? (
+          messages.length > 0 ? (
+            <ul className="message-list">
+              {messages.map((message) => (
+                <Message key={message._id} message={message} user={user} />
+              ))}
+            </ul>
+          ) : (
+            <p>No messages in this conversation yet.</p>
+          )
         ) : (
-          <p>No conversation yet</p>
+          <p>Select a conversation to send a message</p>
         )}
       </ScrollableFeed>
       <div className="message-input">
@@ -77,8 +81,11 @@ function ChatBox({ selectedChatID, user, chatName, chatAvatar, chatParticipants 
           value={newMessage}
           onChange={(e) => setNewMessage(e.target.value)}
           placeholder="Type your message here..."
+          disabled={!selectedChatID}
         />
-        <button onClick={handleSendMessage}>Send</button>
+        <button onClick={handleSendMessage} disabled={!selectedChatID}>
+          Send
+        </button>
       </div>
     </div>
   );
