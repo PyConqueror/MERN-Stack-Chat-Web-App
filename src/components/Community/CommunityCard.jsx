@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom'
+import '../../Pages/CommunityListPage/index.css'
 
 const CommunityCard = ({ community }) => {
     const navigate = useNavigate();
@@ -10,9 +11,11 @@ const CommunityCard = ({ community }) => {
     return (
         <div>
             <div className="card" onClick={() => _handleCommunityClick(community._id)}>
-                <img src={ community.coverPhoto } />   
-                <h2>{ community.name }</h2>
-                <p>{ community.description }</p>
+                <img src={ community.coverPhoto } />
+                <div className='card-texts'>
+                    <h2>{ community.name }</h2>
+                    <p className='card-description'>{ community.description }</p>
+                </div>
             </div>
 
         </div>

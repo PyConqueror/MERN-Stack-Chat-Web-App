@@ -1,7 +1,3 @@
-.content-container {
-    justify-content: flex-start;
-}
-
 .profile-container {
     display: flex;
     flex-direction: column;

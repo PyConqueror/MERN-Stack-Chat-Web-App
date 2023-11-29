@@ -20,12 +20,12 @@ function ProfilePage({user}){
     return(
         <div className='content-container'>
             <div className='profile-container'>
-                <p>{user.name}</p>
                 <div className={user.avatar.startsWith('hsl') ? "profile-image" : "profile-image-large"}
                 style={user.avatar.startsWith('hsl') 
                 ? { backgroundColor: user.avatar } : { backgroundImage: `url(${user.avatar})`}}>
                     <p>{ user.avatar.startsWith('hsl') ? user.name.charAt(0) : ""}</p>
                 </div>
+                <p>{user.name}</p>
                 <p>Biography:</p>
                 <p>{ bio.length === 0 ? "No Biography" : bio }</p>
                 <p>Location:</p>

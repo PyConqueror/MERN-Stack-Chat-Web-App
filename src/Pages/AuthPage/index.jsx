@@ -13,7 +13,6 @@ function AuthPage({ setUser }) {
             <div>
                 <img className="landing-image" src="src/assets/landing-image.jpg" alt="landing-image" />
             </div>
-            
         </div>
 
     )

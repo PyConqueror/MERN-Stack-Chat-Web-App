@@ -1,6 +1,7 @@
 import { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as communityService from '../../utilities/community-api'
+import './index.css'
 
 function CreateCommunityPage({ user }) {
     const [groupImage, setGroupImage] = useState(null);
@@ -101,7 +102,7 @@ function CreateCommunityPage({ user }) {
     return (
         <div className='content-container'>
             <h1>Create new community form</h1>
-            <form>
+            <form className='create-community'>
                 <label>Community name:
                     <input name="name" type="text" onChange={_handleChange}/>
                 </label>
@@ -118,7 +119,8 @@ function CreateCommunityPage({ user }) {
                 </select>   
                 </label>
             </form><br/>
-            <form onSubmit ={_uploadImage}>
+            <form onSubmit ={_uploadImage} className='create-community'>
+                <label>Cover Image
                 <input 
                     type="file" 
                     accept="image/png, image/jpg" 
@@ -136,6 +138,7 @@ function CreateCommunityPage({ user }) {
                     ) : ("")
                     }
                 </p>
+                </label>
             </form>
             <div>
                 { imagePreview && (

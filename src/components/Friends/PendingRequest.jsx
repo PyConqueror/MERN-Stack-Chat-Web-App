@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import * as usersAPI from '../../utilities/users-api'
-
+import '../../Pages/FriendsPage/index.css'
 
 function PendingRequest({ pendingFriends, acceptFriendRequest, rejectFriendRequest }){
 
