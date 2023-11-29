@@ -4,7 +4,7 @@ import {useState, useEffect} from 'react'
 import * as friendService from '../../utilities/friends-api';
 import PendingRequest from "../../components/Friends/PendingRequest";
 import * as usersAPI from '../../utilities/users-api'
-import './index.css'
+import '../FriendsPage/index.css'
 
 function FriendsPage ({ user }) {
     const [friends, setFriends] = useState([]);

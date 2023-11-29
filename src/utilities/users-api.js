@@ -36,3 +36,19 @@ export function addFriendRequest(friendID) {
 export function denyRequest(friendID) {
   sendRequest(`${BASE_URL}/denyFriendRequest/${friendID}`, 'POST')
 }
+
+// export function addCommunity(communityId){
+//   sendRequest(`${BASE_URL}/addCommunity/${communityId}`, 'POST')
+// }
+
+// export function addCommunityAdmin(communityId){
+//   sendRequest(`${BASE_URL}/addCommunityAdmin/${communityId}`, 'POST')
+// }
+
+// export function addPost(postId){
+//   sendRequest(`${BASE_URL}/addPost/${postId}`, 'POST')
+// }
+
+// export function addComment(commentId){
+//   sendRequest(`${BASE_URL}/addComment${commentId}`, 'POST')
+// }

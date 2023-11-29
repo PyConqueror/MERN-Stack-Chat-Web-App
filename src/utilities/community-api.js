@@ -24,8 +24,8 @@ export function createGroup(formData) {
     return sendRequest(`${BASE_URL}/create`, 'POST', formData)
 }
 
-export function createPost(groupID, formData) {
-    sendRequest(`${BASE_URL}/${groupID}/create`, 'POST', formData)
+export function createPost( formData) {
+    sendRequest(`${BASE_URL}/createPost`, 'POST', formData)
 }
 
 export function createComment(postID, formData) {

@@ -1,8 +1,9 @@
 import { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as communityService from '../../utilities/community-api'
+import * as userAPI from '../../utilities/users-api'
 
-function CreateCommunityPage() {
+function CreateCommunityPage({ user }) {
     const [groupImage, setGroupImage] = useState(null);
     const [imagePreview, setImagePreview] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
@@ -27,6 +28,7 @@ function CreateCommunityPage() {
         description: '',
         coverPhoto: '',
         category: 'All',
+        admins: user._id 
     });
 
     function _handleChange(event) {
@@ -83,7 +85,6 @@ function CreateCommunityPage() {
 
                 const imageData = await response.json()
                 newGroupImageURL = imageData.url.toString()
-                console.log(imageData)
                 setImagePreview(null)
                 setIsLoading(false)
                 fileRef.current.value = null

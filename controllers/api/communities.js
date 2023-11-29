@@ -1,6 +1,7 @@
 const Group = require('../../models/community')
 const Post = require('../../models/post')
 const Comment = require('../../models/comment')
+const User = require('../../models/user')
 
 module.exports = {
     showOneGroup,
@@ -37,35 +38,33 @@ async function showComments(req, res) {
 }
 
 async function createPost(req, res) {
-      const { content, images } = req.body;
-      const groupID = req.params.id;
-      const newPost = new Post({
-        author: req.user._id,
-        group: groupID,
-        content,
-        images,
-        comments:[]
-      });
-      await newPost.save();
-      await Group.findByIdAndUpdate(groupID, { $push: { posts: newPost._id } });
-      res.json(newPost);
+    const newPost = new Post(req.body)
+    await newPost.save()
+    const groupID = req.body.group
+    await Group.findByIdAndUpdate(groupID, { $push: { posts: newPost._id } });
+
+    const userId = req.user._id
+    await User.findByIdAndUpdate(userId, {$push: {posts: newPost._id}})
+    res.json(newPost);
 }
 
 async function addComments(req, res) {
-      const postID = req.params.id;
-      const { content } = req.body;
-      const newComment = new Comment({
-        author: req.user._id,
-        post: postID,
-        content
-      });
-      await newComment.save();
-      await Post.findByIdAndUpdate(postID, { $push: { comments: newComment._id } });
-      res.status(201).json(newComment);
-  }
+    const postID = req.params.id;
+    const { content } = req.body;
+    const newComment = new Comment({
+      author: req.user._id,
+      post: postID,
+      content
+    });
+    await newComment.save();
+    await Post.findByIdAndUpdate(postID, { $push: { comments: newComment._id } });
+    res.status(201).json(newComment);
+}
 
   async function createGroup(req, res) {
     const newGroup = new Group(req.body)
     await newGroup.save()
+    const userId = req.user._id
+    await User.findByIdAndUpdate(userId, {$push: {communitiesCreated: newGroup._id}})
     res.json(newGroup)
-  }
+}

@@ -17,7 +17,7 @@ function FriendsList({friends, setFriends, fetchFriends }) {
     }
 
     return (
-      <div className="friends-list">
+      <div className="friend-list">
         <h2>My Friends</h2>
         <ul>
           {friends.map(friend => (
