@@ -22,16 +22,16 @@ function FriendsPage ({ user }) {
     }
 
     useEffect(function(){
-        fetchFriends(), fetchPendingFriends();
+        fetchPendingFriends(), fetchFriends();
     }, []);   
 
     return (
-    <div className="content-container">
-        <h1>Friends</h1>
-        <FindUser fetchFriends={fetchFriends}/>
-        <FriendsList friends={friends} setFriends={setFriends} fetchFriends={fetchFriends}/>
-        <PendingRequest pendingFriends={pendingFriends} fetchFriends={fetchFriends}/>  
-    </div>
+    <>
+    <h1>FriendsPage</h1>
+    <FriendsList friends={friends} setFriends={setFriends} fetchFriends={fetchFriends}/>
+    <PendingRequest pendingFriends={pendingFriends}/>  
+    <FindUser fetchFriends={fetchFriends}/>
+    </>
     );
 }
 
