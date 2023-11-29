@@ -9,7 +9,7 @@ module.exports = {
     showPosts,
     showComments,
     createPost,
-    addComments,
+    createComment,
     createGroup
 };
 
@@ -40,29 +40,25 @@ async function createPost(req, res) {
     await newPost.save()
     const groupID = req.body.group
     await Group.findByIdAndUpdate(groupID, { $push: { posts: newPost._id } });
-
     const userId = req.user._id
-    await User.findByIdAndUpdate(userId, {$push: {posts: newPost._id}})
+    await User.findByIdAndUpdate(userId, {$push: { posts: newPost._id }})
     res.json(newPost);
 }
 
-async function addComments(req, res) {
-    const postID = req.params.id;
-    const { content } = req.body;
-    const newComment = new Comment({
-      author: req.user._id,
-      post: postID,
-      content
-    });
-    await newComment.save();
+async function createComment(req, res) {
+    const newComment = new Comment(req.body)
+    await newComment.save()
+    const postID = req.body.post
     await Post.findByIdAndUpdate(postID, { $push: { comments: newComment._id } });
-    res.status(201).json(newComment);
+    const userId = req.user._id
+    await User.findByIdAndUpdate(userId, {$push: { comments: newComment._id }})
+    res.json(newComment);
 }
 
   async function createGroup(req, res) {
     const newGroup = new Group(req.body)
     await newGroup.save()
     const userId = req.user._id
-    await User.findByIdAndUpdate(userId, {$push: {communitiesCreated: newGroup._id}})
+    await User.findByIdAndUpdate(userId, {$push: { communitiesCreated: newGroup._id }})
     res.json(newGroup)
 }

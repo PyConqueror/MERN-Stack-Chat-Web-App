@@ -26,7 +26,7 @@ const PostList = ({ user, community }) => {
     
     return (
         <div>
-            {posts.map((p, index) => <PostItem post={p} key={index} />)}
+            {posts.map((p, index) => <PostItem post={p} key={index} user={ user } />)}
         </div>
     );
 }

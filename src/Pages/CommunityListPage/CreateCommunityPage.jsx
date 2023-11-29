@@ -47,7 +47,7 @@ function CreateCommunityPage({ user }) {
         event.preventDefault()
         try{
             const newGroup = await communityService.createGroup(newCommunity)
-            navigate(`/community/${encodeURIComponent(newGroup._id)}`);
+            navigate(`/community`);
         } catch (err){
             console.log(err)
         }

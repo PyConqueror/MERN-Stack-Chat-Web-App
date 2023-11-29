@@ -4,7 +4,6 @@ import PostList from '../../components/Post/PostList';
 import * as communityServices from '../../utilities/community-api'
 
 const CreatePost = ({ user, community }) => {
-    const [posts, setPosts] = useState('')
     const [postImage, setPostImage] = useState(null);
     const [imagePreview, setImagePreview] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
@@ -22,7 +21,7 @@ const CreatePost = ({ user, community }) => {
     async function _handleAddPost(event){
         try{
             communityServices.createPost(newPost)
-            // navigate(`/community/${encodeURIComponent(newPost.group)}`);
+            navigate(`/community/${encodeURIComponent(newPost.group)}`);
         } catch (err){
         console.log(err)
         }        

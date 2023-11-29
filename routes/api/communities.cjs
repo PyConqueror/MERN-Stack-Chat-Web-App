@@ -9,6 +9,6 @@ router.get("/posts/:id", ensureLoggedIn, communitiesController.showPosts) //show
 router.get("/:id/comments", ensureLoggedIn, communitiesController.showComments) //show comments based on the posts id
 router.post("/create", ensureLoggedIn, communitiesController.createGroup) //create group , controller will return with group id
 router.post("/createPost", ensureLoggedIn, communitiesController.createPost) //create posts inside the group based on the group :id
-router.post("/:id/comments/create", ensureLoggedIn, communitiesController.addComments) //create comments based on the post :id
+router.post("/createComment", ensureLoggedIn, communitiesController.createComment) //create comments based on the post :id
 
 module.exports = router;  

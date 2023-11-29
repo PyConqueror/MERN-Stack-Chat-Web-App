@@ -4,7 +4,10 @@ import { useState } from "react";
 const CommentItem = ({comment}) => {
     return (
         <>
-            <li>{comment.text}</li>
+            <div>
+                <p>{comment.content}</p>
+                <p>{comment.author.name}</p>
+            </div>
         </>
     );
 }

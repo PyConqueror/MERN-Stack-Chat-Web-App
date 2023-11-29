@@ -1,24 +1,42 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import * as communityServices from '../../utilities/community-api'
 
-const CreateComment = ({addComment}) => {
-    const [newComment, setNewComment] = useState("")
+const CreateComment = ({ user, post}) => {
+    const [newComment, setNewComment] = useState({
+        author: user._id,
+        post: post,
+        content: ''
+    })
+    const navigate = useNavigate()
 
-    const _handleAddComment = (event) => {
-        event.preventDefault();
-        addComment({ text: newComment });
-        setNewComment("");
+    function _handleInputChange(event){
+        setNewComment({
+            ...newComment,
+            content: event.target.value
+        })
+    }
+
+    async function _handleAddComment(){
+
+        try {
+            communityServices.createComment(newComment)
+            navigate('/community');
+        } catch (err){
+            console.log(err)
+        }
     }
 
     return (
         <>
-            <form onSubmit={_handleAddComment}>
+            <form>
                 <textarea 
                     placeholder="Enter a comment"
-                    value={newComment}
-                    onChange={(event) => setNewComment(event.target.value)}
+                    value={newComment.content}
+                    onChange={_handleInputChange}
                     required
                 />
-                <button type="submit">SUBMIT COMMENT</button>
+                <button type="submit" onClick={_handleAddComment}>SUBMIT COMMENT</button>
             </form>
         </>
     );
