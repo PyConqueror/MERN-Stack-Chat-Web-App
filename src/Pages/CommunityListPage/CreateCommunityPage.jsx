@@ -10,6 +10,7 @@ function CreateCommunityPage({ user }) {
     const cloudinaryPreset = import.meta.env.VITE_CLOUDINARY
     let newGroupImageURL = ''
 
+
     const navigate = useNavigate();
     const categories = [
         "Technology", "Books", "Fitness", "Travel",

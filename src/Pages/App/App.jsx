@@ -18,7 +18,6 @@ import EditProfilePage from '../ProfilePage/EditProfilePage'
 
 export default function App() {
   const [user, setUser] = useState(getUser)
-
   return (
     <main className="App">
       { user ?
@@ -27,6 +26,7 @@ export default function App() {
         <Routes>
           <Route path='/' element={<ChatPage user={user}/>} exact/>
           <Route path='/community' element={<CommunityListPage communities={communities} user={ user }/>}/>
+          <Route path='/community/new' element={<CreateCommunityPage user={user}/>} />
           <Route path='/community/:communityName' element={<CommunityDetailPage user={ user }/>}/>
           <Route path='/community/:communityId/edit' element={<EditCommunityPage user={ user }/>}/>
           <Route path='/friends' element={<FriendsPage user={ user }/>}/>

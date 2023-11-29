@@ -9,7 +9,6 @@ const socket = io('http://localhost:3001')
 function ChatBox({ selectedChatID, user, chatName, chatAvatar, chatParticipants }) {
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState('');
-
   const fetchMessages = async () => {
     const fetchedMessages = await chatService.getMessages(selectedChatID)
     setMessages(fetchedMessages);
