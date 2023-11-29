@@ -3,11 +3,19 @@ import LoginForm from "../../components/Auth/LoginForm"
 
 function AuthPage({ setUser }) {
     return (
-        <div>
-            <h1>AuthPage</h1>
-            <SignUpForm setUser={setUser}/>
-            <LoginForm setUser={setUser}/>
+        <div className="landing-container">
+            <div className="auth-form">
+                <h2>Welcome, <br/>login to your account</h2>
+                <LoginForm setUser={setUser}/>
+                <p>New member? Sign up below</p>
+                <SignUpForm setUser={setUser}/>
+            </div>
+            <div>
+                <img className="landing-image" src="src/assets/landing-image.jpg" alt="landing-image" />
+            </div>
+            
         </div>
+
     )
 }
 

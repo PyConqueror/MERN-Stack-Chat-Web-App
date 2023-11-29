@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { signUp } from '../../utilities/users-service';
 import { useNavigate } from 'react-router-dom';
+import '../../Pages/AuthPage/index.css'
 
 function SignUpForm({ setUser }) {
     const [formData, setFormData] = useState({
@@ -47,7 +48,7 @@ function SignUpForm({ setUser }) {
                 <input type="password" name="password" value={formData.password} onChange={handleChange} required />
                 <label>Confirm</label>
                 <input type="password" name="confirm" value={formData.confirm} onChange={handleChange} required />
-                <button type="submit" disabled={formData.password !== formData.confirm}>SIGN UP</button>
+                <button type="submit" disabled={formData.password !== formData.confirm}>Sign up</button>
             </form>
             <p className="error-message">&nbsp;{error}</p>
         </div>

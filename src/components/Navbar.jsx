@@ -9,7 +9,7 @@ function Navbar({user, setUser}) {
     return (
         <nav>
             <div className="nav-section">
-                <p>Welcome, <br/>{user.name}!</p>
+                <p>Welcome, <br/>{user.name}👋</p>
                 <div className={user.avatar.startsWith('hsl') ? "profile-image" : "profile-image-large"}
                     style={user.avatar.startsWith('hsl') 
                     ? { backgroundColor: user.avatar } : { backgroundImage: `url(${user.avatar})`}}>
