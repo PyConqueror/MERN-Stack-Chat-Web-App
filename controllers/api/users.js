@@ -14,10 +14,6 @@ module.exports = {
     addFriendRequest,
     pendingFriends,
     denyFriendRequest,
-    // addCommunity,
-    // addCommunityAdmin,
-    // addPost,
-    // addComment
   };
 
 async function create(req, res) {
@@ -178,27 +174,3 @@ async function denyFriendRequest(req, res) {
   await User.findByIdAndUpdate(userID, { $pull: { pending: friendID } });
   res.status(200)
 }
-
-// async function addCommunity(req, res){
-//   const userId = req.user._id
-//   const communityId = req.params.id
-//   await User.findByIdAndUpdate(userId, {$pull: {communitiesJoined: communityId}})
-// }
-
-// async function addCommunityAdmin(req, res){
-//   const userId = req.user._id
-//   const communityId = req.params.id
-//   await User.findByIdAndUpdate(userId, {$pull: {communitiesCreated: communityId}})
-// }
-
-// async function addPost(req, res){
-//   const userId = req.user._id
-//   const postId = req.params.id
-//   await User.findByIdAndUpdate(userId, {$pull: {posts: postId}})
-// }
-
-// async function addComment(req, res){
-//   const userId = req.user._id
-//   const commentId = req.params.id
-//   await User.findByIdAndUpdate(userId, {$pull: {comments: commentId}})
-// }

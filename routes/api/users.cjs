@@ -13,9 +13,5 @@ router.get('/list', ensureLoggedIn, usersController.getChatList)
 router.get('/pending', ensureLoggedIn, usersController.pendingFriends)
 router.post('/addFriendRequest/:id', ensureLoggedIn, usersController.addFriendRequest)
 router.post('/denyFriendRequest/:id', ensureLoggedIn, usersController.denyFriendRequest)
-// router.post('/addCommunity', ensureLoggedIn, usersController.addCommunity)
-// router.post('/addCommunityAdmin', ensureLoggedIn, usersController.addCommunityAdmin)
-// router.post('/addPost', ensureLoggedIn, usersController.addPost)
-// router.post('/addComment', ensureLoggedIn, usersController.addComment)
 
 module.exports = router;
