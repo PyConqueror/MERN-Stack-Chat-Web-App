@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import * as usersAPI from '../../utilities/users-api'
 
-function FindUser({fetchFriends, sendFriendRequest}) {
+function FindUser({sendFriendRequest}) {
     const [query, setQuery] = useState('')
     const [foundUsers, setFoundUsers] = useState([])
     
@@ -29,13 +29,13 @@ function FindUser({fetchFriends, sendFriendRequest}) {
         </form>
 
         {foundUsers.map((user, index) => 
-        <>
-            <p key={user.name}>{user.name}</p>
+        <div key = {index}>
+            <p>{user.name}</p>
             <button 
                 key={user._id}
                 onClick={(event) => addFriendRequest(user._id)} 
                 value={user._id}>Add Friend Request</button>
-        </>
+        </div>
         )}
         </>
     )
