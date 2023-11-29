@@ -13,12 +13,12 @@
 }
 
 *, *:before, *:after {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--white);
   /* padding: 2vmin;
@@ -85,6 +85,8 @@ select {
 
 textarea {
   border-radius: 8px;
+  padding: 1em;
+  resize: vertical;
 }
 
 input:focus {

@@ -101,7 +101,7 @@ function CreateCommunityPage({ user }) {
 
     return (
         <div className='content-container'>
-            <h1>Create new community form</h1>
+            <h1>Create <Nav></Nav>ew Community</h1>
             <form className='create-community'>
                 <label>Community name:
                     <input name="name" type="text" onChange={_handleChange}/>

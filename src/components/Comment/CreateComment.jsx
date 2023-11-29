@@ -36,7 +36,7 @@ const CreateComment = ({ user, post}) => {
                     onChange={_handleInputChange}
                     required
                 />
-                <button type="submit" onClick={_handleAddComment}>SUBMIT COMMENT</button>
+                <button type="submit" onClick={_handleAddComment}>Submit comment</button>
             </form>
         </>
     );

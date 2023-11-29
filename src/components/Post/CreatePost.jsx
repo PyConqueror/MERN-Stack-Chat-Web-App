@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import PostList from '../../components/Post/PostList';
 import * as communityServices from '../../utilities/community-api'
+import '../../pages/CommunityListPage/index.css'
 
 const CreatePost = ({ user, community }) => {
     const [postImage, setPostImage] = useState(null);
@@ -89,14 +90,15 @@ const CreatePost = ({ user, community }) => {
     }
 
     return (
-        <>
+        <div className="posts-container">
             <form>
-                <input 
+                <textarea 
                     placeholder="Enter a post"
                     value={newPost.content}
                     onChange={_handleInputChange}
                     required
-                />
+                >
+                </textarea>
             </form>
             <form onSubmit ={_uploadImage}>
                 <input 
@@ -122,9 +124,12 @@ const CreatePost = ({ user, community }) => {
                     <img src={imagePreview && imagePreview} />
                 )}
             </div>
-            <button onClick={_handleAddPost}>SUBMIT POST</button>
-            <PostList user={ user } community={ community }/>
-        </>
+            <button onClick={_handleAddPost}>Submit Post</button>
+            <h3>All Posts</h3>
+            <div className="post-card">
+                <PostList user={ user } community={ community }/>
+            </div>
+        </div>
     );
 }
 

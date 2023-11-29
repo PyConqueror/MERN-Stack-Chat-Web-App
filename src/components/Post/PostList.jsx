@@ -2,7 +2,6 @@ import PostItem from "./PostItem"
 import { useState, useEffect } from 'react'
 import * as communityServices from '../../utilities/community-api'
 
-
 const PostList = ({ user, community }) => {
     const [posts, setPosts] = useState('');
 
