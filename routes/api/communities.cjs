@@ -10,5 +10,6 @@ router.get("/:id/comments", ensureLoggedIn, communitiesController.showComments) 
 router.post("/create", ensureLoggedIn, communitiesController.createGroup) //create group , controller will return with group id
 router.post("/createPost", ensureLoggedIn, communitiesController.createPost) //create posts inside the group based on the group :id
 router.post("/createComment", ensureLoggedIn, communitiesController.createComment) //create comments based on the post :id
+router.post("/updateGroup", ensureLoggedIn, communitiesController.updateGroup)
 
 module.exports = router;  

@@ -1,7 +1,6 @@
 import { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as communityService from '../../utilities/community-api'
-import * as userAPI from '../../utilities/users-api'
 
 function CreateCommunityPage({ user }) {
     const [groupImage, setGroupImage] = useState(null);
@@ -10,6 +9,7 @@ function CreateCommunityPage({ user }) {
     const fileRef = useRef()
     const cloudinaryPreset = import.meta.env.VITE_CLOUDINARY
     let newGroupImageURL = ''
+
 
     const navigate = useNavigate();
     const categories = [

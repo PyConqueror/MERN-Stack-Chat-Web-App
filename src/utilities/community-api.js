@@ -24,10 +24,14 @@ export function createGroup(formData) {
     return sendRequest(`${BASE_URL}/create`, 'POST', formData)
 }
 
-export function createPost( formData) {
+export function createPost(formData) {
     return sendRequest(`${BASE_URL}/createPost`, 'POST', formData)
 }
 
 export function createComment(formData) {
     return sendRequest(`${BASE_URL}/createComment`, 'POST', formData)
+}
+
+export function updateGroup(formData){
+    return sendRequest(`${BASE_URL}/updateGroup`, 'POST', formData)
 }

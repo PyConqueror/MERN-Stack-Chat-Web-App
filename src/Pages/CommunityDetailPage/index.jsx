@@ -9,6 +9,8 @@ const CommunityDetailPage = ({ user }) => {
     const { state } = useLocation();
     const navigate = useNavigate()
     const communityId = state?.communityId;
+    let admin = community.admins;
+    const userId = user._id
 
     useEffect(function(){
         async function fetchGroup(){
@@ -16,14 +18,19 @@ const CommunityDetailPage = ({ user }) => {
             setCommunity(community)
         }
         fetchGroup()
-        
     }, [])
 
     function _handleClick(){
-        navigate('/community/new')
+        navigate(`/community/${communityId}/edit`)
     }
 
     if(!community.name){
+        return(
+            <p>Loading...</p>
+        )
+    }
+
+    if(!community.admins){
         return(
             <p>Loading...</p>
         )
@@ -34,7 +41,7 @@ const CommunityDetailPage = ({ user }) => {
             <h1>{ community.name }</h1>
             <img src={community.coverPhoto} style={{width: '50vmin'}}/>
             <h2>{ community.description }</h2>
-            <button onClick={_handleClick}>Edit Community</button>
+            { admin == userId ? (<button onClick={_handleClick}>Edit Community</button> ) : null}
             <CreatePost user={ user } community={ community }/>
         </div>
     );

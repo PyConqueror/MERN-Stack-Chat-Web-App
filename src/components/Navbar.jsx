@@ -1,11 +1,16 @@
 import { NavLink, Link } from "react-router-dom"
 import * as userService from '../utilities/users-service';
+import { useNavigate, Navigate } from "react-router-dom";
 
 function Navbar({user, setUser}) {
+    const navigate = useNavigate();
+
     function handleLogOut() {
+        navigate('/')
         userService.logOut();
         setUser(null);
     }
+    
     return (
         <nav>
             <div className="nav-section">
