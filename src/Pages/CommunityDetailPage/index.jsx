@@ -9,7 +9,6 @@ const CommunityDetailPage = ({ user }) => {
     const { state } = useLocation();
     const navigate = useNavigate()
     const communityId = state?.communityId;
-    // const [posts, setPosts] = useState([]);
 
     useEffect(function(){
         async function fetchGroup(){
