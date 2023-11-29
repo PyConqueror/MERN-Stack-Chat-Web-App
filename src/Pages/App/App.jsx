@@ -10,6 +10,7 @@ import ChatPage from '../ChatsPage'
 import CommunityListPage from '../CommunityListPage'
 import CommunityDetailPage from '../CommunityDetailPage';
 import CreateCommunityPage from '../CommunityListPage/CreateCommunityPage';
+import EditCommunityPage from '../CommunityDetailPage/EditCommunityPage.jsx';
 import FriendsPage from '../FriendsPage/index Websocket.jsx'
 import ProfilePage from '../ProfilePage'
 import FriendProfilePage from '../ProfilePage/FriendProfilePage.jsx';
@@ -27,7 +28,7 @@ export default function App() {
           <Route path='/' element={<ChatPage user={user}/>} exact/>
           <Route path='/community' element={<CommunityListPage communities={communities} user={ user }/>}/>
           <Route path='/community/:communityName' element={<CommunityDetailPage user={ user }/>}/>
-          <Route path='/community/new' element={<CreateCommunityPage user={ user }/>}/>
+          {/* <Route path='/community/new' element={<EditCommunityPage user={ user }/>}/> */}
           <Route path='/friends' element={<FriendsPage user={ user }/>}/>
           <Route path='/profile' element={<ProfilePage user={ user }/>}/>
           <Route path='/profile/:friendName' element={<FriendProfilePage/>}/>
