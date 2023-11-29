@@ -1,8 +1,20 @@
 import PostItem from "./PostItem"
+import { useState, useEffect } from 'react'
+import * as communityServices from '../../utilities/community-api'
 
 
+const PostList = ({ user, community }) => {
+    const [posts, setPosts] = useState('');
 
-const PostList = ({ posts }) => {
+    useEffect(function(){
+
+        async function getAllPosts(){
+            const allPosts = await communityServices.getPosts(community._id)
+            setPosts(allPosts)
+        }
+        getAllPosts()
+
+    }, [])
 
     if(!posts){
         return(
@@ -15,9 +27,7 @@ const PostList = ({ posts }) => {
     return (
         <div>
             {posts.map((p, index) => <PostItem post={p} key={index} />)}
-            <p>post list coming</p>
         </div>
-            
     );
 }
 

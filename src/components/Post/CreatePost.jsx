@@ -19,17 +19,6 @@ const CreatePost = ({ user, community }) => {
         images: ''
     })
 
-    // useEffect(function(){
-    //     async function getAllPosts(currentCommunity){
-    //     const currentCommunityId = currentCommunity._id
-    //     const allPosts = await communityServices.getPosts(currentCommunityId)
-    //     setPosts(allPosts)
-
-    //     }
-    //     getAllPosts(community)
-
-    // }, [])
-
     async function _handleAddPost(event){
         try{
             communityServices.createPost(newPost)
@@ -134,7 +123,7 @@ const CreatePost = ({ user, community }) => {
                 )}
             </div>
             <button onClick={_handleAddPost}>SUBMIT POST</button>
-            <PostList user={ user } posts={ posts } />
+            <PostList user={ user } community={ community }/>
         </>
     );
 }

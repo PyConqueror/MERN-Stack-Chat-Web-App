@@ -13,7 +13,7 @@ export function getAllGroups() {
 }
 
 export function getPosts(groupID) {
-    return sendRequest(`${BASE_URL}/${groupID}`);
+    return sendRequest(`${BASE_URL}/posts/${groupID}`);
 }
 
 export function getComments(postID) {

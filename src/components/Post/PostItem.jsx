@@ -18,8 +18,8 @@ const PostItem = ({post}) => {
 
     return (
         <div>
-            <h3>{post.text}</h3>
-
+            <h3>{post.content}</h3>
+            <img src={post.images} />
             <CreateComment addComment={addComment}/>
             <button onClick={_handleToggle}>{showComments ? 'Hide comments' : 'Show comments'}</button>
             {showComments && <CommentList comments={comments}/>}
