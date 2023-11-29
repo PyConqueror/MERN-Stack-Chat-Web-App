@@ -10,6 +10,7 @@ const CreatePost = ({ user, community }) => {
     const fileRef = useRef()
     const cloudinaryPreset = import.meta.env.VITE_CLOUDINARY
     let newPostImageURL = ''
+    const navigate = useNavigate();
 
     const [newPost, setNewPost] = useState({
         author: user._id,
@@ -21,9 +22,9 @@ const CreatePost = ({ user, community }) => {
     async function _handleAddPost(event){
         try{
             communityServices.createPost(newPost)
-            navigate(`/community/${encodeURIComponent(newPost.group)}`);
+            navigate(`/community/${newPost.group}`);
         } catch (err){
-        console.log(err)
+            console.log(err)
         }        
         setNewPost("");
     }
