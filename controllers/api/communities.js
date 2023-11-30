@@ -31,9 +31,11 @@ async function showAllCommunities(req,res) {
 }
 
 async function showPosts(req, res) {
+    console.log("function reached")
     const communityID = req.params.id
     console.log("show post comm id: ", communityID)
-    const posts = await Post.find({ group:communityID }).populate("comments")
+    const posts = await Post.find({ group: communityID }).populate('comments')
+    console.log(posts)
     res.json(posts)
 }
 
