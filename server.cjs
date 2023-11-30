@@ -11,6 +11,7 @@ require('dotenv').config();
 require('./config/database.cjs');
 
 const app = express();
+app.use(cors());
 // Middleware
 app.use(logger('dev'));
 app.use(express.json());
