@@ -27,11 +27,15 @@ function ProfilePage({user}){
                 ? { backgroundColor: user.avatar } : { backgroundImage: `url(${user.avatar})`, width: '30vmin'}}>
                     <p>{ user.avatar.startsWith('hsl') ? user.name.charAt(0) : ""}</p>
                 </div>
-                <p>{user.name}</p>
-                <p>Biography:</p>
-                <p>{ bio.length === 0 ? "No Biography" : bio }</p>
-                <p>Location:</p>
-                <p>{ location.length === 0 ? "No Location" : location }</p>
+                <h1 className='username'>{user.name}</h1>
+                <div className='text-container'>
+                    <h3>Location:</h3>
+                    <p>{ location.length === 0 ? "No Location" : location }</p>
+                </div>
+                <div className='text-container'>
+                    <h3>About me:</h3>
+                    <p>{ bio.length === 0 ? "No Biography" : bio }</p>
+                </div>
                 <button onClick={_handleClick}>Edit Profile</button>
             </div>
         </div>

@@ -100,48 +100,52 @@ function EditProfilePage({ user, setUser}){
 
     return(
         <div className='content-container'>
-            <p>{user.name}</p>
-            <div className={user.avatar.startsWith('hsl') ? "profile-image" : "profile-image-large"}
-                style={user.avatar.startsWith('hsl') 
-                    ? { backgroundColor: user.avatar } : { backgroundImage: `url(${user.avatar})`}}>
-                <p>{ user.avatar.startsWith('hsl') ? user.name.charAt(0) : ""}</p>
+            <div className='profile-edit-container'>
+                <div className={user.avatar.startsWith('hsl') ? "profile-image" : "profile-image-large"}
+                    style={user.avatar.startsWith('hsl') 
+                        ? { backgroundColor: user.avatar } : { backgroundImage: `url(${user.avatar})`}}>
+                    <p>{ user.avatar.startsWith('hsl') ? user.name.charAt(0) : ""}</p>
+                </div>
+                <p>{user.name}</p>
+                <form onSubmit ={_uploadImage}>
+                    <input 
+                        type="file" 
+                        accept="image/png, image/jpg" 
+                        name="image" 
+                        onChange={_handleImageChange}
+                        ref={ fileRef }>
+                    </input>
+                    <p>
+                        { profileImage ? (
+                            isLoading ? (
+                                "Uploading ..."
+                            ) : (
+                            <button>Upload new profile picture</button>
+                            )
+                        ) : ("")
+                        }
+                    </p>
+                </form>
+                <div>
+                    { imagePreview && (
+                        <img src={imagePreview && imagePreview} />
+                    )}
+                </div>
+                <div>
+                    <form onSubmit={_updateLocation}>
+                        <label>Current location:</label>
+                        <p>{ location.length === 0 ? "No Location" : location }</p>
+                        <input type="text" onChange={_handleLocationTextChange}></input>
+                        <button>Update Location</button>
+                    </form>
+                    <form  onSubmit={_updateBiography}>
+                        <label>Current biography:</label>
+                        <p>{ bio.length === 0 ? "No Biography" : bio }</p>
+                        <textarea onChange={_handleBioTextChange}></textarea>
+                        <button>Update Biography</button>
+                    </form>
+                </div>
             </div>
-            <form onSubmit ={_uploadImage}>
-                <input 
-                    type="file" 
-                    accept="image/png, image/jpg" 
-                    name="image" 
-                    onChange={_handleImageChange}
-                    ref={ fileRef }>
-                </input><br/>
-                <p>
-                    { profileImage ? (
-                        isLoading ? (
-                            "Uploading ..."
-                        ) : (
-                        <button>Upload new profile picture</button>
-                        )
-                    ) : ("")
-                    }
-                </p>
-            </form>
-            <div>
-                { imagePreview && (
-                    <img src={imagePreview && imagePreview} />
-                )}
-            </div>
-            <form  onSubmit={_updateBiography}>
-                <label>Current biography:</label>
-                <p>{ bio.length === 0 ? "No Biography" : bio }</p>
-                <textarea onChange={_handleBioTextChange}></textarea><br />
-                <button>Update Biography</button>
-            </form>
-            <form onSubmit={_updateLocation}>
-                <p>Current location:</p>
-                <p>{ location.length === 0 ? "No Location" : location }</p>
-                <input type="text" onChange={_handleLocationTextChange}></input><br />
-                <button>Update Location</button>
-            </form>
         </div>
     )
 }
