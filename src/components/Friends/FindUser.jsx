@@ -20,24 +20,34 @@ function FindUser({sendFriendRequest}) {
     }
 
     return(
-        <>
-        <form className="friends-container">
-        <input 
-            type="search" 
-            placeholder="Search and add other users to chat with them"
-            onChange={_handleChange}></input>
-        </form>
-
-        {foundUsers.map((user, index) => 
-        <div key = {index}>
-            <p>{user.name}</p>
-            <button 
-                key={user._id}
-                onClick={(event) => addFriendRequest(user._id)} 
-                value={user._id}>Send Friend Request</button>
+        <div>
+            <form>
+                <input 
+                    type="search" 
+                    placeholder="Search and add other users to chat with them"
+                    onChange={_handleChange}></input>
+            </form>
+            <div className="friends-container">
+                <ul>
+                {foundUsers.map((user, index) => 
+                    <li key = {index} className="friendlist-item">
+                        <div className="profile-image"
+                                style={user.avatar.startsWith('hsl') 
+                                    ? { backgroundColor: user.avatar } : { backgroundImage: `url(${user.avatar})`}}>
+                                { user.avatar.startsWith('hsl') ? user.name.charAt(0) : ""}
+                        </div>
+                        <div className="friend-item">
+                        <span>{user.name}</span>
+                            <button     
+                                key={user._id}
+                                onClick={(event) => addFriendRequest(user._id)} 
+                                value={user._id}>Send Friend Request</button>
+                        </div>
+                    </li>
+                )}
+                </ul>
+            </div>
         </div>
-        )}
-        </>
     )
 }
 
