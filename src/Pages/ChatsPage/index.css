@@ -145,3 +145,41 @@
   background-color: var(--color-2);
   align-self: left;
 }
+
+/* group chat -----------------------------*/
+.friends-list {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  margin: 0 auto;
+  width: 500px;
+  max-height: 500px;
+  background-color: white;
+  padding: 2em;
+  overflow-y: auto;
+  border: 2px solid var(--light-grey);
+  border-radius: 8px;
+  left: 40%;
+  top: 25%;
+}
+
+.friends-list .close-button {
+  color: var(--text-dark);
+  background-color: white;
+  font-size: 2em;
+  width: 50px;
+  padding: 0;
+  margin-right: -80px;
+}
+
+.create-groupchat-header {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.chat-item label {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+}

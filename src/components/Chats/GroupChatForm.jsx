@@ -47,8 +47,10 @@ function GroupChatForm({onClose, fetchChats}) {
 }
     return(
         <div className="friends-list">
-            <button onClick={onClose}>Close</button>
-        <h2>Create Group Chat</h2>
+          <div className="create-groupchat-header">
+            <h2>Create Group Chat</h2>
+            <button onClick={onClose} className="close-button">&times;</button>
+          </div>
         <input
           type="text"
           placeholder="Group Name"
@@ -57,13 +59,7 @@ function GroupChatForm({onClose, fetchChats}) {
         />
         <ul>
           {friends.map(friend => (
-            <li key={friend._id}>
-              <div className="profile-image" 
-                  style={friend.avatar.startsWith('hsl') 
-                          ? { backgroundColor: friend.avatar } : { backgroundImage: `url(${friend.avatar})`}}>
-                  <p>{ friend.avatar.startsWith('hsl') ? friend.name.charAt(0) : ""}</p>
-                </div>
-              <span>{friend.name}</span>
+            <li key={friend._id} className="chat-item">
               <label>
                 <input
                   type="checkbox"
@@ -72,6 +68,12 @@ function GroupChatForm({onClose, fetchChats}) {
                 />
                 Add
               </label>
+              <div className="profile-image" 
+                  style={friend.avatar.startsWith('hsl') 
+                          ? { backgroundColor: friend.avatar } : { backgroundImage: `url(${friend.avatar})`}}>
+                  <p>{ friend.avatar.startsWith('hsl') ? friend.name.charAt(0) : ""}</p>
+                </div>
+              <span>{friend.name}</span>
             </li>
           ))}
         </ul>
