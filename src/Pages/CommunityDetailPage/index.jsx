@@ -16,9 +16,6 @@ const CommunityDetailPage = ({ user }) => {
             setCommunity(community);
             let admin = community.admins[0] 
             let userId = user._id
-            if(admin == userId){
-                console.log("true")
-            }
         }
         fetchComminity()
     }, [])
@@ -50,9 +47,7 @@ const CommunityDetailPage = ({ user }) => {
                         <p>{ community.description }</p>
                     </div>
                 </div>
-
             </div>
-            
         </div>
     );
 }

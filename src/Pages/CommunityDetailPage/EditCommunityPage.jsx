@@ -110,7 +110,6 @@ const EditCommunityPage = () => {
     return (
         <div className='content-container'>
             <h1>Edit community</h1>
-            
             <form onSubmit={_handleSubmit}>
                 <p>Current community name: {currentCommunity.name}</p>
                 <label>New community name:
@@ -156,9 +155,7 @@ const EditCommunityPage = () => {
                     <img src={imagePreview && imagePreview} />
                 )}
             </div>
-
-                <button onClick={_handleSubmit}>Save</button>
-            
+            <button onClick={_handleSubmit}>Save</button>
         </div>
     );
 }

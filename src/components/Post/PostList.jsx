@@ -9,10 +9,8 @@ const PostList = ({ user, community }) => {
         async function getAllPosts(){
             const allPosts = await communityServices.getPosts(community._id)
             setPosts(allPosts)
-            console.log(allPosts)
         }
         getAllPosts()
-
     }, [])
 
     if(posts === null || posts.length === 0){

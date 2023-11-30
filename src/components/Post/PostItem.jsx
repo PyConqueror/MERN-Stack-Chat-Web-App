@@ -18,7 +18,6 @@ const PostItem = ({ post, user, community}) => {
             setComments(currentComments)
         }
         getComments()
-
     }, [])
 
     return (

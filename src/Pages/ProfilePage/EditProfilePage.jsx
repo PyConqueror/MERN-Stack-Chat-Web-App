@@ -78,7 +78,6 @@ function EditProfilePage({ user, setUser}){
 
                 const imageData = await response.json()
                 newProfileImageURL = imageData.url.toString()
-                console.log(imageData)
                 setImagePreview(null)
                 setIsLoading(false)
                 fileRef.current.value = null

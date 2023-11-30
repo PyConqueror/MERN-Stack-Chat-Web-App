@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import { useNavigate } from 'react-router-dom';
 import PostList from '../../components/Post/PostList';
 import * as communityServices from '../../utilities/community-api'
@@ -82,7 +82,6 @@ const CreatePost = ({ user, community }) => {
                 setPostImage(null)
             }
             updatePostImage(newPostImageURL)
-            
         } catch (err) {
             console.log(err)
             setIsLoading(false)
