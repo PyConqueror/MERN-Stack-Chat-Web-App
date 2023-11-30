@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import CommentList from "../Comment/CommentList"
 import CreateComment from "../Comment/CreateComment"
 import * as communityService from '../../utilities/community-api'
-import '../../pages/CommunityListPage/index.css'
+import '../../Pages/CommunityListPage/index.css'
 
 const PostItem = ({ post, user, community}) => {
     const [comments, setComments] = useState([]);
