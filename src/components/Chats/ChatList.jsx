@@ -1,23 +1,29 @@
 import { useState, useEffect } from 'react';
 import * as friendService from '../../utilities/friends-api';
 import GroupChatForm from './GroupChatForm';
-import '../../pages/ChatsPage/index.css'
+import io from 'socket.io-client';
+import '../../Pages/ChatsPage/index.css'
 
-function ChatList({ setSelectedChatID, setChatName, setChatAvatar, setChatParticipants }) {
+const socket = io('http://localhost:3001')
+
+function ChatList({ setSelectedChatID, setChatName, setChatAvatar, setChatParticipants, user }) {
     const [chats, setChats] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false); // State to track modal visibility
     const openModal = () => setIsModalOpen(true);
     const closeModal = () => setIsModalOpen(false);
-    console.log(chats)
 
     async function fetchChats() {
       const data = await friendService.getChats(); 
       setChats(data);
   };
 
-  // Call fetchChats inside useEffect
   useEffect(() => {
       fetchChats();
+      socket.on('refreshList', ({participants}) => {
+        if (participants.includes(user._id)) {
+          fetchChats();
+        }
+      });  
   }, []);
     
     function handleChatClick(chatID, chatName, chatAvatar, chatParticipants) {

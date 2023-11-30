@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import PostList from '../../components/Post/PostList';
 import * as communityServices from '../../utilities/community-api'
-import '../../pages/CommunityListPage/index.css'
+import '../../Pages/CommunityListPage/index.css'
 
 const CreatePost = ({ user, community }) => {
     const [postImage, setPostImage] = useState(null);
@@ -15,7 +15,7 @@ const CreatePost = ({ user, community }) => {
 
     const [newPost, setNewPost] = useState({
         author: user._id,
-        group: community._id,
+        community: community._id,
         content: '',
         images: ''
     })
@@ -23,7 +23,7 @@ const CreatePost = ({ user, community }) => {
     async function _handleAddPost(event){
         try{
             await communityServices.createPost(newPost)
-            navigate(`/community/${community._id}`);
+            navigate(`/communities/communities/${community._id}`);
         } catch (err){
             console.log(err)
         }        

@@ -5,25 +5,29 @@ import * as communityService from '../../utilities/community-api'
 import './index.css'
 
 function CommunityListPage({ user }) {
-    const [communities, setCommunities] = useState('')
+    const [communities, setCommunities] = useState(null)
     const navigate = useNavigate()
 
-    async function fetchGroups() {
-        const data = await communityService.getAllGroups()
-        setCommunities(data)
-    }
+    useEffect(function(){
+        async function fetchCommunities() {
+            const data = await communityService.getAllCommunities()
+            setCommunities(data)
+        }
+        fetchCommunities();
 
-    useEffect(() => {
-        fetchGroups();
     }, []);
 
     function _handleClick(){
-        navigate('/community/new')
+        navigate('/communities/new')
     }
 
-    if(!communities){
+    if (!communities || communities.length === 0){
         return(
-            <p>Loading...</p>
+            <div className="content-container">
+                <h1>List of Communities</h1>
+                <button onClick={_handleClick}>Create new community</button>
+                <p>No communities exist </p>
+            </div>
         )
     }
 

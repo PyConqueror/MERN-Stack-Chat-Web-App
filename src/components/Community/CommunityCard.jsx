@@ -5,7 +5,8 @@ const CommunityCard = ({ community }) => {
     const navigate = useNavigate();
 
     function _handleCommunityClick(communityId){
-        navigate(`/community/${encodeURIComponent(communityId)}`, { state: { communityId } });
+        console.log(communityId)
+        navigate(`communities/${communityId}`);
     };
 
     return (

@@ -4,12 +4,12 @@ import * as communityService from '../../utilities/community-api'
 import './index.css'
 
 function CreateCommunityPage({ user }) {
-    const [groupImage, setGroupImage] = useState(null);
+    const [communityImage, setCommunityImage] = useState(null);
     const [imagePreview, setImagePreview] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
     const fileRef = useRef()
     const cloudinaryPreset = import.meta.env.VITE_CLOUDINARY
-    let newGroupImageURL = ''
+    let newCommunityImageURL = ''
 
 
     const navigate = useNavigate();
@@ -37,25 +37,25 @@ function CreateCommunityPage({ user }) {
         setNewCommunity({ ...newCommunity, [name]: value });
     };
 
-    async function updateGroupImage(newGroupImageURL){
+    async function updateCommunityImage(newCommunityImageURL){
         setNewCommunity((newCommunity) => ({ 
             ...newCommunity,
-            coverPhoto: newGroupImageURL 
+            coverPhoto: newCommunityImageURL 
         }))
     }
 
     async function _handleSubmit(event) {
         event.preventDefault()
         try{
-            const newGroup = await communityService.createGroup(newCommunity)
-            navigate(`/community`);
+            await communityService.createCommunity(newCommunity)
+            navigate(`/communities`);
         } catch (err){
             console.log(err)
         }
     }
 
     function _handleImageChange(event){
-        setGroupImage(event.target.files[0])
+        setCommunityImage(event.target.files[0])
         setImagePreview(URL.createObjectURL(event.target.files[0]))
     }
 
@@ -64,15 +64,15 @@ function CreateCommunityPage({ user }) {
         setIsLoading(true)
         try {
             if(
-                groupImage && (
-                    groupImage.type === "image/png" ||
-                    groupImage.type === "image/jpg" ||
-                    groupImage.type === "image/jpeg" ||
-                    groupImage.type === "image/JPG"
+                communityImage && (
+                    communityImage.type === "image/png" ||
+                    communityImage.type === "image/jpg" ||
+                    communityImage.type === "image/jpeg" ||
+                    communityImage.type === "image/JPG"
                 )
             ){
                 const image = new FormData()
-                image.append("file", groupImage)
+                image.append("file", communityImage)
                 image.append("cloud_name", "dbgh78xk9")
                 image.append("upload_preset", cloudinaryPreset)
 
@@ -85,13 +85,13 @@ function CreateCommunityPage({ user }) {
                 )
 
                 const imageData = await response.json()
-                newGroupImageURL = imageData.url.toString()
+                newCommunityImageURL = imageData.url.toString()
                 setImagePreview(null)
                 setIsLoading(false)
                 fileRef.current.value = null
-                setGroupImage(null)
+                setCommunityImage(null)
             }
-            updateGroupImage(newGroupImageURL)
+            updateCommunityImage(newCommunityImageURL)
             
         } catch (err) {
             console.log(err)
@@ -101,7 +101,7 @@ function CreateCommunityPage({ user }) {
 
     return (
         <div className='content-container'>
-            <h1>Create <Nav></Nav>ew Community</h1>
+            <h1>Create New Community</h1>
             <form className='create-community'>
                 <label>Community name:
                     <input name="name" type="text" onChange={_handleChange}/>
@@ -129,11 +129,11 @@ function CreateCommunityPage({ user }) {
                     ref={ fileRef }>
                 </input><br/>
                 <p>
-                    { groupImage ? (
+                    { communityImage ? (
                         isLoading ? (
                             "Uploading ..."
                         ) : (
-                        <button>Upload group picture</button>
+                        <button>Upload community picture</button>
                         )
                     ) : ("")
                     }

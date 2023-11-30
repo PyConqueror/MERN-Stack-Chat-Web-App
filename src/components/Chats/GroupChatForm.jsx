@@ -2,7 +2,10 @@ import { useState, useEffect } from "react"
 import * as friendService from '../../utilities/friends-api';
 import * as chatService from '../../utilities/chats-api';
 import { useNavigate } from 'react-router-dom';
-import '../../pages/ChatsPage/index.css'
+import io from 'socket.io-client';
+import '../../Pages/ChatsPage/index.css'
+
+const socket = io('http://localhost:3001')
 
 function GroupChatForm({onClose, fetchChats}) {
     const [selectedFriends, setSelectedFriends] = useState([]);
@@ -34,6 +37,9 @@ function GroupChatForm({onClose, fetchChats}) {
         participants: selectedFriends
       };
     await chatService.createGroup(groupChat)
+    socket.emit('createGroup', {
+      participants: selectedFriends
+    });
     onClose()
     setTimeout(() => {
       fetchChats();

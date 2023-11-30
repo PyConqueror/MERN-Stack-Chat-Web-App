@@ -21,7 +21,7 @@ const CreateComment = ({ user, post}) => {
 
         try {
             communityServices.createComment(newComment)
-            navigate('/community');
+            navigate(`/communities/communities/${community._id}`);
         } catch (err){
             console.log(err)
         }

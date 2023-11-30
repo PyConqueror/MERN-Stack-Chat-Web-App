@@ -1,4 +1,4 @@
-import '../../pages/ChatsPage/index.css'
+import '../../Pages/ChatsPage/index.css'
 
 function Message({ message, user }) {
     const isOwnMessage = message.sender._id === user._id || message.sender === user._id

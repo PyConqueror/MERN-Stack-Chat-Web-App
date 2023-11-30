@@ -1,36 +1,29 @@
 const express = require('express');
 const path = require('path');
-const favicon = require('serve-favicon');
 const logger = require('morgan');
 const Message = require('./models/message.js');
 const Chat = require('./models/chat.js');
 const User = require('./models/user.js');
 const usersController = require('./controllers/api/users.js');
-
-
+const cors = require('cors');
 
 require('dotenv').config();
 require('./config/database.cjs');
 
 const app = express();
-
 // Middleware
 app.use(logger('dev'));
 app.use(express.json());
 app.use(require('./config/checkToken.js'));
 
-// create-react-app has a "build" directory
-// vite uses the "dist" directory instead
 app.use('/api/users', require('./routes/api/users.cjs'));
 app.use('/api/chats', require('./routes/api/chats.cjs'));
 app.use('/api/profiles', require('./routes/api/profiles.cjs'))
 app.use('/api/communities', require('./routes/api/communities.cjs'))
 
-/// app.use(favicon(path.join(__dirname, 'dist', 'favicon.ico')));
 app.use(express.static(path.join(__dirname, 'dist')));
 
-
-const port = process.env.PORT || 3001;
+const port = process.env.PORT;
 
 const server = app.listen(port, () => {
     console.log('Express running on http://localhost/:' + port);
@@ -41,8 +34,8 @@ const io = require("socket.io")(server, {
     cors: {
       origin: "http://localhost:5173",
       methods: ['GET','POST']
-    },
-  });
+    },//https://communitalk-4a7ec5f9373f.herokuapp.com
+  }); //"http://localhost:5173"
 
   io.on('connection', (socket) => {
     console.log('A new client connected');
@@ -67,20 +60,24 @@ const io = require("socket.io")(server, {
 
     socket.on('rejectFriendRequest', async ({ userID, friendID }) => {
       usersController.rejectFriendRequestFromSocket(userID, friendID)
-      console.log("userID :", userID, "friendID : ", friendID)
       io.to(generalRoom).emit('friendRequestRejected', {receiverID:userID});
     });
+
+    socket.on('createGroup', async ({participants}) => {
+      io.to(generalRoom).emit('refreshList', {participants})
+    })
 
     socket.on('joinChat', ({ chatID }) => {     // Join a chat room
       socket.join(chatID);
       console.log(`User joined chat: ${chatID}`);
     });
-  
-    socket.on('sendMessage', async ({ chatID, senderID, content }) => {  // Handle sending messages
+    
+    socket.on('sendMessage', async ({ chatID, senderID, content, senderName }) => {  // Handle sending messages
       const newMessage = new Message({ // Save message to database
         chat: chatID,
         sender: senderID,
         content: content,
+        senderName: senderName
       });
       await newMessage.save();
       await Chat.findByIdAndUpdate(chatID, {
@@ -99,10 +96,6 @@ const io = require("socket.io")(server, {
     });
   });
   
-
-// This needs to be the last route:
-// All unrecognised requests get served the home page
-// (i.e. the React application):
 app.get('/*', (req, res) => {
     res.sendFile(path.join(__dirname, 'dist', 'index.html'));
 });

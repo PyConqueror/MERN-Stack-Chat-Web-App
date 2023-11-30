@@ -6,16 +6,16 @@ const PostList = ({ user, community }) => {
     const [posts, setPosts] = useState('');
 
     useEffect(function(){
-
         async function getAllPosts(){
             const allPosts = await communityServices.getPosts(community._id)
             setPosts(allPosts)
+            console.log(allPosts)
         }
         getAllPosts()
 
     }, [])
 
-    if(!posts){
+    if(posts === null || posts.length === 0){
         return(
             <>
                 <p>No posts</p>
@@ -25,7 +25,7 @@ const PostList = ({ user, community }) => {
     
     return (
         <div>
-            {posts.map((p, index) => <PostItem post={p} key={index} user={ user } />)}
+            {posts.map((p, index) => <PostItem post={p} key={index} user={ user } community={ community }/>)}
         </div>
     );
 }

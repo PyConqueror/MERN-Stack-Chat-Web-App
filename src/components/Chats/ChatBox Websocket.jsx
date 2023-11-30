@@ -3,7 +3,7 @@ import ScrollableFeed from 'react-scrollable-feed';
 import * as chatService from '../../utilities/chats-api'
 import Message from './Message';
 import io from 'socket.io-client';
-import '../../pages/ChatsPage/index.css'
+import '../../Pages/ChatsPage/index.css'
 
 const socket = io('http://localhost:3001')
 

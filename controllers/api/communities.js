@@ -1,32 +1,41 @@
-const Group = require('../../models/community')
+const Community = require('../../models/community')
 const Post = require('../../models/post')
 const Comment = require('../../models/comment')
 const User = require('../../models/user')
 
 module.exports = {
-    showOneGroup,
-    showAllGroups,
+    showOneCommunity,
+    showAllCommunities,
     showPosts,
     showComments,
     createPost,
     createComment,
-    createGroup,
-    updateGroup
+    createCommunity,
+    updateCommunity
 };
 
-async function showOneGroup(req, res) {
-  const group = await Group.findById(req.body.content)
-  res.json(group)
+async function showOneCommunity(req, res) {
+    const community = await Community.findById(req.params.id)
+    res.json(community)
 }
 
-async function showAllGroups(req,res) {
-    const groups = await Group.find()
-    res.json(groups)
+async function showAllCommunities(req,res) {
+    try {
+        const communities = await Community.find()
+        res.json(communities)
+    } catch (error){
+        console.error(error)
+        res.status(500).json({ error: 'Server error'})
+    }
+    
 }
 
 async function showPosts(req, res) {
-    const groupID = req.params.id
-    const posts = await Post.find({ group:groupID }).populate("comments")
+    console.log("function reached")
+    const communityID = req.params.id
+    console.log("show post comm id: ", communityID)
+    const posts = await Post.find({ group: communityID }).populate('comments')
+    console.log(posts)
     res.json(posts)
 }
 
@@ -37,12 +46,19 @@ async function showComments(req, res) {
 }
 
 async function createPost(req, res) {
-    const newPost = new Post(req.body)
+    const {author,community, content, images} = req.body
+    const newPost = new Post({
+        author:author,
+        group:community,
+        content:content,
+        images:images
+    })
     await newPost.save()
-    const groupID = req.body.group
-    await Group.findByIdAndUpdate(groupID, { $push: { posts: newPost._id } });
+    const communityID = req.body.community
+    await Community.findByIdAndUpdate(communityID, { $push: { posts: newPost._id } });
     const userId = req.user._id
     await User.findByIdAndUpdate(userId, {$push: { posts: newPost._id }})
+    await Post.findByIdAndUpdate(newPost._id, {}) // add community id
     res.json(newPost);
 }
 
@@ -56,20 +72,20 @@ async function createComment(req, res) {
     res.json(newComment);
 }
 
-async function createGroup(req, res) {
-    const newGroup = new Group(req.body)
-    await newGroup.save()
+async function createCommunity(req, res) {
+    const newCommunity = new Community(req.body)
+    await newCommunity.save()
     const userId = req.user._id
-    await User.findByIdAndUpdate(userId, {$push: { communitiesCreated: newGroup._id }})
-    res.json(newGroup)
+    await User.findByIdAndUpdate(userId, {$push: { communitiesCreated: newCommunity._id }})
+    res.json(newCommunity)
 }
 
-async function updateGroup(req, res){
-    const group = await Group.findById(req.body.communityId)
-    group.name = req.body.name;
-    group.description = req.body.description;
-    group.coverPhoto = req.body.coverPhoto;
-    group.category = req.body.catergory;
-    group.save()
+async function updateCommunity(req, res){
+    const community = await Community.findById(req.body._id)
+    community.name = req.body.name;
+    community.description = req.body.description;
+    community.coverPhoto = req.body.coverPhoto;
+    community.category = req.body.catergory;
+    community.save()
     res.status(200).json({ message: "sucess"})
 }

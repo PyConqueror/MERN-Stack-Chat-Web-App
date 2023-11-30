@@ -7,7 +7,6 @@ const { use } = require('../../routes/api/users.cjs');
 module.exports = {
     getChat,
     getMessages,
-    sendMessage,
     createGroup,
   };
 
@@ -44,19 +43,6 @@ async function getMessages(req, res) {
     .populate('sender', 'name avatar') // Populate sender details
     res.json(messages)
 }   
-
-async function sendMessage(req, res) {
-    const newMessage = await Message.create({
-        sender: req.user._id,
-        content: req.body.content,
-        chat: req.params.id
-    });
-    await newMessage.save();
-    await Chat.findByIdAndUpdate(req.params.id, {
-        $push: { messages: newMessage._id } //push the message in messages array in chat schema
-    })
-    // await getMessages(req, res); // call the getMessages function to send updated messages list
-}
 
 async function createGroup(req, res) {
     const {groupName, participants} = req.body //participants should be an array of user id sent from frontend (selected from friend list)
