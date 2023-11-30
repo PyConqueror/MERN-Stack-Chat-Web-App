@@ -11,7 +11,7 @@ function AuthPage({ setUser }) {
                 <SignUpForm setUser={setUser}/>
             </div>
             <div>
-                <img src="public/logo_white.svg" className="logo-landing"  />
+                <img src="/logo_white.svg" className="logo-landing"  />
                 <img className="landing-image" src="/landing-image.jpg" alt="landing-image" />
             </div>
         </div>
