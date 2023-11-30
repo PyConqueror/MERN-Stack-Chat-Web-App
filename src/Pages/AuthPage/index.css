@@ -15,7 +15,7 @@
 .landing-container {
     display: flex;
     align-items: center;
-    overflow: hidden;
+    overflow-y: hidden;
 }
 
 .auth-form {
@@ -33,6 +33,15 @@
 
 .landing-image {
     height: 100vh;
+    filter: brightness(60%);
+}
+
+.logo-landing {
+    position: absolute;
+    width: 500px;
+    top: 35%;
+    left: 53%;
+    z-index: 10;
 }
 
 .auth-form > h2 {
