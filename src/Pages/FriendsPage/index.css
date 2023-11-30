@@ -1,7 +1,39 @@
-.friend-list {
-    border: 5px solid blue;
+:root {
+    --white: #FFFFFF;
+    --color-1: #FF5959;
+    --color-2: #FACF5A;
+    --color-3: #49BEB7;
+    --color-4: #085F63;
+    --color-5: #074a4e;
+    --dark-grey: #202020;
+    --light-grey: #a9a9a9;
+    --beige: #FFE3B3;
+    --text-light: #818181;
+    --text-dark: #212121;
 }
 
-.pendingrequest {
-    border: 5px solid blue;
+.friends-container {
+    width: 600px;
+    margin: 2em 0;
+}
+
+.friendlist-item {
+    display: flex;
+    align-items: center;
+}
+
+.friends-container > ul {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.friends-container button {
+    margin: 0.5em;
+}
+
+.friend-item {
+    display: flex;
+    flex-direction: column;
+    margin-left: 1em;
 }

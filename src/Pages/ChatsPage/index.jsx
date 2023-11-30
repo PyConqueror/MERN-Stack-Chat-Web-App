@@ -10,7 +10,7 @@ function ChatPage({ user }){
     const [chatParticipants, setChatParticipants] = useState('')
 
     return(
-    <div className='content-container'>
+    <div className='chats-container'>
         <div className='row'>
             <div className='column'>
                 <ChatList 

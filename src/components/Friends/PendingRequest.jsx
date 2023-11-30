@@ -13,8 +13,8 @@ async function denyFriendRequest(friendID) {
 }
 
 return (
-  <div className="pendingrequest">
-    <h3>PENDING FRIEND REQUESTS</h3>
+  <div className="friends-container">
+    <h3>Friend Requests</h3>
     {pendingFriends.length > 0 ? (
       pendingFriends.map((friend, index) => (
         <li key={index}>
@@ -30,7 +30,7 @@ return (
         </li>
       ))
     ) : (
-      <p>No friend requests.</p>
+      <p>No pending friend requests.</p>
     )}
   </div>
 );

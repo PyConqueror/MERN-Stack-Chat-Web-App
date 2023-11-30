@@ -28,6 +28,7 @@ const PostItem = ({ post, user, community}) => {
             <CreateComment user={ user } post={ post._id } community={ community }/>
             <button onClick={_handleToggle} className="show-comments-button">{showComments ? 'Hide comments' : 'Show comments'}</button>
             {showComments && <CommentList comments={comments}/>}
+            <CreateComment user={ user } post={ post._id }/>
         </div>
     );
 }

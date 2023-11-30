@@ -3,6 +3,7 @@ import * as friendService from '../../utilities/friends-api';
 import * as chatService from '../../utilities/chats-api';
 import { useNavigate } from 'react-router-dom';
 import io from 'socket.io-client';
+import '../../Pages/ChatsPage/index.css'
 
 const socket = io('http://localhost:3001')
 
