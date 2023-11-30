@@ -2,12 +2,14 @@ import { useLocation, useParams } from 'react-router-dom';
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom"
 import CreatePost from "../../components/Post/CreatePost";
+import PostList from '../../components/Post/PostList';
 import * as communityService from '../../utilities/community-api'
 import '../CommunityListPage/index.css'
 
 const CommunityDetailPage = ({ user }) => {
     const { communityId } = useParams();
     const [community, setCommunity] = useState([])
+    const [posts, setPosts] = useState('');
     const navigate = useNavigate()
 
     useEffect(function(){
@@ -16,11 +18,13 @@ const CommunityDetailPage = ({ user }) => {
             setCommunity(community);
             let admin = community.admins[0] 
             let userId = user._id
-            if(admin == userId){
-                console.log("true")
-            }
+        }
+        async function getAllPosts(){
+            const allPosts = await communityService.getPosts(communityId)
+            setPosts(allPosts)
         }
         fetchComminity()
+        getAllPosts()
     }, [])
 
     function _handleClick(){
@@ -43,16 +47,17 @@ const CommunityDetailPage = ({ user }) => {
                 </div>
                 <div className='posts-about-container'>
                     <div className='grid-item'>
-                        <CreatePost user={ user } community={ community }/>
+                        <CreatePost user={ user } community={ community } setPosts={setPosts}/>
                     </div>
                     <div className='grid-item'>
                         <h3>About Community</h3>
                         <p>{ community.description }</p>
                     </div>
+                    <div className="post-card">
+                <PostList user={ user } community={ community } posts={posts} setPosts={setPosts}/>
                 </div>
-
+                </div>
             </div>
-            
         </div>
     );
 }

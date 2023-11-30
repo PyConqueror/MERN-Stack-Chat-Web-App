@@ -5,7 +5,6 @@ const CommunityCard = ({ community }) => {
     const navigate = useNavigate();
 
     function _handleCommunityClick(communityId){
-        console.log(communityId)
         navigate(`communities/${communityId}`);
     };
 
@@ -18,7 +17,6 @@ const CommunityCard = ({ community }) => {
                     <p className='card-description'>{ community.description }</p>
                 </div>
             </div>
-
         </div>
     );
 }

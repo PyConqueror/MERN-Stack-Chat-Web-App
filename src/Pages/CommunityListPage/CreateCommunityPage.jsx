@@ -11,7 +11,6 @@ function CreateCommunityPage({ user }) {
     const cloudinaryPreset = import.meta.env.VITE_CLOUDINARY
     let newCommunityImageURL = ''
 
-
     const navigate = useNavigate();
     const categories = [
         "Technology", "Books", "Fitness", "Travel",
@@ -112,11 +111,11 @@ function CreateCommunityPage({ user }) {
                 </label>
 
                 <label>Choose a category:
-                <select name="category" onChange={_handleChange}>
-                    {sortedCategories.map((category, index) => (
-                        <option key={index} value={category}>{category}</option>
-                    ))}
-                </select>   
+                    <select name="category" onChange={_handleChange}>
+                        {sortedCategories.map((category, index) => (
+                            <option key={index} value={category}>{category}</option>
+                        ))}
+                    </select>   
                 </label>
             </form><br/>
             <form onSubmit ={_uploadImage} className='create-community'>
@@ -145,9 +144,7 @@ function CreateCommunityPage({ user }) {
                     <img src={imagePreview && imagePreview} />
                 )}
             </div>
-
             <button onClick={_handleSubmit}>Save</button>
- 
         </div>
     );
 }

@@ -27,15 +27,11 @@ async function showAllCommunities(req,res) {
         console.error(error)
         res.status(500).json({ error: 'Server error'})
     }
-    
 }
 
 async function showPosts(req, res) {
-    console.log("function reached")
     const communityID = req.params.id
-    console.log("show post comm id: ", communityID)
     const posts = await Post.find({ group: communityID }).populate('comments')
-    console.log(posts)
     res.json(posts)
 }
 
@@ -58,7 +54,7 @@ async function createPost(req, res) {
     await Community.findByIdAndUpdate(communityID, { $push: { posts: newPost._id } });
     const userId = req.user._id
     await User.findByIdAndUpdate(userId, {$push: { posts: newPost._id }})
-    await Post.findByIdAndUpdate(newPost._id, {}) // add community id
+    await Post.findByIdAndUpdate(newPost._id, {}) 
     res.json(newPost);
 }
 

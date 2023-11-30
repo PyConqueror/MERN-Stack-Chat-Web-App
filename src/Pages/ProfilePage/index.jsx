@@ -13,8 +13,6 @@ function ProfilePage({user}){
     const location = user.location
     const navigate = useNavigate()
 
-    console.log(user.avatar)
-
     function _handleClick(){
         navigate('/profile/edit') 
     }
