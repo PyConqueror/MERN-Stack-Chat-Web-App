@@ -24,7 +24,7 @@ function Navbar({user, setUser}) {
             <div className="nav-section page-links">
                 <NavLink to={"/profile"}><img src="src/assets/profile.svg"/><p>Profile</p></NavLink>
                 <NavLink to={"/"}><img src="src/assets/chats.svg"/><p>Chats</p></NavLink>
-                <NavLink to={"/community"}><img src="src/assets/communities.svg"/><p>Communities</p></NavLink>
+                <NavLink to={"/communities"}><img src="src/assets/communities.svg"/><p>Communities</p></NavLink>
                 <NavLink to={"/friends"}><img src="src/assets/friends.svg"/><p>Friends</p></NavLink>
             </div>  
             <div className="nav-section">

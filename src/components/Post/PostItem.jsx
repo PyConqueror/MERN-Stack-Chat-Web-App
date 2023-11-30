@@ -3,7 +3,7 @@ import CommentList from "../Comment/CommentList"
 import CreateComment from "../Comment/CreateComment"
 import * as communityService from '../../utilities/community-api'
 
-const PostItem = ({ post, user}) => {
+const PostItem = ({ post, user, community}) => {
     const [comments, setComments] = useState([]);
     const [showComments, setShowComments] = useState(false);
     
@@ -24,7 +24,7 @@ const PostItem = ({ post, user}) => {
         <div>
             <h3>{post.content}</h3>
             <img src={post.images} />
-            <CreateComment user={ user } post={ post._id }/>
+            <CreateComment user={ user } post={ post._id } community={ community }/>
             <button onClick={_handleToggle}>{showComments ? 'Hide comments' : 'Show comments'}</button>
             {showComments && <CommentList comments={comments}/>}
         </div>

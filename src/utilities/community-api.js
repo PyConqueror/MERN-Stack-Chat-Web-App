@@ -1,26 +1,23 @@
 import sendRequest from './send-request';
 const BASE_URL = '/api/communities';
 
-export function getOneGroup(communityId) {
-    const communityIdData = {
-        content: communityId
-    }
-    return sendRequest(`${BASE_URL}`, 'POST', communityIdData)
+export function getOneCommunity(communityId) {
+    return sendRequest(`${BASE_URL}/communities/${communityId}`)
 }
 
-export function getAllGroups() {
-    return sendRequest(`${BASE_URL}/allGroups`);
+export function getAllCommunities() {
+    return sendRequest(`${BASE_URL}/allCommunities`, 'GET');
 }
 
-export function getPosts(groupID) {
-    return sendRequest(`${BASE_URL}/posts/${groupID}`);
+export function getPosts(communityId) {
+    return sendRequest(`${BASE_URL}/posts/${communityId}`);
 }
 
 export function getComments(postID) {
     return sendRequest(`${BASE_URL}/${postID}/comments`);
 }
 
-export function createGroup(formData) {
+export function createCommunity(formData) {
     return sendRequest(`${BASE_URL}/create`, 'POST', formData)
 }
 
@@ -32,6 +29,6 @@ export function createComment(formData) {
     return sendRequest(`${BASE_URL}/createComment`, 'POST', formData)
 }
 
-export function updateGroup(formData){
-    return sendRequest(`${BASE_URL}/updateGroup`, 'POST', formData)
+export function updateCommunity(formData){
+    return sendRequest(`${BASE_URL}/updateCommunity`, 'POST', formData)
 }
