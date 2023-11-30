@@ -22,13 +22,13 @@ function Navbar({user, setUser}) {
                 </div>
             </div>
             <div className="nav-section page-links">
-                <NavLink to={"/profile"}><img src="src/assets/profile.svg"/><p>Profile</p></NavLink>
-                <NavLink to={"/"}><img src="src/assets/chats.svg"/><p>Chats</p></NavLink>
-                <NavLink to={"/communities"}><img src="src/assets/communities.svg"/><p>Communities</p></NavLink>
-                <NavLink to={"/friends"}><img src="src/assets/friends.svg"/><p>Friends</p></NavLink>
+                <NavLink to={"/profile"}><img src="/profile.svg"/><p>Profile</p></NavLink>
+                <NavLink to={"/"}><img src="/chats.svg"/><p>Chats</p></NavLink>
+                <NavLink to={"/communities"}><img src="/communities.svg"/><p>Communities</p></NavLink>
+                <NavLink to={"/friends"}><img src="/friends.svg"/><p>Friends</p></NavLink>
             </div>  
             <div className="nav-section">
-                <Link  onClick={handleLogOut}><img src="src/assets/logout.svg"/><p>Log out</p></Link>
+                <Link  onClick={handleLogOut}><img src="/logout.svg"/><p>Log out</p></Link>
             </div>
         </nav>
     )
