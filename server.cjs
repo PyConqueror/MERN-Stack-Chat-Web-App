@@ -30,7 +30,7 @@ app.use('/api/communities', require('./routes/api/communities.cjs'))
 app.use(express.static(path.join(__dirname, 'dist')));
 
 
-const port = process.env.PORT || 3001;
+const port = process.env.PORT;
 
 const server = app.listen(port, () => {
     console.log('Express running on http://localhost/:' + port);
@@ -67,20 +67,24 @@ const io = require("socket.io")(server, {
 
     socket.on('rejectFriendRequest', async ({ userID, friendID }) => {
       usersController.rejectFriendRequestFromSocket(userID, friendID)
-      console.log("userID :", userID, "friendID : ", friendID)
       io.to(generalRoom).emit('friendRequestRejected', {receiverID:userID});
     });
+
+    socket.on('createGroup', async ({participants}) => {
+      io.to(generalRoom).emit('refreshList', {participants})
+    })
 
     socket.on('joinChat', ({ chatID }) => {     // Join a chat room
       socket.join(chatID);
       console.log(`User joined chat: ${chatID}`);
     });
-  
-    socket.on('sendMessage', async ({ chatID, senderID, content }) => {  // Handle sending messages
+    
+    socket.on('sendMessage', async ({ chatID, senderID, content, senderName }) => {  // Handle sending messages
       const newMessage = new Message({ // Save message to database
         chat: chatID,
         sender: senderID,
         content: content,
+        senderName: senderName
       });
       await newMessage.save();
       await Chat.findByIdAndUpdate(chatID, {
@@ -99,10 +103,6 @@ const io = require("socket.io")(server, {
     });
   });
   
-
-// This needs to be the last route:
-// All unrecognised requests get served the home page
-// (i.e. the React application):
 app.get('/*', (req, res) => {
     res.sendFile(path.join(__dirname, 'dist', 'index.html'));
 });

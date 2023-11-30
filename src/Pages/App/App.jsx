@@ -10,7 +10,7 @@ import CommunityListPage from '../CommunityListPage'
 import CommunityDetailPage from '../CommunityDetailPage';
 import CreateCommunityPage from '../CommunityListPage/CreateCommunityPage';
 import EditCommunityPage from '../CommunityDetailPage/EditCommunityPage.jsx';
-import FriendsPage from '../FriendsPage/index Websocket.jsx'
+import FriendsPage from '../FriendsPage'
 import ProfilePage from '../ProfilePage'
 import FriendProfilePage from '../ProfilePage/FriendProfilePage.jsx';
 import EditProfilePage from '../ProfilePage/EditProfilePage'

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import ChatBox from '../../components/Chats/ChatBox Websocket';
+import ChatBox from '../../components/Chats/ChatBox';
 import ChatList from '../../components/Chats/ChatList';
 import './index.css'
 
@@ -14,7 +14,13 @@ function ChatPage({ user }){
     <div className='content-container'>
         <div className='row'>
             <div className='column'>
-                <ChatList setSelectedChatID={setSelectedChatID} setChatName={setChatName} setChatAvatar={setChatAvatar} setChatParticipants={setChatParticipants}/>
+                <ChatList 
+                setSelectedChatID={setSelectedChatID} 
+                setChatName={setChatName} 
+                setChatAvatar={setChatAvatar} 
+                setChatParticipants={setChatParticipants}
+                user={user}
+                />
             </div>
             <div className='column'>
                 <ChatBox selectedChatID={selectedChatID} user={user} chatName={chatName} chatAvatar={chatAvatar} chatParticipants={chatParticipants}/>
