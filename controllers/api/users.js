@@ -10,10 +10,7 @@ module.exports = {
     searchUsers,
     getFriends,
     getChatList,
-    addFriend,
-    addFriendRequest,
     pendingFriends,
-    denyFriendRequest,
     addFriendFromSocket,
     addFriendRequestFromSocket,
     rejectFriendRequestFromSocket
@@ -115,7 +112,6 @@ async function getChatList(req, res) {
       match: { '_id': { $ne: currentUserId } },
       select: 'name avatar' 
     });
-  // const participants = await Chat.findById(chats._id).populate('participants')
   const transformedChats = chats.map(chat => { // transform the chats to include either the group name or the other participant's details
     if (chat.isGroup) {
       return {         // For group chats, return the group name
@@ -138,43 +134,11 @@ async function getChatList(req, res) {
   res.json(transformedChats);
 }
 
-async function addFriend(req, res) {
-  const userID = req.user._id;
-  const friendID = req.params.id;
-  await User.findByIdAndUpdate(userID, { $pull: { pending: friendID } });
-  const user = await User.findById(userID); //if friend id already in the user list
-  const friend = await User.findById(friendID)
-  if (user.friends.includes(friendID)) { // do nothing
-    return res.status(400)
-  } else { //if friend id not in the array, add the friend id in the friends array
-    user.friends.push(friendID)
-    friend.friends.push(userID)
-    await user.save()
-    await friend.save()
-    return res.status(200)
-  }
-}
 
 async function pendingFriends(req, res) {
   const userID = req.user._id
   const currentUser = await User.findById(userID).populate('pending', 'name avatar')
   return res.json(currentUser.pending)
-}
-
-async function addFriendRequest(req, res) {
-  const userID = req.user._id
-  const friendID = req.params.id
-  await User.findByIdAndUpdate(friendID, {
-    $push: { pending: userID }
-  })
-  res.status(200)
-}
-
-async function denyFriendRequest(req, res) {
-  const userID = req.user._id
-  const friendID = req.params.id
-  await User.findByIdAndUpdate(userID, { $pull: { pending: friendID } });
-  res.status(200)
 }
 
 async function addFriendRequestFromSocket(senderID, friendID){

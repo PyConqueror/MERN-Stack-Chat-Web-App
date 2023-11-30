@@ -2,7 +2,10 @@ import { useState, useRef, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import PostList from '../../components/Post/PostList';
 import * as communityServices from '../../utilities/community-api'
+<<<<<<< HEAD
 import '../../Pages/CommunityListPage/index.css'
+=======
+>>>>>>> 3bb462e209864cfbdd7c93e01c92c6edb15c2b7b
 
 const CreatePost = ({ user, community }) => {
     const [postImage, setPostImage] = useState(null);

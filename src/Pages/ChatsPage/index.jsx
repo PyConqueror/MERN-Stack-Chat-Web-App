@@ -8,7 +8,6 @@ function ChatPage({ user }){
     const [chatName, setChatName] = useState('')
     const [chatAvatar, setChatAvatar] = useState('')
     const [chatParticipants, setChatParticipants] = useState('')
-    console.log(chatParticipants)
 
     return(
     <div className='content-container'>
