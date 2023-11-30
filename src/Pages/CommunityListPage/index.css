@@ -91,7 +91,7 @@
 
 .posts-about-container {
     display: grid;
-    grid-template-columns: 3fr 2fr;
+    grid-template-columns: 2fr 1fr;
     gap: 1em;
 }
 
@@ -110,6 +110,15 @@
     border-radius: 8px;
     border: 1px solid var(--light-grey);
     padding: 1em;
+    margin: 2em 0;
+}
+
+.post-card img {
+    width: 100%;
+}
+
+.posts-container button {
+    width: 100%;
 }
 
 .show-comments-button {

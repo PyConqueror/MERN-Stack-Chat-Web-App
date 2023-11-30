@@ -46,6 +46,22 @@ form {
   color: var(--text-light);
 }
 
+.preview-image > img {
+  max-width: 200px;
+}
+
+.image-upload {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.image-upload button {
+  background-color: white;
+  color: var(--color-1);
+  border: 2px solid var(--color-1);
+}
+
 label {
   color: black;
   font-size: 0.8em;

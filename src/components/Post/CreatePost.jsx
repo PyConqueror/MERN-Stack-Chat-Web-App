@@ -112,26 +112,26 @@ const CreatePost = ({ user, community, setPosts }) => {
                     name="image" 
                     onChange={_handleImageChange}
                     ref={ fileRef }>
-                </input><br/>
-                <p>
-                    { postImage ? (
-                        isLoading ? (
-                            "Uploading ..."
-                        ) : (
-                        <button>Upload post picture</button>
-                        )
-                    ) : ("")
-                    }
-                </p>
+                </input>
+                <div className="image-upload">
+                    <div className="preview-image">
+                        { imagePreview && (
+                            <img src={imagePreview && imagePreview} />
+                            )}
+                    </div>
+                    <p>
+                        { postImage ? (
+                            isLoading ? (
+                                "Uploading ..."
+                            ) : (
+                            <button>Upload post picture</button>
+                            )
+                        ) : ("")
+                        }
+                    </p>
+                </div>
             </form>
-            <div>
-                { imagePreview && (
-                    <img src={imagePreview && imagePreview} />
-                )}
-            </div>
             <button onClick={_handleAddPost}>Submit Post</button>
-            <h3>All Posts</h3>
-
         </div>
     );
 }

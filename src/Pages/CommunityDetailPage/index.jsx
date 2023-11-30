@@ -48,14 +48,12 @@ const CommunityDetailPage = ({ user }) => {
                 <div className='posts-about-container'>
                     <div className='grid-item'>
                         <CreatePost user={ user } community={ community } setPosts={setPosts}/>
+                        <PostList user={ user } community={ community } posts={posts} setPosts={setPosts}/>
                     </div>
                     <div className='grid-item'>
                         <h3>About Community</h3>
                         <p>{ community.description }</p>
                     </div>
-                    <div className="post-card">
-                <PostList user={ user } community={ community } posts={posts} setPosts={setPosts}/>
-                </div>
                 </div>
             </div>
         </div>

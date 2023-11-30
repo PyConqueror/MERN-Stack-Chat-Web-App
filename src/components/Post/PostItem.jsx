@@ -22,7 +22,7 @@ const PostItem = ({ post, user, community}) => {
     }, [post._id]);
 
     return (
-        <div>
+        <div className="post-card">
             <p>{post.content}</p>
             <img src={post.images}/>
             <CreateComment user={user} post={post._id} community={community} getComments={getComments} />
