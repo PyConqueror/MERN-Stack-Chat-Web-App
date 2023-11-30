@@ -29,7 +29,7 @@ function FriendProfilePage(){
             <p>{ friend.location ? friend.location : "No location"}</p>
             <div className={friend.avatar.startsWith('hsl') ? "profile-image" : "profile-image-large"}
                 style={friend.avatar.startsWith('hsl') 
-                    ? { backgroundColor: friend.avatar } : { backgroundImage: `url(${friend.avatar})`}}>
+                    ? { backgroundColor: friend.avatar } : { backgroundImage: `url(${friend.avatar})`, width:'40vmin'}}>
                 <p>{ friend.avatar.startsWith('hsl') ? friend.name.charAt(0) : ""}</p>
             </div>
             <p>Biography:</p>

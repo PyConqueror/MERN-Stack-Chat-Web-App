@@ -13,6 +13,8 @@ function ProfilePage({user}){
     const location = user.location
     const navigate = useNavigate()
 
+    console.log(user.avatar)
+
     function _handleClick(){
         navigate('/profile/edit') 
     }
@@ -22,7 +24,7 @@ function ProfilePage({user}){
             <div className='profile-container'>
                 <div className={user.avatar.startsWith('hsl') ? "profile-image" : "profile-image-large"}
                 style={user.avatar.startsWith('hsl') 
-                ? { backgroundColor: user.avatar } : { backgroundImage: `url(${user.avatar})`}}>
+                ? { backgroundColor: user.avatar } : { backgroundImage: `url(${user.avatar})`, width: '30vmin'}}>
                     <p>{ user.avatar.startsWith('hsl') ? user.name.charAt(0) : ""}</p>
                 </div>
                 <p>{user.name}</p>
