@@ -2,6 +2,7 @@ import { useState, useEffect } from "react"
 import * as friendService from '../../utilities/friends-api';
 import * as chatService from '../../utilities/chats-api';
 import { useNavigate } from 'react-router-dom';
+import '../../pages/ChatsPage/index.css'
 
 function GroupChatForm({onClose, fetchChats}) {
     const [selectedFriends, setSelectedFriends] = useState([]);

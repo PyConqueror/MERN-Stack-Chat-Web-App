@@ -11,7 +11,7 @@ function ChatPage({ user }){
     console.log(chatParticipants)
 
     return(
-    <div className='content-container'>
+    <div className='chats-container'>
         <div className='row'>
             <div className='column'>
                 <ChatList setSelectedChatID={setSelectedChatID} setChatName={setChatName} setChatAvatar={setChatAvatar} setChatParticipants={setChatParticipants}/>

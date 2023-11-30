@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import ScrollableFeed from 'react-scrollable-feed';
 import * as chatService from '../../utilities/chats-api'
 import Message from './Message';
+import '../../pages/ChatsPage/index.css'
 
 function ChatBox({ selectedChatID, user }) {
     const [messages, setMessages] = useState([]);

@@ -17,21 +17,24 @@ function FriendsList({friends, setFriends, fetchFriends }) {
     }
 
     return (
-      <div className="friend-list">
-        <h2>My Friends</h2>
+      <div className="friends-container">
+        <h3>My Friends</h3>
         <ul>
           {friends.map(friend => (
-            <li key={friend._id}>
+            <li key={friend._id} className="friendlist-item">
               <div className="profile-image" 
                 style={friend.avatar.startsWith('hsl') 
                 ? { backgroundColor: friend.avatar } : { backgroundImage: `url(${friend.avatar})`}}>
                     <p>{ friend.avatar.startsWith('hsl') ? friend.name.charAt(0) : ""}</p>
               </div>
-              <span>{friend.name}</span>
-              <button onClick={() => startConversation(friend._id)}>
-                Start Conversation
-              </button>
-              <button onClick={() => viewFriendsProfile(friend._id)}>View profile</button>
+              <div className="friend-item">
+                <span>{friend.name}</span>
+                <div>
+                  <button onClick={() => viewFriendsProfile(friend._id)}>View profile</button>
+                  <button onClick={() => startConversation(friend._id)}>Start Conversation</button>
+                </div>
+              </div>
+              
             </li>
           ))}
         </ul>

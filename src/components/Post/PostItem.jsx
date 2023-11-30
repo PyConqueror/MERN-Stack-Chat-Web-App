@@ -25,9 +25,9 @@ const PostItem = ({ post, user}) => {
         <div>
             <p>{post.content}</p>
             <img src={post.images} />
-            <CreateComment user={ user } post={ post._id }/>
             <button onClick={_handleToggle} className="show-comments-button">{showComments ? 'Hide comments' : 'Show comments'}</button>
             {showComments && <CommentList comments={comments}/>}
+            <CreateComment user={ user } post={ post._id }/>
         </div>
     );
 }

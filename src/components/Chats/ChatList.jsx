@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import * as friendService from '../../utilities/friends-api';
 import GroupChatForm from './GroupChatForm';
+import '../../pages/ChatsPage/index.css'
 
 function ChatList({ setSelectedChatID, setChatName, setChatAvatar, setChatParticipants }) {
     const [chats, setChats] = useState([]);
@@ -27,32 +28,34 @@ function ChatList({ setSelectedChatID, setChatName, setChatAvatar, setChatPartic
     }
     
     return (
-      <div className="chat-list-container">
+      <>
         <h2>Chat List</h2>
         <button onClick={openModal}>Create Group Chat</button>
+        <div className="chat-list-container">
 
-        {chats && chats.length > 0 ? (
-          <ul className="chat-list">
-            {chats.map(chat => (
-              <li key={chat._id} className="chat-item" onClick={() => handleChatClick(chat._id, chat.name, chat.avatar, chat.participants)}>
-                <div className="profile-image" 
-                  style={chat.avatar.startsWith('hsl') 
-                          ? { backgroundColor: chat.avatar } : { backgroundImage: `url(${chat.avatar})`}}>
-                  <p>{ chat.avatar.startsWith('hsl') ? chat.name.charAt(0) : ""}</p>
-                </div>
-                <div className="chat-details">
-                  <p className="chat-name">{chat.name}</p>
-                </div>
-              </li>
-            ))}
-          </ul>
+          {chats && chats.length > 0 ? (
+            <ul className="chat-list">
+              {chats.map(chat => (
+                <li key={chat._id} className="chat-item" onClick={() => handleChatClick(chat._id, chat.name, chat.avatar, chat.participants)}>
+                  <div className="profile-image" 
+                    style={chat.avatar.startsWith('hsl') 
+                            ? { backgroundColor: chat.avatar } : { backgroundImage: `url(${chat.avatar})`}}>
+                    <p>{ chat.avatar.startsWith('hsl') ? chat.name.charAt(0) : ""}</p>
+                  </div>
+                  <div className="chat-details">
+                    <p className="chat-name">{chat.name}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
 
 
-        ) : (
-          <p>No chats yet.</p>
-        )}
-      {isModalOpen && <GroupChatForm onClose={closeModal} fetchChats={fetchChats} />}
-      </div>
+          ) : (
+            <p>No chats yet.</p>
+          )}
+        {isModalOpen && <GroupChatForm onClose={closeModal} fetchChats={fetchChats} />}
+        </div>
+      </>
     );
 }
 

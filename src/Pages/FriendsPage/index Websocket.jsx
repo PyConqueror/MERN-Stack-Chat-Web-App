@@ -77,14 +77,14 @@ function FriendsPage ({ user }) {
 
     return (
     <div className="content-container">
-      <h1>FriendsPage</h1>
-      <FriendsList friends={friends} setFriends={setFriends} fetchFriends={fetchFriends}/>
+      <h1>Friends</h1>
+      <FindUser fetchFriends={fetchFriends} sendFriendRequest={sendFriendRequest}/>
       <PendingRequest 
       pendingFriends={pendingFriends} 
       acceptFriendRequest={acceptFriendRequest}
       rejectFriendRequest={rejectFriendRequest}
       />  
-      <FindUser fetchFriends={fetchFriends} sendFriendRequest={sendFriendRequest}/>
+      <FriendsList friends={friends} setFriends={setFriends} fetchFriends={fetchFriends}/>
     </div>
     );
 }

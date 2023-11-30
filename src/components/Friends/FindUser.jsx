@@ -21,11 +21,10 @@ function FindUser({sendFriendRequest}) {
 
     return(
         <>
-        <form>
-        <label>Find users</label>
+        <form className="friends-container">
         <input 
             type="search" 
-            placeholder="Search"
+            placeholder="Search and add other users to chat with them"
             onChange={_handleChange}></input>
         </form>
 
@@ -35,7 +34,7 @@ function FindUser({sendFriendRequest}) {
             <button 
                 key={user._id}
                 onClick={(event) => addFriendRequest(user._id)} 
-                value={user._id}>Add Friend Request</button>
+                value={user._id}>Send Friend Request</button>
         </div>
         )}
         </>

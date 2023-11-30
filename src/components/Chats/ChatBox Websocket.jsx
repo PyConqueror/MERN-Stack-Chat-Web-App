@@ -3,6 +3,7 @@ import ScrollableFeed from 'react-scrollable-feed';
 import * as chatService from '../../utilities/chats-api'
 import Message from './Message';
 import io from 'socket.io-client';
+import '../../pages/ChatsPage/index.css'
 
 const socket = io('http://localhost:3001')
 
@@ -44,11 +45,13 @@ function ChatBox({ selectedChatID, user, chatName, chatAvatar, chatParticipants 
 
   return (
     <div className="chatbox">
-      <h3>{chatName}</h3>
-      <div className="profile-image" 
-      style={chatAvatar.startsWith('hsl') 
-              ? { backgroundColor: chatAvatar } : { backgroundImage: `url(${chatAvatar})`}}>
-      <p>{ chatAvatar.startsWith('hsl') ? chatAvatar.charAt(0) : ""}</p>
+      <div className='current-chat'>
+        <div className="profile-image" 
+        style={chatAvatar.startsWith('hsl') 
+                ? { backgroundColor: chatAvatar } : { backgroundImage: `url(${chatAvatar})`}}>
+        <p>{ chatAvatar.startsWith('hsl') ? chatAvatar.charAt(0) : ""}</p>
+        </div>
+        <h3>{chatName}</h3>
       </div>
       {chatParticipants && chatParticipants.length > 0 && (
         <div className='chatparticipants'>
