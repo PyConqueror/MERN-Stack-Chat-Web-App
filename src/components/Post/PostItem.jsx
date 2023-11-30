@@ -12,23 +12,27 @@ const PostItem = ({ post, user, community}) => {
         setShowComments(!showComments)
     }
     
-    useEffect(function(){
-        async function getComments(){
-            const currentComments = await communityService.getComments(post._id)
-            setComments(currentComments)
-        }
-        getComments()
-    }, [])
+    async function getComments() {
+        const currentComments = await communityService.getComments(post._id);
+        setComments(currentComments);
+    }
+
+    useEffect(() => {
+        getComments();
+    }, [post._id]);
 
     return (
         <div>
             <p>{post.content}</p>
-            <img src={post.images} />
-            <CreateComment user={ user } post={ post._id } community={ community }/>
-            <button onClick={_handleToggle} className="show-comments-button">{showComments ? 'Hide comments' : 'Show comments'}</button>
-            {showComments && <CommentList comments={comments}/>}
+            <img src={post.images}/>
+            <CreateComment user={user} post={post._id} community={community} getComments={getComments} />
+            <button onClick={_handleToggle} className="show-comments-button">
+                {showComments ? 'Hide comments' : 'Show comments'}
+            </button>
+            {showComments && <CommentList comments={comments} />}
         </div>
     );
+
 }
 
 export default PostItem;
