@@ -30,7 +30,7 @@ app.use('/api/communities', require('./routes/api/communities.cjs'))
 app.use(express.static(path.join(__dirname, 'dist')));
 
 
-const port = process.env.PORT || 3001;
+const port = process.env.PORT;
 
 const server = app.listen(port, () => {
     console.log('Express running on http://localhost/:' + port);

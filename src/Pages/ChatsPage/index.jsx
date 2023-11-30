@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import ChatBox from '../../components/Chats/ChatBox Websocket';
+import ChatBox from '../../components/Chats/ChatBox';
 import ChatList from '../../components/Chats/ChatList';
 import './index.css'
 
