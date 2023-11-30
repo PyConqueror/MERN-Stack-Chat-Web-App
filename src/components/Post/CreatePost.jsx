@@ -1,10 +1,9 @@
 import { useState, useRef } from "react";
 import { useNavigate } from 'react-router-dom';
-import PostList from '../../components/Post/PostList';
-import * as communityServices from '../../utilities/community-api'
+import * as communityService from '../../utilities/community-api'
 import '../../Pages/CommunityListPage/index.css'
 
-const CreatePost = ({ user, community }) => {
+const CreatePost = ({ user, community, setPosts }) => {
     const [postImage, setPostImage] = useState(null);
     const [imagePreview, setImagePreview] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
@@ -20,10 +19,17 @@ const CreatePost = ({ user, community }) => {
         images: ''
     })
 
+    async function getAllPosts(){
+        const allPosts = await communityService.getPosts(community._id)
+        setPosts(allPosts)
+    }
+
     async function _handleAddPost(event){
         try{
-            await communityServices.createPost(newPost)
-            navigate(`/communities/communities/${community._id}`);
+            await communityService.createPost(newPost)
+            setTimeout(async () => {
+                await getAllPosts(); //introduce timer for DB delay
+            }, 1000);
         } catch (err){
             console.log(err)
         }        
@@ -125,9 +131,7 @@ const CreatePost = ({ user, community }) => {
             </div>
             <button onClick={_handleAddPost}>Submit Post</button>
             <h3>All Posts</h3>
-            <div className="post-card">
-                <PostList user={ user } community={ community }/>
-            </div>
+
         </div>
     );
 }

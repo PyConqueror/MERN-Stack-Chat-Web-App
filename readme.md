@@ -45,6 +45,7 @@ https://communitalk-4a7ec5f9373f.herokuapp.com/
 
 ### Operating System:
 - macOS : Sonoma 14.1.1
+- Linux : Ubuntu 23.10
 
 
 
