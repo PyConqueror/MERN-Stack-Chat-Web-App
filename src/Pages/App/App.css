@@ -139,13 +139,16 @@ button[type="submit"] {
   font-size: x-large;
   background-size: cover;
   background-repeat: no-repeat;
+  text-transform: uppercase;
+  color: var(--dark-grey)
 }
 
 .profile-image-large {
   height: 25vmin;
   background-size: contain;
   display: flex;
-  background-repeat: no-repeat
+  background-repeat: no-repeat;
+  
 }
 
 /* navbar -------------------*/
