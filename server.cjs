@@ -42,7 +42,7 @@ const io = require("socket.io")(server, {
     cors: {
       origin: "https://communitalk-4a7ec5f9373f.herokuapp.com",
       methods: ['GET','POST']
-    },
+    }, //https://communitalk-4a7ec5f9373f.herokuapp.com
   });
 
   io.on('connection', (socket) => {

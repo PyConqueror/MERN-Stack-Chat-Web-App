@@ -44,7 +44,6 @@ function ChatBox({ selectedChatID, user, chatName, chatAvatar, chatParticipants 
       setNewMessage('');
     }
   };
-  console.log(messages)
   return (
     <div className="chatbox">
       <h3>{chatName}</h3>
