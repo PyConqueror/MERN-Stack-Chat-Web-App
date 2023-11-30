@@ -1,6 +1,6 @@
 import { useParams, useLocation } from 'react-router-dom';
 import { useState } from "react";
-import '../../pages/CommunityListPage/index.css'
+import '../../Pages/CommunityListPage/index.css'
 
 const CommentItem = ({comment}) => {
     return (
