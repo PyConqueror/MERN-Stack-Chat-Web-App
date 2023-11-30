@@ -6,6 +6,7 @@ const Message = require('./models/message.js');
 const Chat = require('./models/chat.js');
 const User = require('./models/user.js');
 const usersController = require('./controllers/api/users.js');
+const cors = require('cors');
 
 
 
@@ -13,7 +14,7 @@ require('dotenv').config();
 require('./config/database.cjs');
 
 const app = express();
-
+app.use(cors());
 // Middleware
 app.use(logger('dev'));
 app.use(express.json());
