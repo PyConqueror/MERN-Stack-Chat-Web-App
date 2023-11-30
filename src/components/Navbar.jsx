@@ -6,7 +6,7 @@ function Navbar({user, setUser}) {
     const navigate = useNavigate();
 
     function handleLogOut() {
-        navigate('/')
+        navigate('/login')
         userService.logOut();
         setUser(null);
     }

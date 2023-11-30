@@ -15,23 +15,28 @@ async function denyFriendRequest(friendID) {
 return (
   <div className="friends-container">
     <h3>Friend Requests</h3>
+    <ul>
     {pendingFriends.length > 0 ? (
       pendingFriends.map((friend, index) => (
-        <li key={index}>
+        <li key={index} style={{ listStyleType: "none"}} className="friendlist-item">
           <div className="profile-image"
             style={friend.avatar.startsWith('hsl')
               ? { backgroundColor: friend.avatar } : { backgroundImage: `url(${friend.avatar})` }}>
             <p>{friend.avatar.startsWith('hsl') ? friend.name.charAt(0) : ""}</p>
           </div>
+          <div className="friend-item">
           <span>{friend.name}</span>
-          <button onClick={() => acceptRequest(friend._id)}>Accept</button>
-          <button onClick={() => denyFriendRequest(friend._id)}>Deny</button>
-
+            <div>
+              <button onClick={() => acceptRequest(friend._id)}>Accept</button>
+              <button onClick={() => denyFriendRequest(friend._id)}>Deny</button>
+            </div>
+          </div>
         </li>
       ))
     ) : (
       <p>No pending friend requests.</p>
     )}
+    </ul>
   </div>
 );
 }

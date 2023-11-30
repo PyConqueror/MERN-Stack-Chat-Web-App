@@ -38,8 +38,8 @@ function createUserIcon(){
   }
 
   let hValue = generateHSLNumber(0, 360)
-  let sValue = generateHSLNumber(50, 75)
-  let lValue = generateHSLNumber(25, 60)
+  let sValue = generateHSLNumber(40, 60)
+  let lValue = generateHSLNumber(40, 60)
 
   function HSLtoString(h, s, l){
       return `hsl(${h}, ${s}%, ${l}%)`

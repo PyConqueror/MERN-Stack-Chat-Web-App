@@ -78,7 +78,7 @@ function FriendsPage ({ user }) {
 
     return (
     <div className="content-container">
-      <h1>FriendsPage</h1>
+      <h1>Friends</h1>
       <FindUser fetchFriends={fetchFriends} sendFriendRequest={sendFriendRequest}/>
       <PendingRequest 
       pendingFriends={pendingFriends} 
