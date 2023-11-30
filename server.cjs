@@ -6,13 +6,13 @@ const Message = require('./models/message.js');
 const Chat = require('./models/chat.js');
 const User = require('./models/user.js');
 const usersController = require('./controllers/api/users.js');
-const cors = require('cors');
+
+
 
 require('dotenv').config();
 require('./config/database.cjs');
 
 const app = express();
-app.use(cors());
 // Middleware
 app.use(logger('dev'));
 app.use(express.json());
@@ -38,10 +38,10 @@ const server = app.listen(port, () => {
 const io = require("socket.io")(server, {
     pingTimeout: 60000,
     cors: {
-      origin: "https://charla-0d33c518c9f1.herokuapp.com/",
+      origin: "http://localhost:5173",
       methods: ['GET','POST']
-    }, //https://communitalk-4a7ec5f9373f.herokuapp.com
-  }); //  http://localhost:5173
+    },//https://communitalk-4a7ec5f9373f.herokuapp.com
+  }); //"http://localhost:5173"
 
   io.on('connection', (socket) => {
     console.log('A new client connected');
