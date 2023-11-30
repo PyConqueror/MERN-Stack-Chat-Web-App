@@ -14,12 +14,8 @@ function Navbar({user, setUser}) {
     return (
         <nav>
             <div className="nav-section">
-                <h2>Welcome, <br/>{user.name} 👋</h2>
-                <div className={user.avatar.startsWith('hsl') ? "profile-image" : "profile-image-large"}
-                    style={user.avatar.startsWith('hsl') 
-                    ? { backgroundColor: user.avatar } : { backgroundImage: `url(${user.avatar})`}}>
-                    <p>{ user.avatar.startsWith('hsl') ? user.name.charAt(0) : ""}</p>
-                </div>
+                <img className="logo" src="public/logo.svg" />
+                <h2>Welcome, <br/>{user.name}</h2>
             </div>
             <div className="nav-section page-links">
                 <NavLink to={"/profile"}><img src="/profile.svg"/><p>Profile</p></NavLink>

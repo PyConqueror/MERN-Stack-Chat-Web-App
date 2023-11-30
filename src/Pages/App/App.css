@@ -161,6 +161,11 @@ nav {
   padding: 2em 1em;
 }
 
+.logo {
+  object-fit: contain;
+ width: 100%;
+}
+
 .nav-section {
   display: flex;
   flex-direction: column;
