@@ -30,7 +30,7 @@ function ChatBox({ selectedChatID, user, chatName, chatAvatar, chatParticipants 
 
     return () => {
       socket.emit('leaveChat', { chatId: selectedChatID });
-      socket.off('messageReceived');
+      socket.off('newMessage');
     };
   }, [selectedChatID]);
 
