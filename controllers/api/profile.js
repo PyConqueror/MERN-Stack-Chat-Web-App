@@ -11,11 +11,11 @@ module.exports = {
 
 async function getFriend(req, res){
     const friend = await User.findById(req.body.content)
-    res.json(friend)
+    res.json(friend) //return friend list belong to the user
 }
 
 async function updateProfileImage(req, res){
-    try{
+    try{ //update user profile picture
         const user = await User.findById(req.user._id)
         const profileImageURL = req.body.content
         user.avatar = profileImageURL
@@ -28,7 +28,7 @@ async function updateProfileImage(req, res){
 }
 
 async function updateBio(req, res){
-    try {
+    try { //update user bio
         const user = await User.findById(req.user._id)
         const updateBioText = req.body.content
         user.biography = updateBioText
@@ -41,7 +41,7 @@ async function updateBio(req, res){
 }
 
 async function updateLocation(req, res){
-    try {
+    try { //update user location
         const user = await User.findById(req.user._id)
         const updateLocationText = req.body.content
         user.location = updateLocationText

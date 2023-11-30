@@ -21,18 +21,6 @@ export function searchUsers(query){
   return sendRequest(`${BASE_URL}/searchUsers?query=${query}`, 'GET')
 }
 
-export function addFriend(id){
-  return sendRequest(`${BASE_URL}/addFriend/${id}`, 'POST')
-}
-
 export function getPending() {
   return sendRequest(`${BASE_URL}/pending`)
-}
-
-export function addFriendRequest(friendID) {
-  sendRequest(`${BASE_URL}/addFriendRequest/${friendID}`, 'POST')
-}
-
-export function denyRequest(friendID) {
-  sendRequest(`${BASE_URL}/denyFriendRequest/${friendID}`, 'POST')
 }
