@@ -14,7 +14,7 @@ function Navbar({user, setUser}) {
     return (
         <nav>
             <div className="nav-section">
-                <img className="logo" src="public/logo.svg" />
+                <img className="logo" src="/logo.svg" />
                 <h2>Welcome, <br/>{user.name}!</h2>
             </div>
             <div className="nav-section page-links">
@@ -24,7 +24,7 @@ function Navbar({user, setUser}) {
                 <NavLink to={"/friends"}><img src="/friends.svg"/><p>Friends</p></NavLink>
             </div>  
             <div className="nav-section">
-                <Link  onClick={handleLogOut}><img src="/logout.svg"/><p>Log out</p></Link>
+                <Link onClick={handleLogOut}><img src="/logout.svg"/><p>Log out</p></Link>
             </div>
         </nav>
     )
