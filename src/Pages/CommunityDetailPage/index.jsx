@@ -1,4 +1,4 @@
-import { useLocation } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom"
 import CreatePost from "../../components/Post/CreatePost";
@@ -6,32 +6,28 @@ import * as communityService from '../../utilities/community-api'
 import '../CommunityListPage/index.css'
 
 const CommunityDetailPage = ({ user }) => {
+    const { communityId } = useParams();
     const [community, setCommunity] = useState([])
-    const { state } = useLocation();
     const navigate = useNavigate()
-    const communityId = state?.communityId;
-    let admin = community.admins;
-    const userId = user._id
 
     useEffect(function(){
-        async function fetchGroup(){
-            const community = await communityService.getOneGroup(communityId)
-            setCommunity(community)
+        async function fetchComminity(){
+            const community = await communityService.getOneCommunity(communityId);
+            setCommunity(community);
+            let admin = community.admins[0] 
+            let userId = user._id
+            if(admin == userId){
+                console.log("true")
+            }
         }
-        fetchGroup()
+        fetchComminity()
     }, [])
 
     function _handleClick(){
-        navigate(`/community/${communityId}/edit`)
+        navigate(`/communities/${communityId}/edit`)
     }
 
-    if(!community.name){
-        return(
-            <p>Loading...</p>
-        )
-    }
-
-    if(!community.admins){
+    if(community === null || community.length === 0){
         return(
             <p>Loading...</p>
         )
@@ -43,7 +39,7 @@ const CommunityDetailPage = ({ user }) => {
             <div className='community-detail-body'>
                 <div className='community-header'>
                     <h1>{ community.name }</h1>
-                    { admin == userId ? (<button onClick={_handleClick}>Edit</button> ) : null}
+                    { community.admins[0] == user._id ? (<button onClick={_handleClick}>Edit</button> ) : null}
                 </div>
                 <div className='posts-about-container'>
                     <div className='grid-item'>

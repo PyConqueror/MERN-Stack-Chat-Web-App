@@ -4,7 +4,7 @@ import CreateComment from "../Comment/CreateComment"
 import * as communityService from '../../utilities/community-api'
 import '../../pages/CommunityListPage/index.css'
 
-const PostItem = ({ post, user}) => {
+const PostItem = ({ post, user, community}) => {
     const [comments, setComments] = useState([]);
     const [showComments, setShowComments] = useState(false);
     
@@ -25,7 +25,7 @@ const PostItem = ({ post, user}) => {
         <div>
             <p>{post.content}</p>
             <img src={post.images} />
-            <CreateComment user={ user } post={ post._id }/>
+            <CreateComment user={ user } post={ post._id } community={ community }/>
             <button onClick={_handleToggle} className="show-comments-button">{showComments ? 'Hide comments' : 'Show comments'}</button>
             {showComments && <CommentList comments={comments}/>}
         </div>
