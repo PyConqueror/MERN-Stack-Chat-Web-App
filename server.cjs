@@ -1,6 +1,5 @@
 const express = require('express');
 const path = require('path');
-const favicon = require('serve-favicon');
 const logger = require('morgan');
 const Message = require('./models/message.js');
 const Chat = require('./models/chat.js');
@@ -16,16 +15,12 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(require('./config/checkToken.js'));
 
-// create-react-app has a "build" directory
-// vite uses the "dist" directory instead
 app.use('/api/users', require('./routes/api/users.cjs'));
 app.use('/api/chats', require('./routes/api/chats.cjs'));
 app.use('/api/profiles', require('./routes/api/profiles.cjs'))
 app.use('/api/communities', require('./routes/api/communities.cjs'))
 
-/// app.use(favicon(path.join(__dirname, 'dist', 'favicon.ico')));
 app.use(express.static(path.join(__dirname, 'dist')));
-
 
 const port = process.env.PORT;
 

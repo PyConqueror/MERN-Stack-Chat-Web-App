@@ -44,12 +44,19 @@ async function showComments(req, res) {
 }
 
 async function createPost(req, res) {
-    const newPost = new Post(req.body)
+    const {author,community, content, images} = req.body
+    const newPost = new Post({
+        author:author,
+        group:community,
+        content:content,
+        images:images
+    })
     await newPost.save()
     const communityID = req.body.community
     await Community.findByIdAndUpdate(communityID, { $push: { posts: newPost._id } });
     const userId = req.user._id
     await User.findByIdAndUpdate(userId, {$push: { posts: newPost._id }})
+    await Post.findByIdAndUpdate(newPost._id, {}) // add community id
     res.json(newPost);
 }
 

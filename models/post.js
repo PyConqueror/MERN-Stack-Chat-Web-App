@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const postSchema = new Schema({
     author: {type: Schema.Types.ObjectId, ref: 'User'},
-    group: {type: Schema.Types.ObjectId, ref: 'Group'},
+    group: {type: Schema.Types.ObjectId, ref: 'Community'},
     content: String,
     images: [{ type: String }],
     comments: [{
