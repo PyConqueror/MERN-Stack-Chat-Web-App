@@ -1,7 +1,6 @@
 import { NavLink, Link } from "react-router-dom"
 import * as userService from '../utilities/users-service';
 import { useNavigate, Navigate } from "react-router-dom";
-const profilelogo = import('../assets/profile.svg')
 
 function Navbar({user, setUser}) {
     const navigate = useNavigate();
@@ -23,8 +22,8 @@ function Navbar({user, setUser}) {
                 </div>
             </div>
             <div className="nav-section page-links">
-                <NavLink to={"/profile"}><img src={profilelogo}/><p>Profile</p></NavLink>
-                <NavLink to={"/"}><img src="src/assets/chats.svg"/><p>Chats</p></NavLink>
+                <NavLink to={"/profile"}><img src="/profile.svg"/><p>Profile</p></NavLink>
+                <NavLink to={"/"}><img src="../"/><p>Chats</p></NavLink>
                 <NavLink to={"/communities"}><img src="src/assets/communities.svg"/><p>Communities</p></NavLink>
                 <NavLink to={"/friends"}><img src="src/assets/friends.svg"/><p>Friends</p></NavLink>
             </div>  
