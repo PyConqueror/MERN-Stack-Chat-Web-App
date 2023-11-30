@@ -47,19 +47,20 @@ function ChatBox({ selectedChatID, user, chatName, chatAvatar, chatParticipants 
   };
   return (
     <div className="chatbox">
-      <h3>{chatName}</h3>
-      <div className="profile-image" 
-      style={chatAvatar.startsWith('hsl') 
-              ? { backgroundColor: chatAvatar } : { backgroundImage: `url(${chatAvatar})`}}>
-      <p>{ chatAvatar.startsWith('hsl') ? chatAvatar.charAt(0) : ""}</p>
+      <div className='current-chat'>
+        <div className="profile-image" 
+        style={chatAvatar.startsWith('hsl') 
+        ? { backgroundColor: chatAvatar } : { backgroundImage: `url(${chatAvatar})`}}>
+        <p>{ chatAvatar.startsWith('hsl') ? chatAvatar.charAt(0) : ""}</p>
+        </div>
+        <h3>{chatName}</h3>
       </div>
       {chatParticipants && chatParticipants.length > 0 && (
-        <div className='chatparticipants'>
-          <p>Chat Participants:</p>
-          {chatParticipants.map((person, index) => (
-            <p key={index}>{person.name}</p>
-          ))}
-        </div>
+      <div className='current-chat'>
+        {chatParticipants.map((person, index) => (
+          <h3 key={index}>{person.name}</h3>
+        ))}
+      </div>
       )}
 
 <ScrollableFeed>
