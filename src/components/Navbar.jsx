@@ -15,7 +15,7 @@ function Navbar({user, setUser}) {
         <nav>
             <div className="nav-section">
                 <img className="logo" src="public/logo.svg" />
-                <h2>Welcome, <br/>{user.name}</h2>
+                <h2>Welcome, <br/>{user.name}!</h2>
             </div>
             <div className="nav-section page-links">
                 <NavLink to={"/profile"}><img src="/profile.svg"/><p>Profile</p></NavLink>
