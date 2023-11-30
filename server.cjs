@@ -40,7 +40,7 @@ const server = app.listen(port, () => {
 const io = require("socket.io")(server, {
     pingTimeout: 60000,
     cors: {
-      origin: "http://localhost:5173" || "https://communitalk-4a7ec5f9373f.herokuapp.com",
+      origin: "https://communitalk-4a7ec5f9373f.herokuapp.com",
       methods: ['GET','POST']
     },
   });
