@@ -24,7 +24,7 @@ function CommunityListPage({ user }) {
     if (!communities || communities.length === 0){
         return(
             <div className="content-container">
-                <h1>List of Communities</h1>
+                <h1>Communities</h1>
                 <button onClick={_handleClick}>Create new community</button>
                 <p>No communities exist </p>
             </div>
@@ -33,7 +33,7 @@ function CommunityListPage({ user }) {
 
     return(
         <div className="content-container">
-            <h1>List of Communities</h1>
+            <h1>Communities</h1>
             <button onClick={_handleClick}>Create new community</button>
             <div className="card-container">
                 {communities.map((community, index) => <CommunityCard community={community} key={index} user={ user }/>)}
