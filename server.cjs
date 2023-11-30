@@ -7,8 +7,6 @@ const Chat = require('./models/chat.js');
 const User = require('./models/user.js');
 const usersController = require('./controllers/api/users.js');
 
-
-
 require('dotenv').config();
 require('./config/database.cjs');
 
