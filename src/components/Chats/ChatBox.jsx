@@ -6,7 +6,7 @@ import GroupMessage from './GroupMessage';
 import io from 'socket.io-client';
 import '../../Pages/ChatsPage/index.css'
 
-const socket = io('http://localhost:3001')
+const socket = io()
 
 function ChatBox({ selectedChatID, user, chatName, chatAvatar, chatParticipants }) {
   const [messages, setMessages] = useState([]);

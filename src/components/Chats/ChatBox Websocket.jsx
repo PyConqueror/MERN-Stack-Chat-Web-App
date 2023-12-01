@@ -5,7 +5,7 @@ import Message from './Message';
 import io from 'socket.io-client';
 import '../../Pages/ChatsPage/index.css'
 
-const socket = io('https://communitalk-4a7ec5f9373f.herokuapp.com')
+const socket = io()
 
 function ChatBox({ selectedChatID, user, chatName, chatAvatar, chatParticipants }) {
   const [messages, setMessages] = useState([]);

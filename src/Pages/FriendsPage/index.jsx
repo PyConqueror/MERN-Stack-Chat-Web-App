@@ -6,7 +6,7 @@ import PendingRequest from "../../components/Friends/PendingRequest";
 import * as usersAPI from '../../utilities/users-api'
 import './index.css'
 import io from 'socket.io-client';
-const socket = io('http://localhost:3001')
+const socket = io()
 
 function FriendsPage ({ user }) {
     const [friends, setFriends] = useState([]);

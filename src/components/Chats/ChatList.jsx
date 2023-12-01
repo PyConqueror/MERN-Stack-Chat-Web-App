@@ -4,7 +4,7 @@ import GroupChatForm from './GroupChatForm';
 import io from 'socket.io-client';
 import '../../Pages/ChatsPage/index.css'
 
-const socket = io('http://localhost:3001')
+const socket = io()
 
 function ChatList({ setSelectedChatID, setChatName, setChatAvatar, setChatParticipants, user }) {
     const [chats, setChats] = useState([]);

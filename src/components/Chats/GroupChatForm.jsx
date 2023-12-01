@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import io from 'socket.io-client';
 import '../../Pages/ChatsPage/index.css'
 
-const socket = io('http://localhost:3001')
+const socket = io()
 
 function GroupChatForm({onClose, fetchChats}) {
     const [selectedFriends, setSelectedFriends] = useState([]);
