@@ -5,7 +5,7 @@ import * as friendService from '../../utilities/friends-api';
 import PendingRequest from "../../components/Friends/PendingRequest";
 import * as usersAPI from '../../utilities/users-api'
 import io from 'socket.io-client';
-const socket = io('https://communitalk-4a7ec5f9373f.herokuapp.com')
+const socket = io()
 
 function FriendsPage ({ user }) {
     const [friends, setFriends] = useState([]);
