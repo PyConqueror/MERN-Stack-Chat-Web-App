@@ -14,6 +14,16 @@ https://communitalk-4a7ec5f9373f.herokuapp.com/
 - **Group Chat**: Create group chats with multiple users and send messages broadcast to all members.
 - **Community Posts and Comments**: Post updates or comments within communities and get instant feedback from other members.
 
+## Screenhots
+
+![Website Image](./public/Screenshots/Screenshot%201.png)
+![Website Image](./public/Screenshots/Screenshot%203.png)
+![Website Image](./public/Screenshots/Screenshot%202.png)
+
+## Diagram
+
+![Diagram Image](./public/Screenshots/Diagram.png)
+
 ## Technologies Used
 
 ### Software Used:
@@ -46,6 +56,16 @@ https://communitalk-4a7ec5f9373f.herokuapp.com/
 ### Operating System:
 - macOS : Sonoma 14.1.1
 - Linux : Ubuntu 23.10
+
+## Other
+This Project was created under course "Software Engineering Immersive" presented by students of General Assembly Australia
+
+## Members and Contributors (random order)
+- Wan A - https://github.com/PyConqueror
+- Megan M - https://github.com/MegKM 
+- Kye C - https://github.com/kazmakai
+
+
 
 
 
