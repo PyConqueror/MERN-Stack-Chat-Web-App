@@ -5,6 +5,8 @@ import CreatePost from "../../components/Post/CreatePost";
 import PostList from '../../components/Post/PostList';
 import * as communityService from '../../utilities/community-api'
 import '../CommunityListPage/index.css'
+import io from 'socket.io-client';
+const socket = io("http://localhost:3001")
 
 const CommunityDetailPage = ({ user }) => {
     const { communityId } = useParams();
@@ -25,7 +27,15 @@ const CommunityDetailPage = ({ user }) => {
         }
         fetchComminity()
         getAllPosts()
-    }, [])
+        socket.on('refreshGroup', (Post) => {
+            if(Post.post.group === communityId){
+                setPosts((posts) => [...posts, Post.post])
+            }
+        });
+        return () => {
+            socket.off('refreshGroup');
+        };
+    }, [communityId])
 
     function _handleClick(){
         navigate(`/communities/${communityId}/edit`)
@@ -47,7 +57,7 @@ const CommunityDetailPage = ({ user }) => {
                 </div>
                 <div className='posts-about-container'>
                     <div className='grid-item'>
-                        <CreatePost user={ user } community={ community } setPosts={setPosts}/>
+                        <CreatePost user={ user } community={ community }/>
                         <PostList user={ user } community={ community } posts={posts} setPosts={setPosts}/>
                     </div>
                     <div className='grid-item'>

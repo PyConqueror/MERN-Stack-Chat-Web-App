@@ -5,6 +5,7 @@ const Message = require('./models/message.js');
 const Chat = require('./models/chat.js');
 const User = require('./models/user.js');
 const usersController = require('./controllers/api/users.js');
+const communitiesController = require('./controllers/api/communities.js');
 const cors = require('cors');
 
 require('dotenv').config();
@@ -66,6 +67,11 @@ const io = require("socket.io")(server, {
 
     socket.on('createGroup', async ({participants}) => {
       io.to(generalRoom).emit('refreshList', {participants})
+    })
+
+    socket.on('newPost', async({ newPost }) => {
+      const post = await communitiesController.createPostFromSocket(newPost)
+      io.to(generalRoom).emit('refreshGroup', {post})
     })
 
     socket.on('joinChat', ({ chatID }) => {     // Join a chat room

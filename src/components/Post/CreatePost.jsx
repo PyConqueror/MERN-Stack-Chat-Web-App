@@ -1,16 +1,17 @@
 import { useState, useRef } from "react";
-import { useNavigate } from 'react-router-dom';
 import * as communityService from '../../utilities/community-api'
 import '../../Pages/CommunityListPage/index.css'
+import io from 'socket.io-client';
 
-const CreatePost = ({ user, community, setPosts }) => {
+const socket = io("http://localhost:3001")
+
+const CreatePost = ({ user, community }) => {
     const [postImage, setPostImage] = useState(null);
     const [imagePreview, setImagePreview] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
     const fileRef = useRef()
     const cloudinaryPreset = import.meta.env.VITE_CLOUDINARY
     let newPostImageURL = ''
-    const navigate = useNavigate();
 
     const [newPost, setNewPost] = useState({
         author: user._id,
@@ -19,16 +20,14 @@ const CreatePost = ({ user, community, setPosts }) => {
         images: ''
     })
 
-    async function getAllPosts(){
-        const allPosts = await communityService.getPosts(community._id)
-        setPosts(allPosts)
-    }
+    async function emitNewPost(newPost) {
+        socket.emit('newPost', { newPost });
+      }
 
-    async function _handleAddPost(event){
+    async function _handleAddPost(){
         try{
-            await communityService.createPost(newPost)
             setTimeout(async () => {
-                await getAllPosts(); //introduce timer for DB delay
+                emitNewPost(newPost)
             }, 1000);
         } catch (err){
             console.log(err)

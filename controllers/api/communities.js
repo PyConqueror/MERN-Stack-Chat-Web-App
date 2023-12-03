@@ -11,7 +11,8 @@ module.exports = {
     createPost,
     createComment,
     createCommunity,
-    updateCommunity
+    updateCommunity,
+    createPostFromSocket
 };
 
 async function showOneCommunity(req, res) {
@@ -85,4 +86,20 @@ async function updateCommunity(req, res){
     community.category.push(req.body.category);
     await community.save()
     res.status(200).json({ message: "sucess"})
+}
+
+async function createPostFromSocket(newPost){
+    const {author,community, content, images} = newPost
+    const NewPost = new Post({
+        author:author,
+        group:community,
+        content:content,
+        images:images
+    })
+    await NewPost.save()
+    const communityID = NewPost.community
+    await Community.findByIdAndUpdate(communityID, { $push: { posts: NewPost._id } });
+    const userId = author
+    await User.findByIdAndUpdate(userId, {$push: { posts: NewPost._id }})
+    return NewPost
 }
