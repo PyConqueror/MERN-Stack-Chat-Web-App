@@ -3,7 +3,7 @@ import * as communityService from '../../utilities/community-api'
 import '../../Pages/CommunityListPage/index.css'
 import io from 'socket.io-client';
 
-const socket = io("http://localhost:3001")
+const socket = io()
 
 const CreatePost = ({ user, community }) => {
     const [postImage, setPostImage] = useState(null);

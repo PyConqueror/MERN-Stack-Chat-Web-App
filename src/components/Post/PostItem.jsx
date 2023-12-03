@@ -3,10 +3,13 @@ import CommentList from "../Comment/CommentList"
 import CreateComment from "../Comment/CreateComment"
 import * as communityService from '../../utilities/community-api'
 import '../../Pages/CommunityListPage/index.css'
+import io from 'socket.io-client';
+const socket = io()
 
 const PostItem = ({ post, user, community}) => {
     const [comments, setComments] = useState([]);
     const [showComments, setShowComments] = useState(false);
+
     
     const _handleToggle = () => {
         setShowComments(!showComments)
@@ -19,6 +22,14 @@ const PostItem = ({ post, user, community}) => {
 
     useEffect(() => {
         getComments();
+        socket.on('refreshComment', (comment) => {
+            if(comment.comment.post === post._id){
+                setComments((comments) => [...comments, comment.comment]);
+            }
+        });
+        return () => {
+            socket.off('refreshComment');
+        };
     }, [post._id]);
 
     return (

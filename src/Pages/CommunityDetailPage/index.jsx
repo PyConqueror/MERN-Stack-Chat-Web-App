@@ -6,7 +6,7 @@ import PostList from '../../components/Post/PostList';
 import * as communityService from '../../utilities/community-api'
 import '../CommunityListPage/index.css'
 import io from 'socket.io-client';
-const socket = io("http://localhost:3001")
+const socket = io()
 
 const CommunityDetailPage = ({ user }) => {
     const { communityId } = useParams();

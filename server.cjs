@@ -74,6 +74,12 @@ const io = require("socket.io")(server, {
       io.to(generalRoom).emit('refreshGroup', {post})
     })
 
+    socket.on('newComment', async ({ newComment}) => {
+      let counter = 0
+      const comment = await communitiesController.createCommentFromSocket(newComment)
+      io.to(generalRoom).emit('refreshComment', {comment})
+    })
+
     socket.on('joinChat', ({ chatID }) => {     // Join a chat room
       socket.join(chatID);
       console.log(`User joined chat: ${chatID}`);

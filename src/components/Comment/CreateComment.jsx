@@ -1,7 +1,8 @@
 import { useState } from "react";
-import * as communityServices from '../../utilities/community-api'
+import io from 'socket.io-client';
+const socket = io()
 
-const CreateComment = ({ user, post, getComments}) => {
+const CreateComment = ({ user, post }) => {
     const [newComment, setNewComment] = useState({
         author: user._id,
         post: post,
@@ -15,14 +16,14 @@ const CreateComment = ({ user, post, getComments}) => {
         });
     }
 
+    async function emitNewComment() {
+        socket.emit('newComment', { newComment });
+      }
+
     async function _handleAddComment(event) {
         event.preventDefault(); // Prevent form from submitting the traditional way
         try {
-            await communityServices.createComment(newComment);
-            setTimeout(async () => { //introduce timer for DB delay
-                await getComments();   // Call getComments to update the comment list
-            }, 1000);
-  
+            emitNewComment()
         } catch (err) {
             console.log(err);
         }
