@@ -26,7 +26,7 @@ function CreateCommunityPage({ user }) {
     const [newCommunity, setNewCommunity] = useState({
         name: '',
         description: '',
-        coverPhoto: '',
+        coverPhoto: null,
         category: 'All',
         admins: user._id 
     });
@@ -127,16 +127,21 @@ function CreateCommunityPage({ user }) {
                     onChange={_handleImageChange}
                     ref={ fileRef }>
                 </input><br/>
-                <p>
+                <div>
                     { communityImage ? (
                         isLoading ? (
                             "Uploading ..."
                         ) : (
                         <button>Upload community picture</button>
                         )
-                    ) : ("")
-                    }
-                </p>
+                    ) : (
+                        newCommunity.coverPhoto ? (
+                            <div>
+                                <p>Image successfully uploaded</p> 
+                                <img src={newCommunity.coverPhoto}/>
+                            </div>) : null
+                    )}
+                </div>
                 </label>
             </form>
             <div>

@@ -7,10 +7,10 @@ const EditCommunityPage = () => {
     const [currentCommunity, setCurrentCommunity] = useState([])
     const [updatedCommunity, setUpdatedCommunity] = useState({
         communityId: communityId,
-        name: currentCommunity.name,
-        description: currentCommunity.description,
-        coverPhoto: currentCommunity.coverPhoto,
-        category: currentCommunity.category,
+        name: '',
+        description: '',
+        coverPhoto: '',
+        category: '',
     })
     const [communityImage, setCommunityImage] = useState(null);
     const [imagePreview, setImagePreview] = useState(null);
@@ -42,7 +42,11 @@ const EditCommunityPage = () => {
 
     function _handleChange(event) {
         const { name, value } = event.target;
-        setUpdatedCommunity({ ...updatedCommunity, [name]: value });
+        if (name === 'name'){
+            setUpdatedCommunity({ ...updatedCommunity, [name]: value });
+        } else {
+            setUpdatedCommunity(prevState => ({ ...prevState, [name]: value }));
+        }
     };
 
     async function updateCommunityImage(newCommunityImageURL){
@@ -110,27 +114,25 @@ const EditCommunityPage = () => {
     return (
         <div className='content-container'>
             <h1>Edit community</h1>
-            <form onSubmit={_handleSubmit}>
-                <p>Current community name: {currentCommunity.name}</p>
-                <label>New community name:
-                    <input type="text" name="name" onChange={_handleChange}/>
+            <form className="create-community"onSubmit={_handleSubmit}>
+                <label>Community name:
+                    <input type="text" name="name" onChange={_handleChange} value={updatedCommunity.name}/>
                 </label>
-                <p>Current Description: {currentCommunity.description}</p>
-                <label>New description:
-                    <textarea name="description" onChange={_handleChange}></textarea>
+                <label>Description:
+                    <textarea name="description" onChange={_handleChange} value={updatedCommunity.description}></textarea>
                 </label>
-                <p>Current category: {currentCommunity.category}</p>
-                <label>Choose a new category:
+                <label>Current category: {currentCommunity.category}</label>
+                <label>Choose category:</label>
                     <select name="category" onChange={_handleChange}>
                         {sortedCategories.map((category, index) => (
                             <option key={index} value={category}>{category}</option>
                         ))}
                     </select>
-                </label>
             </form>
             <br/>
             <p>Current community photo: </p>
-            <img src={currentCommunity.coverPhoto} />
+            <img src={updatedCommunity.coverPhoto} />
+            <p>Choose a new photo:</p>
             <form onSubmit ={_uploadImage}>
                 <input 
                     type="file" 
@@ -144,7 +146,7 @@ const EditCommunityPage = () => {
                         isLoading ? (
                             "Uploading ..."
                         ) : (
-                        <button>Upload community picture</button>
+                        <button>Replace community picture</button>
                         )
                     ) : ("")
                     }

@@ -24,16 +24,22 @@ function FriendProfilePage(){
 
     return(
         <div className='content-container'>
-            <p>{ friend.name }</p>
-            <p>Location:</p>
-            <p>{ friend.location ? friend.location : "No location"}</p>
-            <div className={friend.avatar.startsWith('hsl') ? "profile-image" : "profile-image-large"}
-                style={friend.avatar.startsWith('hsl') 
-                    ? { backgroundColor: friend.avatar } : { backgroundImage: `url(${friend.avatar})`, width:'40vmin'}}>
-                <p>{ friend.avatar.startsWith('hsl') ? friend.name.charAt(0) : ""}</p>
+            <div className='profile-container'>
+                <div className={friend.avatar.startsWith('hsl') ? "profile-image" : "profile-image-large"}
+                    style={friend.avatar.startsWith('hsl') 
+                        ? { backgroundColor: friend.avatar } : { backgroundImage: `url(${friend.avatar})`, width:'30vmin'}}>
+                    <p>{ friend.avatar.startsWith('hsl') ? friend.name.charAt(0) : ""}</p>
+                </div>
+                <h1 className='username'>{ friend.name }</h1>
+                <div className='text-container'>
+                    <h3>Location:</h3>
+                    <p>{ friend.location ? friend.location : "No location"}</p>
+                </div>
+                <div className='text-container'>
+                    <h3>About me:</h3>
+                    <p>{ friend.biography ? friend.biography : "No biography"}</p>
+                </div>
             </div>
-            <p>Biography:</p>
-            <p>{ friend.biography ? friend.biography : "No biography"}</p>
         </div>
     )
 }

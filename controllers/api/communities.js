@@ -81,7 +81,8 @@ async function updateCommunity(req, res){
     community.name = req.body.name;
     community.description = req.body.description;
     community.coverPhoto = req.body.coverPhoto;
-    community.category = req.body.catergory;
-    community.save()
+    community.category.pop() 
+    community.category.push(req.body.category);
+    await community.save()
     res.status(200).json({ message: "sucess"})
 }
