@@ -53,7 +53,6 @@ const CommunityDetailPage = ({ user }) => {
             <div className='community-detail-body'>
                 <div className='community-header'>
                     <h1>{ community.name }</h1>
-                    { community.admins[0] == user._id ? (<button onClick={_handleClick}>Edit</button> ) : null}
                 </div>
                 <div className='posts-about-container'>
                     <div className='grid-item'>
@@ -61,6 +60,7 @@ const CommunityDetailPage = ({ user }) => {
                         <PostList user={ user } community={ community } posts={posts} setPosts={setPosts}/>
                     </div>
                     <div className='grid-item'>
+                        { community.admins[0] == user._id ? (<button onClick={_handleClick}>Edit community</button> ) : null}
                         <h3>About Community</h3>
                         <p>{ community.description }</p>
                     </div>

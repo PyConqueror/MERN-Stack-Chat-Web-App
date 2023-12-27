@@ -138,7 +138,8 @@ function CreateCommunityPage({ user }) {
                         newCommunity.coverPhoto ? (
                             <div>
                                 <p>Image successfully uploaded</p> 
-                                <img src={newCommunity.coverPhoto}/>
+                                <img src={newCommunity.coverPhoto}/><br/>
+                                <button style={{ display: 'block', margin: '0 auto' }} onClick={_handleSubmit}>Save community</button>
                             </div>) : null
                     )}
                 </div>
@@ -149,7 +150,9 @@ function CreateCommunityPage({ user }) {
                     <img src={imagePreview && imagePreview} />
                 )}
             </div>
-            <button onClick={_handleSubmit}>Save</button>
+            <div>
+                
+            </div>
         </div>
     );
 }
