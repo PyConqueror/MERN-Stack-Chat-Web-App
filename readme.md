@@ -4,6 +4,10 @@ CommuniTalk is a real-time social and communication platform where users can int
 
 https://communitalk-4a7ec5f9373f.herokuapp.com/
 
+Login with pre-created Account :
+Email : wan@email.com
+password : 1234
+
 ## Features
 
 - **User Authentication**: Secure sign-up and login functionality with encrypted password storage.
